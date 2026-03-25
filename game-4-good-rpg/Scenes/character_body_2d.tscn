@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://d1skljlv2mige"]
 
 [ext_resource type="Script" uid="uid://dao06xuuvxo22" path="res://Scripts/PlayerScript.gd" id="1_ymxaj"]
-[ext_resource type="Texture2D" uid="uid://0ku34rhme1t8" path="res://icon.svg" id="2_88kja"]
+[ext_resource type="Texture2D" uid="uid://diq2whfcbmnl" path="res://PlayerTemp.png" id="2_88kja"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_it8n0"]
 atlas = ExtResource("2_88kja")
-region = Rect2(0, 0, 128, 128)
+region = Rect2(0, 0, 127, 121)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gbyq6"]
 animations = [{
