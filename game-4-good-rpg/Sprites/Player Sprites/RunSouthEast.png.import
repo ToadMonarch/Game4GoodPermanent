@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8eldgpjr6c1t"
-path="res://.godot/imported/03-Sprite sheet (12 Frames).png-19030024a34faf9e38155b332d3aa28c.ctex"
+uid="uid://cf1uwskipjmku"
+path="res://.godot/imported/RunSouthEast.png-0b70ae380d78acb446a394ab9bff774c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/03-Sprite sheet (12 Frames).png"
-dest_files=["res://.godot/imported/03-Sprite sheet (12 Frames).png-19030024a34faf9e38155b332d3aa28c.ctex"]
+source_file="res://Sprites/Player Sprites/RunSouthEast.png"
+dest_files=["res://.godot/imported/RunSouthEast.png-0b70ae380d78acb446a394ab9bff774c.ctex"]
 
 [params]
 
