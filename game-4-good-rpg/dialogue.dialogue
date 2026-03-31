@@ -1,11 +1,9 @@
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
+Steven: Hello!
+Matt: Hello, Steven. How are you?
+Steven: I am fine. Will Sarina and Advaita join the meeting today?
+- Yes, Steven
+	Steven: Great!
+- No, but I will summarize the meeting content later
+	Steven: Thank you so much, Matt!
 => END
