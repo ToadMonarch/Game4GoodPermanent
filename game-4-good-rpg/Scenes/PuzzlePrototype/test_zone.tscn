@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://82bqdbbv4reg"]
 
-[ext_resource type="PackedScene" uid="uid://b1nc7qon6tjbm" path="res://drop_zone.tscn" id="1_xxalw"]
-[ext_resource type="PackedScene" uid="uid://b6ngpudcxdn01" path="res://dragndrop.tscn" id="2_564yf"]
+[ext_resource type="PackedScene" uid="uid://b1nc7qon6tjbm" path="res://Scenes/PuzzlePrototype/drop_zone.tscn" id="1_xxalw"]
+[ext_resource type="PackedScene" uid="uid://b6ngpudcxdn01" path="res://Scenes/PuzzlePrototype/dragndrop.tscn" id="2_564yf"]
 
 [node name="Node2D" type="Node2D" unique_id=959813644]
 

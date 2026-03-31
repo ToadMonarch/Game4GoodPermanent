@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://igp2nnxthc8l"
-path="res://.godot/imported/TileMapTemp.png-4eea95d4d33b68768929c4d58b5ba4bd.ctex"
+uid="uid://diq2whfcbmnl"
+path="res://.godot/imported/PlayerTemp.png-46ffe0048f809c6db42efdeb3ae0a9b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMapTemp.png"
-dest_files=["res://.godot/imported/TileMapTemp.png-4eea95d4d33b68768929c4d58b5ba4bd.ctex"]
+source_file="res://Sprites/PlayerTemp.png"
+dest_files=["res://.godot/imported/PlayerTemp.png-46ffe0048f809c6db42efdeb3ae0a9b1.ctex"]
 
 [params]
 
