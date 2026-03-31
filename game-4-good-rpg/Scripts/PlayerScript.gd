@@ -4,6 +4,8 @@ extends CharacterBody2D
 var target_position: Vector2
 var using_mouse := false
 
+@onready var animsprite = $AnimatedSprite2D
+
 func _ready():
 	target_position = global_position
 
@@ -34,6 +36,15 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 
 	move_and_slide()
+
+	update_animation()
+
+func update_animation():
+	if velocity.length() > 0:
+		animsprite.play("Walk")
+		animsprite.rotation = velocity.angle() - PI / 2
+	else:
+		animsprite.play("Idle")
 	
 	#This is my mark - ayden
 	# Leo successfuly updated the script
