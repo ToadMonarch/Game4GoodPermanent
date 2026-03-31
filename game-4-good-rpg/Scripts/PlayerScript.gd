@@ -40,11 +40,30 @@ func _physics_process(delta):
 	update_animation()
 
 func update_animation():
-	if velocity.length() > 0:
-		animsprite.play("Walk")
-		animsprite.rotation = velocity.angle() - PI / 2
-	else:
-		animsprite.play("Idle")
+	if velocity == Vector2.ZERO:
+		animsprite.play("16 Idle")
+		return
+	var angle = velocity.angle()
+	animsprite.flip_h = false
+	if angle > -PI/8 and angle <= PI/8:
+		animsprite.play("Run East")
+	elif angle > PI/8 and angle <= 3*PI/8:
+		animsprite.play("Run SouthEast")
+	elif angle > 3*PI/8 and angle <= 5*PI/8:
+		animsprite.play("Run South")
+	elif angle > 5*PI/8 and angle <= 7*PI/8:
+		animsprite.play("Run SouthEast")
+		animsprite.flip_h = true
+	elif angle > 7*PI/8 or angle <= -7*PI/8:
+		animsprite.play("Run East")
+		animsprite.flip_h = true
+	elif angle > -7*PI/8 and angle <= -5*PI/8:
+		animsprite.play("Run NorthEast")
+		animsprite.flip_h = true
+	elif angle > -5*PI/8 and angle <= -3*PI/8:
+		animsprite.play("Run North")
+	elif angle > -3*PI/8 and angle <= -PI/8:
+		animsprite.play("Run NorthEast")
 	
 	#This is my mark - ayden
 	# Leo successfuly updated the script
