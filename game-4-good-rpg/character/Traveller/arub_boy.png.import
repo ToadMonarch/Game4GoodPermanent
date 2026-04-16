@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fp5te8oqj640"
-path="res://.godot/imported/Front.png-2f60a97f7bc719e19f9c070d9c1a1b85.ctex"
+uid="uid://ohqk6paasi86"
+path="res://.godot/imported/arub_boy.png-c9a5295182379146b88ef420c374ccb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/human/Front.png"
-dest_files=["res://.godot/imported/Front.png-2f60a97f7bc719e19f9c070d9c1a1b85.ctex"]
+source_file="res://character/Traveller/arub_boy.png"
+dest_files=["res://.godot/imported/arub_boy.png-c9a5295182379146b88ef420c374ccb1.ctex"]
 
 [params]
 

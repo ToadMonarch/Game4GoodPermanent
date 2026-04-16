@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7hxjbih7qt0n"
-path="res://.godot/imported/Subject.png-552510cfeb218a5df34308beb039c0b0.ctex"
+uid="uid://bgxtf4el56nj1"
+path="res://.godot/imported/south copy 2.png-3497ed9dab7c6f6b2f65f3867f895e8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/penguine/Subject.png"
-dest_files=["res://.godot/imported/Subject.png-552510cfeb218a5df34308beb039c0b0.ctex"]
+source_file="res://character/Player/south copy 2.png"
+dest_files=["res://.godot/imported/south copy 2.png-3497ed9dab7c6f6b2f65f3867f895e8e.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://47gn26hua6yj"]
 
-[ext_resource type="Texture2D" uid="uid://7hxjbih7qt0n" path="res://character/penguine/Subject.png" id="1_luuoj"]
-[ext_resource type="Script" uid="uid://cogslc048lwyr" path="res://character/penguine/penguine.gd" id="1_xrr40"]
+[ext_resource type="Script" uid="uid://cogslc048lwyr" path="res://character/Player/penguine.gd" id="1_xrr40"]
+[ext_resource type="Texture2D" uid="uid://bgxtf4el56nj1" path="res://character/Player/south copy 2.png" id="2_xrr40"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xrr40"]
 animation = &"ui_down"
@@ -221,11 +221,10 @@ scale = Vector2(0.4898086, 0.4687013)
 script = ExtResource("1_xrr40")
 
 [node name="Penguine" type="Sprite2D" parent="." unique_id=1364752982]
-texture = ExtResource("1_luuoj")
+position = Vector2(-1754.5431, -1049.4021)
+scale = Vector2(4.4544287, 4.4610677)
+texture = ExtResource("2_xrr40")
 offset = Vector2(500, 300)
-hframes = 5
-vframes = 3
-frame = 2
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=94708451]
 tree_root = SubResource("AnimationNodeStateMachine_0u1ph")
@@ -242,7 +241,6 @@ shape = SubResource("RectangleShape2D_xrr40")
 
 [node name="ActionableFinder" type="Area2D" parent="Direction" unique_id=1211377096]
 position = Vector2(3.0997224, 0.88834095)
-collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder" unique_id=1491605706]

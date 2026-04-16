@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://b8ujmssuyemyx"]
 
-[ext_resource type="PackedScene" uid="uid://47gn26hua6yj" path="res://character/penguine/penguine.tscn" id="1_fhdlg"]
-[ext_resource type="PackedScene" uid="uid://chfx2i51458r7" path="res://character/human/human.tscn" id="2_b6oo2"]
+[ext_resource type="PackedScene" uid="uid://47gn26hua6yj" path="res://character/Player/penguine.tscn" id="1_fhdlg"]
+[ext_resource type="PackedScene" uid="uid://chfx2i51458r7" path="res://character/Traveller/human.tscn" id="2_b6oo2"]
+[ext_resource type="PackedScene" uid="uid://dmxdx3fwc1nfh" path="res://character/Family/famil.tscn" id="3_j4n2k"]
+[ext_resource type="PackedScene" path="res://character/Friend/friend.tscn" id="4_frn01"]
 
 [node name="Main" type="Node2D" unique_id=1977179405]
 
 [node name="Penguine" parent="." unique_id=336928025 instance=ExtResource("1_fhdlg")]
 
 [node name="Human" parent="." unique_id=81819359 instance=ExtResource("2_b6oo2")]
+
+[node name="Family" parent="." unique_id=1182704367 instance=ExtResource("3_j4n2k")]
+
+[node name="Friend" parent="." instance=ExtResource("4_frn01")]

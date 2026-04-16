@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dmxdx3fwc1nfh"]
+
+[ext_resource type="Script" uid="uid://682g6u3ed7gv" path="res://character/Family/family.gd" id="1_su16w"]
+[ext_resource type="Texture2D" uid="uid://c41i4nxquoqbl" path="res://character/Family/Family.png" id="2_rwko1"]
+[ext_resource type="PackedScene" uid="uid://t8nci0q725tp" path="res://helpers/Actionable.tscn" id="3_qjxix"]
+[ext_resource type="Resource" uid="uid://bn8tk18yvoarj" path="res://dialogue.dialogue" id="4_hcgen"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwko1"]
+size = Vector2(118, 150)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h1b7t"]
+radius = 93.13431
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_talk_hint"]
+bg_color = Color(0, 0, 0, 0.65)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Family" type="StaticBody2D" unique_id=1685936794]
+script = ExtResource("1_su16w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=39302581]
+position = Vector2(1051, 536.5)
+scale = Vector2(0.19531254, 0.20410156)
+texture = ExtResource("2_rwko1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1846613981]
+position = Vector2(1046, 537)
+shape = SubResource("RectangleShape2D_rwko1")
+
+[node name="Actionable2" parent="." unique_id=767184416 instance=ExtResource("3_qjxix")]
+dialogue_resource = ExtResource("4_hcgen")
+dialogue_start = "family_start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2" unique_id=1235886168]
+position = Vector2(1043, 536)
+shape = SubResource("CircleShape2D_h1b7t")
+
+[node name="TalkHintLayer" type="CanvasLayer" parent="." unique_id=576581797]
+
+[node name="TalkHintPanel" type="PanelContainer" parent="TalkHintLayer" unique_id=628855209]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -82.0
+offset_right = 140.0
+offset_bottom = -26.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_talk_hint")
+
+[node name="TalkHintLabel" type="Label" parent="TalkHintLayer/TalkHintPanel" unique_id=1187527927]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Press Space to talk"
+horizontal_alignment = 1

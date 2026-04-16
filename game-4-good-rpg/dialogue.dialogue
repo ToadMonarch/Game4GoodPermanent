@@ -1,9 +1,20 @@
-~ start
-Steven: Hello!
-Matt: Hello, Steven. How are you?
-Steven: I am fine. Will Sarina and Advaita join the meeting today?
-- Yes, Steven
-	Steven: Great!
-- No, but I will summarize the meeting content later
-	Steven: Thank you so much, Matt!
+ ~ traveller_start
+Traveler: Hello, little friend! I’ve traveled to many countries and seen people from different places helping each other and working hard together. This road is called the Path of Humanity.
+You: Is the Path of Humanity about saving others?
+Traveler: No. You don’t need to save anyone. You just need to see, listen, and cooperate. That is the Path of Humanity.
+You: I understand! I want to set off on the Path of Humanity too!
+Traveler: Wonderful! Remember your mission: Observe more, listen more, help more, and do not take the lead.
+=> END
+
+~ family_start
+Family: Child, we support you to explore and learn!
+Player: I will do my best!
+Family: Remember, respect everyone, help with small things, and bring warmth back.
+Player: I will surely remember!
+=> END
+
+~ friend_start
+Friend: You’re leaving! That’s so cool!
+Player: When I come back, I’ll tell you all the stories along the way!
+Friend: Great! I’ll wait for you!
 => END
