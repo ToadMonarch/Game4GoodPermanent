@@ -19,6 +19,11 @@ config/icon="res://Sprites/icon.svg"
 
 global="*uid://drpslnkubvagw"
 
+[display]
+
+window/size/viewport_width=1000
+window/size/viewport_height=1000
+
 [input]
 
 click={

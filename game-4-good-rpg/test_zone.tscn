@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://82bqdbbv4reg"]
+[gd_scene format=3 uid="uid://d3tltbbvm0rpd"]
 
-[ext_resource type="PackedScene" uid="uid://b1nc7qon6tjbm" path="res://Scenes/PuzzlePrototype/drop_zone.tscn" id="1_xxalw"]
-[ext_resource type="PackedScene" uid="uid://b6ngpudcxdn01" path="res://Scenes/PuzzlePrototype/dragndrop.tscn" id="2_564yf"]
+[ext_resource type="PackedScene" uid="uid://c84dcqnkxguia" path="res://drop_zone.tscn" id="1_xxalw"]
+[ext_resource type="PackedScene" uid="uid://dct7i2720kn3e" path="res://dragndrop.tscn" id="2_564yf"]
 
 [node name="Node2D" type="Node2D" unique_id=959813644]
 
 [node name="drop_zone" parent="." unique_id=1183835845 instance=ExtResource("1_xxalw")]
-position = Vector2(552, 395)
+position = Vector2(375, 222)
 
 [node name="drop_zone2" parent="." unique_id=703655427 instance=ExtResource("1_xxalw")]
 position = Vector2(826, 150)
@@ -15,4 +15,4 @@ position = Vector2(826, 150)
 position = Vector2(707, 452)
 
 [node name="Node2D" parent="." unique_id=892476415 instance=ExtResource("2_564yf")]
-position = Vector2(229, 144)
+position = Vector2(250, 102)
