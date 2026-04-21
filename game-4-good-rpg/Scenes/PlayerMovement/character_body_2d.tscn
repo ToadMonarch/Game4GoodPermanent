@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d1skljlv2mige"]
+
+[ext_resource type="Script" uid="uid://dao06xuuvxo22" path="res://Scripts/PlayerScript.gd" id="1_ymxaj"]
+[ext_resource type="SpriteFrames" uid="uid://eolybku4v1so" path="res://Sprites/Player Sprites/DefaultSS/ArabBoySS.tres" id="2_7c1s5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewqnc"]
+radius = 6.0
+height = 44.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1301413091]
+script = ExtResource("1_ymxaj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=82941369]
+scale = Vector2(0.7, 0.7)
+sprite_frames = ExtResource("2_7c1s5")
+animation = &"16 Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=59239980]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_ewqnc")
