@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://cjtirhvi16toq"]
 
 [ext_resource type="Texture2D" uid="uid://b02b4ms4w4xfp" path="res://Sprites/Import/Character/White girl/animations/Running-c90ef7d9/east/frame_000.png" id="1_888xa"]
-[ext_resource type="Texture2D" uid="uid://kewfs6iq6f5v" path="res://Sprites/Import/Character/White girl/rotations/south.png" id="1_e23wd"]
+[ext_resource type="Texture2D" uid="uid://bx2lr4vnwv5aa" path="res://Sprites/Import/White girl.png" id="1_e23wd"]
 [ext_resource type="Texture2D" uid="uid://dcyq1hnl7ul3h" path="res://Sprites/Import/Character/White girl/animations/Running-c90ef7d9/east/frame_001.png" id="2_e23wd"]
 [ext_resource type="Texture2D" uid="uid://dhiqrkel6b77n" path="res://Sprites/Import/Character/White girl/animations/Running-c90ef7d9/east/frame_002.png" id="3_ikv4f"]
 [ext_resource type="Texture2D" uid="uid://c8gc2aldv3g6u" path="res://Sprites/Import/Character/White girl/animations/Running-c90ef7d9/east/frame_003.png" id="4_b2d5f"]

@@ -22,7 +22,6 @@ const SPRITES: Dictionary[String, SpriteFrames] = {
 	"WhiteGirl": preload("res://Sprites/Player Sprites/DefaultSS/WhiteGirlSS.tres")
 }
 
-# 🔥 Order for cycling
 const SKIN_ORDER: Array[String] = [
 	"Default",
 	"AfricanBoy",
@@ -40,11 +39,11 @@ const SKIN_ORDER: Array[String] = [
 ]
 
 var current_skin_index := 0
+var last_direction := Vector2.RIGHT
 
 func _ready():
 	target_position = global_position
 	
-	# Set starting skin
 	current_skin_index = SKIN_ORDER.find("LGBT2")
 	if current_skin_index == -1:
 		current_skin_index = 0
@@ -68,14 +67,10 @@ func _input(event):
 		using_mouse = true
 
 func _physics_process(delta):
-	# 🔥 Press Q to cycle skins
-	if Input.is_key_pressed(KEY_Q):
-		# prevent holding spam by checking just pressed manually
-		if Input.is_action_just_pressed("ui_accept"): # dummy check to force single trigger
-			pass
-	
-		if Input.is_action_just_pressed("KEY_Q"):
-			cycle_skin()
+
+	# 🔥 Proper input action (make sure it's added in Input Map)
+	if Input.is_action_just_pressed("cycle_skin"):
+		cycle_skin()
 
 	var input_vector = Vector2(
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
@@ -85,28 +80,37 @@ func _physics_process(delta):
 	if input_vector != Vector2.ZERO:
 		using_mouse = false
 		velocity = input_vector * speed
+		last_direction = input_vector
 	
 	elif using_mouse:
 		var direction = (target_position - global_position)
 		
 		if direction.length() > 5:
 			velocity = direction.normalized() * speed
+			last_direction = direction.normalized()
 		else:
 			velocity = Vector2.ZERO
 			using_mouse = false
 	else:
 		velocity = Vector2.ZERO
 
+	# 🔥 Capture real movement
+	var prev_position = global_position
+
 	move_and_slide()
 
-	update_animation()
+	var real_velocity = global_position - prev_position
 
-func update_animation():
-	if velocity == Vector2.ZERO:
-		animsprite.play("16 Idle")
+	update_animation(real_velocity)
+
+func update_animation(real_velocity: Vector2):
+
+	# If not actually moving → idle
+	if real_velocity.length() < 1:
+		play_idle_animation()
 		return
 
-	var angle = velocity.angle()
+	var angle = real_velocity.angle()
 	animsprite.flip_h = false
 
 	if angle > -PI/8 and angle <= PI/8:
@@ -135,6 +139,37 @@ func update_animation():
 
 	elif angle > -3*PI/8 and angle <= -PI/8:
 		animsprite.play("Run NorthEast")
+
+func play_idle_animation():
+	var angle = last_direction.angle()
+	animsprite.flip_h = false
+
+	if angle > -PI/8 and angle <= PI/8:
+		animsprite.play("16 Idle")
+
+	elif angle > PI/8 and angle <= 3*PI/8:
+		animsprite.play("16 Idle")
+
+	elif angle > 3*PI/8 and angle <= 5*PI/8:
+		animsprite.play("16 Idle")
+
+	elif angle > 5*PI/8 and angle <= 7*PI/8:
+		animsprite.play("16 Idle")
+		animsprite.flip_h = true
+
+	elif angle > 7*PI/8 or angle <= -7*PI/8:
+		animsprite.play("16 Idle")
+		animsprite.flip_h = true
+
+	elif angle > -7*PI/8 and angle <= -5*PI/8:
+		animsprite.play("16 Idle")
+		animsprite.flip_h = true
+
+	elif angle > -5*PI/8 and angle <= -3*PI/8:
+		animsprite.play("16 Idle")
+
+	elif angle > -3*PI/8 and angle <= -PI/8:
+		animsprite.play("16 Idle")
 
 #This is my mark - ayden
 # Leo successfuly updated the script

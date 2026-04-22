@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://0qdsoun6qtv8"]
 
-[ext_resource type="Texture2D" uid="uid://byig8ud7uxd4s" path="res://Sprites/Import/Character/Asian boy/rotations/south.png" id="1_ccrig"]
+[ext_resource type="Texture2D" uid="uid://x7lur72kre0e" path="res://Sprites/Import/Asian boy.png" id="1_ccrig"]
 [ext_resource type="Texture2D" uid="uid://bmg8eiet1bq8n" path="res://Sprites/Import/Character/Asian boy/animations/Running-c080405e/east/frame_000.png" id="2_jv6ru"]
 [ext_resource type="Texture2D" uid="uid://dxptu4majd7ca" path="res://Sprites/Import/Character/Asian boy/animations/Running-c080405e/east/frame_001.png" id="3_yot75"]
 [ext_resource type="Texture2D" uid="uid://cdhsk2yvqfyp6" path="res://Sprites/Import/Character/Asian boy/animations/Running-c080405e/east/frame_002.png" id="4_8l031"]

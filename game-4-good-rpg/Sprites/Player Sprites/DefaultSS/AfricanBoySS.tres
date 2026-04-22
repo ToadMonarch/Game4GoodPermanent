@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://c0pk0elqd0gdj"]
 
-[ext_resource type="Texture2D" uid="uid://ccv6si3efvekj" path="res://Sprites/Import/Character/Black boy/rotations/south.png" id="1_u73um"]
+[ext_resource type="Texture2D" uid="uid://cg0cnvxkhu3f6" path="res://Sprites/Import/Black boy.png" id="1_u73um"]
 [ext_resource type="Texture2D" uid="uid://bulc088j2btvm" path="res://Sprites/Import/Character/Black boy/animations/Running-3bf87be4/east/frame_000.png" id="2_ud1qj"]
 [ext_resource type="Texture2D" uid="uid://ypbwo40n488j" path="res://Sprites/Import/Character/Black boy/animations/Running-3bf87be4/east/frame_001.png" id="3_e3q0r"]
 [ext_resource type="Texture2D" uid="uid://dq5wmwobaay6w" path="res://Sprites/Import/Character/Black boy/animations/Running-3bf87be4/east/frame_002.png" id="4_jek8k"]

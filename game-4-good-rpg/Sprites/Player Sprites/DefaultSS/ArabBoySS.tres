@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://eolybku4v1so"]
 
-[ext_resource type="Texture2D" uid="uid://ct8efitqrg4fn" path="res://Sprites/Import/Character/Arab boy/rotations/south.png" id="1_q52vu"]
+[ext_resource type="Texture2D" uid="uid://dwnlrgwyb1w51" path="res://Sprites/Import/Arab boy.png" id="1_q52vu"]
 [ext_resource type="Texture2D" uid="uid://cnwr40fuwpu2o" path="res://Sprites/Import/Character/Arab boy/animations/Running-e740ce4c/east/frame_000.png" id="2_66w52"]
 [ext_resource type="Texture2D" uid="uid://bxeqdw3asar0q" path="res://Sprites/Import/Character/Arab boy/animations/Running-e740ce4c/east/frame_001.png" id="3_crlx1"]
 [ext_resource type="Texture2D" uid="uid://vp7vlbdd4lwj" path="res://Sprites/Import/Character/Arab boy/animations/Running-e740ce4c/east/frame_002.png" id="4_1bh8b"]

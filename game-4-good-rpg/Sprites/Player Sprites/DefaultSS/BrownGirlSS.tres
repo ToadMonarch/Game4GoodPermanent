@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://bn2gkos1pjebj"]
 
-[ext_resource type="Texture2D" uid="uid://baqgfqmddeo87" path="res://Sprites/Import/Character/Brown-skinned girl/rotations/south.png" id="1_ao1lx"]
+[ext_resource type="Texture2D" uid="uid://cgy3j5hcekb72" path="res://Sprites/Import/Brown girl.png" id="1_ao1lx"]
 [ext_resource type="Texture2D" uid="uid://bgenu7csxciqr" path="res://Sprites/Import/Character/Brown-skinned girl/animations/Running-2fbbddd0/east/frame_000.png" id="2_n76xl"]
 [ext_resource type="Texture2D" uid="uid://d1g8j5sjckd2l" path="res://Sprites/Import/Character/Brown-skinned girl/animations/Running-2fbbddd0/east/frame_001.png" id="3_18bdw"]
 [ext_resource type="Texture2D" uid="uid://yg1nhksl1psd" path="res://Sprites/Import/Character/Brown-skinned girl/animations/Running-2fbbddd0/east/frame_002.png" id="4_4dsl0"]

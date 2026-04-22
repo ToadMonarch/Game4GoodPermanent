@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://b3x8ahhj6qhrq"]
 
-[ext_resource type="Texture2D" uid="uid://4rksdsyc5lgw" path="res://Sprites/Import/Character/LGBTQ (2)/rotations/south.png" id="1_c55ic"]
+[ext_resource type="Texture2D" uid="uid://bvivpmkxilfd7" path="res://Sprites/Import/LGBTO(1).png" id="1_c55ic"]
 [ext_resource type="Texture2D" uid="uid://cwtv7e6mhsykf" path="res://Sprites/Import/Character/LGBTQ (2)/animations/Running-18fb661f/east/frame_000.png" id="2_4b7xm"]
 [ext_resource type="Texture2D" uid="uid://cwpjrrhal3b4c" path="res://Sprites/Import/Character/LGBTQ (2)/animations/Running-18fb661f/east/frame_001.png" id="3_g30ma"]
 [ext_resource type="Texture2D" uid="uid://dbwntw48abg4" path="res://Sprites/Import/Character/LGBTQ (2)/animations/Running-18fb661f/east/frame_002.png" id="4_fnq8b"]
