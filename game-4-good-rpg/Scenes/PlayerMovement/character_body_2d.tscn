@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewqnc"]
 radius = 6.0
-height = 44.0
+height = 36.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1301413091]
 script = ExtResource("1_ymxaj")
@@ -16,5 +16,5 @@ sprite_frames = ExtResource("2_7c1s5")
 animation = &"16 Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=59239980]
-position = Vector2(0, 2)
+position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_ewqnc")
