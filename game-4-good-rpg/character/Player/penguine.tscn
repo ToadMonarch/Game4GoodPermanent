@@ -1,211 +1,7 @@
 [gd_scene format=3 uid="uid://47gn26hua6yj"]
 
 [ext_resource type="Script" uid="uid://cogslc048lwyr" path="res://character/Player/penguine.gd" id="1_xrr40"]
-[ext_resource type="Texture2D" uid="uid://bgxtf4el56nj1" path="res://character/Player/south copy 2.png" id="2_xrr40"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xrr40"]
-animation = &"ui_down"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e6ram"]
-animation = &"ui_left"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6uwy"]
-animation = &"ui_right"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_281r1"]
-animation = &"ui_up"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xrr40"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e6ram"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s6uwy"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_281r1"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i1p2n"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5w7fo"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e11yb"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ef1dm"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5dpqe"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0u1ph"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0u1ph"]
-states/End/position = Vector2(866, 119.5625)
-states/Start/position = Vector2(55, 108.72803)
-states/ui_down/node = SubResource("AnimationNodeAnimation_xrr40")
-states/ui_down/position = Vector2(488.80994, 191)
-states/ui_left/node = SubResource("AnimationNodeAnimation_e6ram")
-states/ui_left/position = Vector2(333.5, 109.494705)
-states/ui_right/node = SubResource("AnimationNodeAnimation_s6uwy")
-states/ui_right/position = Vector2(637, 117.625)
-states/ui_up/node = SubResource("AnimationNodeAnimation_281r1")
-states/ui_up/position = Vector2(488.88742, 51.77375)
-transitions = ["Start", "ui_left", SubResource("AnimationNodeStateMachineTransition_xrr40"), "ui_left", "ui_up", SubResource("AnimationNodeStateMachineTransition_e6ram"), "ui_up", "ui_right", SubResource("AnimationNodeStateMachineTransition_s6uwy"), "ui_right", "ui_down", SubResource("AnimationNodeStateMachineTransition_281r1"), "ui_down", "ui_left", SubResource("AnimationNodeStateMachineTransition_i1p2n"), "ui_left", "ui_right", SubResource("AnimationNodeStateMachineTransition_5w7fo"), "ui_up", "ui_down", SubResource("AnimationNodeStateMachineTransition_e11yb"), "ui_right", "ui_left", SubResource("AnimationNodeStateMachineTransition_ef1dm"), "ui_down", "ui_up", SubResource("AnimationNodeStateMachineTransition_5dpqe"), "ui_right", "End", SubResource("AnimationNodeStateMachineTransition_0u1ph")]
-graph_offset = Vector2(311.63962, 52.81499)
-
-[sub_resource type="Animation" id="Animation_luuoj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_i1p2n"]
-resource_name = "ui_down"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.06666666),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_5w7fo"]
-resource_name = "ui_left"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03333336),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-
-[sub_resource type="Animation" id="Animation_e11yb"]
-resource_name = "ui_right"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03333336),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [11]
-}
-
-[sub_resource type="Animation" id="Animation_ef1dm"]
-resource_name = "ui_up"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-
-[sub_resource type="Animation" id="Animation_e6ram"]
-resource_name = "walk_forward"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_s6uwy"]
-resource_name = "walk_left"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03333336),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-
-[sub_resource type="Animation" id="Animation_xrr40"]
-resource_name = "walk_right"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03333336),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-
-[sub_resource type="Animation" id="Animation_281r1"]
-resource_name = "walk_toward"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Penguine:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.03333336),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_e6ram"]
-_data = {
-&"RESET": SubResource("Animation_luuoj"),
-&"ui_down": SubResource("Animation_i1p2n"),
-&"ui_left": SubResource("Animation_5w7fo"),
-&"ui_right": SubResource("Animation_e11yb"),
-&"ui_up": SubResource("Animation_ef1dm"),
-&"walk_forward": SubResource("Animation_e6ram"),
-&"walk_left": SubResource("Animation_s6uwy"),
-&"walk_right": SubResource("Animation_xrr40"),
-&"walk_toward": SubResource("Animation_281r1")
-}
+[ext_resource type="SpriteFrames" uid="uid://cjtirhvi16toq" path="res://Sprites/Player Sprites/DefaultSS/WhiteGirlSS.tres" id="2_secp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrr40"]
 size = Vector2(238.86884, 260.404)
@@ -214,35 +10,33 @@ size = Vector2(238.86884, 260.404)
 radius = 183.74525
 height = 367.4905
 
-[node name="Penguine" type="CharacterBody2D" unique_id=336928025]
+[node name="Penguine" type="CharacterBody2D" unique_id=1085487878]
 texture_filter = 1
 position = Vector2(-146.51826, -65.41637)
 scale = Vector2(0.4898086, 0.4687013)
 script = ExtResource("1_xrr40")
 
-[node name="Penguine" type="Sprite2D" parent="." unique_id=1364752982]
+[node name="Penguine" type="AnimatedSprite2D" parent="." unique_id=1523484471]
 position = Vector2(-1754.5431, -1049.4021)
 scale = Vector2(4.4544287, 4.4610677)
-texture = ExtResource("2_xrr40")
+sprite_frames = ExtResource("2_secp2")
+animation = &"16 Idle"
+autoplay = "16 Idle"
 offset = Vector2(500, 300)
 
-[node name="AnimationTree" type="AnimationTree" parent="." unique_id=94708451]
-tree_root = SubResource("AnimationNodeStateMachine_0u1ph")
-anim_player = NodePath("../AnimationPlayer")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1299240756]
-libraries/ = SubResource("AnimationLibrary_e6ram")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=991701396]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768388462]
 position = Vector2(467.5669, 293.13025)
 shape = SubResource("RectangleShape2D_xrr40")
 
-[node name="Direction" type="Marker2D" parent="." unique_id=2113796180]
+[node name="Direction" type="Marker2D" parent="." unique_id=1409215425]
 
-[node name="ActionableFinder" type="Area2D" parent="Direction" unique_id=1211377096]
+[node name="ActionableFinder" type="Area2D" parent="Direction" unique_id=1114041869]
 position = Vector2(3.0997224, 0.88834095)
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder" unique_id=1491605706]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder" unique_id=174632430]
 position = Vector2(469.5712, 298.6977)
 shape = SubResource("CapsuleShape2D_xrr40")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=740109279]
+position = Vector2(491.0454, 305.9867)

@@ -20,6 +20,12 @@ class_name DialogueManagerExampleBalloon extends CanvasLayer
 ## The action to use to skip typing the dialogue
 @export var skip_action: StringName = &"ui_cancel"
 
+## Any [#tag] on a line whose tag name matches (before "=" if present) shows [member character_hint_icon] after the character name. Use [code][#hint=Subtitle text][/code] to also show yellow subtitle after the bulb (same [member character_icon_tags] names).
+@export var character_icon_tags: PackedStringArray = PackedStringArray(["hint", "idea"])
+
+## Color for optional subtitle after the bulb ([code][#hint=Your text][/code]).
+@export var character_subtitle_color: Color = Color(0.98, 0.82, 0.28, 1)
+
 ## A sound player for voice lines (if they exist).
 @onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
 
@@ -58,8 +64,14 @@ var mutation_cooldown: Timer = Timer.new()
 ## The base balloon anchor
 @onready var balloon: Control = %Balloon
 
+## Icon after the character name when the line has a matching [#tag].
+@onready var character_hint_icon: TextureRect = %CharacterHintIcon
+
+## Optional yellow line after the bulb when a tag includes [code]=subtitle[/code].
+@onready var character_subtitle: Label = %CharacterSubtitle
+
 ## The label showing the name of the currently speaking character
-@onready var character_label: RichTextLabel = %CharacterLabel
+@onready var character_label: Label = %CharacterLabel
 
 ## The label showing the currently spoken dialogue
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
@@ -73,6 +85,7 @@ var mutation_cooldown: Timer = Timer.new()
 
 func _ready() -> void:
 	balloon.hide()
+	character_subtitle.add_theme_color_override(&"font_color", character_subtitle_color)
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
 	# If the responses menu doesn't have a next action set, use this one
@@ -130,8 +143,15 @@ func apply_dialogue_line() -> void:
 	balloon.focus_mode = Control.FOCUS_ALL
 	balloon.grab_focus()
 
-	character_label.visible = not dialogue_line.character.is_empty()
-	character_label.text = tr(dialogue_line.character, "dialogue")
+	var has_character := not dialogue_line.character.is_empty()
+	var subtitle_raw := _get_character_row_tag_subtitle()
+	var subtitle: String = tr(subtitle_raw, "dialogue") if not subtitle_raw.is_empty() else ""
+	character_label.visible = has_character
+	character_hint_icon.visible = has_character and _line_has_character_icon_tag()
+	character_subtitle.text = subtitle
+	character_subtitle.visible = has_character and not subtitle.is_empty()
+	if has_character:
+		character_label.text = tr(dialogue_line.character, "dialogue")
 
 	dialogue_label.hide()
 	dialogue_label.dialogue_line = dialogue_line
@@ -165,6 +185,32 @@ func apply_dialogue_line() -> void:
 		is_waiting_for_input = true
 		balloon.focus_mode = Control.FOCUS_ALL
 		balloon.grab_focus()
+
+
+func _line_has_character_icon_tag() -> bool:
+	for tag: String in dialogue_line.tags:
+		if character_icon_tags.has(_tag_base_name(tag)):
+			return true
+	return false
+
+
+func _get_character_row_tag_subtitle() -> String:
+	for tag: String in dialogue_line.tags:
+		var eq_idx: int = tag.find("=")
+		if eq_idx == -1:
+			continue
+		var base: String = tag.substr(0, eq_idx).strip_edges()
+		if not character_icon_tags.has(base):
+			continue
+		return tag.substr(eq_idx + 1).strip_edges()
+	return ""
+
+
+func _tag_base_name(tag: String) -> String:
+	var eq_idx: int = tag.find("=")
+	if eq_idx == -1:
+		return tag.strip_edges()
+	return tag.substr(0, eq_idx).strip_edges()
 
 
 ## Go to the next line

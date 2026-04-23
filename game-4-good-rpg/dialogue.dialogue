@@ -1,20 +1,106 @@
- ~ traveller_start
-Traveler: Hello, little friend! I’ve traveled to many countries and seen people from different places helping each other and working hard together. This road is called the Path of Humanity.
+~ traveller_start
+Traveler: Hello, little one! I’ve traveled to many countries and seen people from different places helping each other and working hard together. This road is called the 
+	Path of Humanity. [#hint=Understand the core of the Path of Humanity]
 You: Is the Path of Humanity about saving others?
-Traveler: No. You don’t need to save anyone. You just need to see, listen, and cooperate. That is the Path of Humanity.
+Traveler: No. You don’t need to save anyone. You just need to see, listen, and cooperate. That is the Path of Humanity. [#hint=Do not be a little savior, assist equally]
 You: I understand! I want to set off on the Path of Humanity too!
-Traveler: Wonderful! Remember your mission: Observe more, listen more, help more, and do not take the lead.
+Traveler: Wonderful! Remember your mission: Observe more, listen more, help more, and do not take the lead. [#hint=Keep in mind the identity of an assistant]
 => END
 
 ~ family_start
-Family: Child, we support you to explore and learn!
+Family: Child, we support you to explore and learn! [#hint=Get family encouragement and support]
 Player: I will do my best!
-Family: Remember, respect everyone, help with small things, and bring warmth back.
+Family: Remember, respect everyone, help with small things, and bring warmth back.[#hint=Learn respect and kindness]
 Player: I will surely remember!
 => END
 
 ~ friend_start
-Friend: You’re leaving! That’s so cool!
+Adele: You’re leaving! That’s so cool![#hint=Get peer support]
 Player: When I come back, I’ll tell you all the stories along the way!
-Friend: Great! I’ll wait for you!
+Adele: Great! I’ll wait for you!
+=> END
+
+~ maggie_start
+Maggie: Water has been getting less and less recently, not even enough for watering the fields. [#hint=Record the problem of reduced water volume]
+do QuestState.mark_quest1_maggie_done()
+=> END
+
+~ kai_start
+Kai: The canal is blocked, and water can’t flow to my fields. [#hint=Record the problem of canal blockage]
+do QuestState.mark_quest1_kai_done()
+=> END
+
+~ jessica_start
+Jessica: Sometimes there’s no water during the day; it’s so inconvenient.[#hint=Record the problem of uneven water use and life difficulties]
+do QuestState.mark_quest1_jessica_done()
+=> END
+
+~ chapter1_locked_finish_investigation
+Player: I should walk along the stream and talk to the households first—Maggie, Kai, and Jessica—to record what’s happening with the water. [#hint=Quest 1: complete on-site investigation]
+=> END
+
+~ chapter1_locked_gather_all_views
+Player: I need to collect everyone’s views—Grandpa Arden, Steven, and Aurora—in any order, before I can call the council. [#hint=Quest 2: finish all three opinion talks]
+=> END
+
+~ chapter1_locked_announce_council_first
+Player: I should speak with the villagers first and let everyone know about the council meeting—then we can gather here to decide together. [#hint=Quest 3: announce the meeting at the village entrance]
+=> END
+
+~ chapter1_locked_finish_council_at_square
+Player: I should go to the square and finish the council talk with Arden, Steven, and everyone before coming back to the villagers here. [#hint=Quest 4: reach consensus at the council group]
+=> END
+
+~ arden_start
+Player: What’s good about it?
+Arden: Water flows fairly to every household, conforming to nature. This is the wisdom left by our ancestors. Water is a common resource for everyone; fair sharing will make everyone live in peace. [#hint=Collect views on traditional wisdom]
+Player: Are you worried now that there’s not enough water?
+Arden: Of course I am! If we can repair the canal, everyone uses water according to the rules, and learns to cherish and yield, the problem can be solved. [#hint=Traditional water use solution]
+do QuestState.mark_quest2_arden_done()
+=> END
+
+~ steven_start
+Steven: I want to install modern water-saving equipment, so that we can waste a lot less water!
+Player: Is the water-saving equipment easy to use?
+Steven: Very easy to use! Irrigation is faster, uses less water, and can solve the problem of drought. Saving every drop of water is protecting our common home. [#hint=Collect modern water-saving solutions]
+Player: Grandpa Arden wants to keep the traditional canal. Are you willing to discuss together?
+Steven: I am willing! As long as everyone has water to use, traditional and new methods can be used together. [#hint=Recognize that tradition and modernity can be combined]
+do QuestState.mark_quest2_steven_done()
+=> END
+
+~ aurora_start
+Aurora: I really want to have clean water to wash my hands and water the little flowers every day!
+Player: Is it hard to use water now?
+Aurora: Sometimes there’s no water, and the vegetable field is almost dry. I’m so worried. [#hint=Collect real children’s needs]
+Player: Don’t worry, I’ll help you find a solution together!
+Aurora: Great! Thank you! Let’s cherish water resources together and keep the stream clear forever. [#hint=Children’s consensus on water conservation]
+do QuestState.mark_quest2_aurora_done()
+=> END
+
+~ arden_steven_villagers_start
+Player: Grandpa Arden, Steven, and everyone, let’s find a win-win solution together, okay? When encountering problems, discussing them well is better than quarreling. [#hint=Guide negotiation and communication]
+Arden: I want to repair the traditional canal to ensure fairness.
+Steven: I want to install water-saving equipment to save water efficiently.
+Player: Then let’s do both! Repair the canal to ensure fairness, install equipment to save water, and make a water use convention for everyone to abide by and supervise together. Is that okay? [#hint=Propose an integrated solution]
+Arden: This method is good! I agree!
+Steven: I agree too!
+Villagers: We all agree! [#hint=Reach full consensus]
+do QuestState.mark_quest4_complete()
+=> END
+
+~ villagers_quest5
+Player: Let’s work together to clear the canal! Unity is strength; we will finish it soon if we work together! [#hint=Cooperate to clear the canal]
+Villagers: Okay! Let’s work together!
+Player: The water-saving devices are installed! We will no longer waste water from now on! Saving water is everyone’s responsibility. [#hint=Complete the installation of water-saving equipment]
+do QuestState.mark_quest5_complete()
+=> END
+
+~ villagers_quest5_repeat
+Villagers: The canal is clear and the new gear is in—we’ll keep watching the water together. [#hint=Quest 5 complete]
+=> END
+
+~ villagers_start
+Player: Grandpa Arden, uncles and aunts, we will hold a council meeting at the village entrance this afternoon to discuss the water use issue. Everyone remember to come! [#hint=Notify villagers to attend the meeting]
+Villagers: Okay! We will definitely come!
+do QuestState.mark_quest3_complete()
 => END

@@ -1,9 +1,16 @@
 extends CharacterBody2D
 
 const SPEED = 250.0
+const ANIM_IDLE := "16 Idle"
+const ANIM_RUN_EAST := "Run East"
+const ANIM_RUN_NORTH := "Run North"
+const ANIM_RUN_SOUTH := "Run South"
+const ANIM_RUN_NE := "Run NorthEast"
+const ANIM_RUN_SE := "Run SouthEast"
+
 var is_in_dialogue := false
 
-@onready var sprite = $Penguine
+@onready var sprite: AnimatedSprite2D = $Penguine
 @onready var actionable_finder: Area2D = $Direction/ActionableFinder
 
 func _ready() -> void:
@@ -12,7 +19,6 @@ func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
-# FUNCTION FOR SHOWING DIALOGUE
 func _unhandled_input(_event: InputEvent) -> void:
 	if is_in_dialogue:
 		return
@@ -22,38 +28,65 @@ func _unhandled_input(_event: InputEvent) -> void:
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
-# FUNCTION FOR MOVING
+
 func _physics_process(_delta: float) -> void:
 	if is_in_dialogue:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
 
-	var input_vector = Vector2.ZERO
-	
-	input_vector.x = Input.get_axis("ui_left", "ui_right")
-	input_vector.y = Input.get_axis("ui_up", "ui_down")
-	
-	input_vector = input_vector.normalized()
-	
+	var input_vector := Vector2(
+		Input.get_axis("ui_left", "ui_right"),
+		Input.get_axis("ui_up", "ui_down")
+	).normalized()
+
 	velocity = input_vector * SPEED
 	move_and_slide()
-	
-	# 🎯 Đổi frame theo hướng
-	if input_vector != Vector2.ZERO:
-		if abs(input_vector.x) > abs(input_vector.y):
-			if input_vector.x > 0:
-				sprite.frame = 11  # phải
-			else:
-				sprite.frame = 8  # trái
+
+	_update_sprite_for_input(input_vector)
+
+func _update_sprite_for_input(input_vector: Vector2) -> void:
+	if input_vector == Vector2.ZERO:
+		sprite.flip_h = false
+		if String(sprite.animation) != ANIM_IDLE:
+			sprite.play(ANIM_IDLE)
+		return
+
+	var x := input_vector.x
+	var y := input_vector.y
+	var abs_x := absf(x)
+	var abs_y := absf(y)
+
+	if abs_x > 0.35 and abs_y > 0.35:
+		var want_flip := x < 0.0
+		if y < 0.0:
+			if String(sprite.animation) != ANIM_RUN_NE or sprite.flip_h != want_flip:
+				sprite.flip_h = want_flip
+				sprite.play(ANIM_RUN_NE)
 		else:
-			if input_vector.y > 0:
-				sprite.frame = 2  # xuống
-			else:
-				sprite.frame = 5  # lên
+			if String(sprite.animation) != ANIM_RUN_SE or sprite.flip_h != want_flip:
+				sprite.flip_h = want_flip
+				sprite.play(ANIM_RUN_SE)
+	elif abs_x > abs_y:
+		var want_flip := x < 0.0
+		if String(sprite.animation) != ANIM_RUN_EAST or sprite.flip_h != want_flip:
+			sprite.flip_h = want_flip
+			sprite.play(ANIM_RUN_EAST)
+	else:
+		sprite.flip_h = false
+		if y < 0.0:
+			_play_if_needed(ANIM_RUN_NORTH)
+		else:
+			_play_if_needed(ANIM_RUN_SOUTH)
+
+func _play_if_needed(anim_name: String) -> void:
+	if String(sprite.animation) != anim_name:
+		sprite.play(anim_name)
 
 func _on_dialogue_started(_resource) -> void:
 	is_in_dialogue = true
+	sprite.flip_h = false
+	sprite.play(ANIM_IDLE)
 
 func _on_dialogue_ended(_resource) -> void:
 	is_in_dialogue = false

@@ -3,14 +3,51 @@
 [ext_resource type="PackedScene" uid="uid://47gn26hua6yj" path="res://character/Player/penguine.tscn" id="1_fhdlg"]
 [ext_resource type="PackedScene" uid="uid://chfx2i51458r7" path="res://character/Traveller/human.tscn" id="2_b6oo2"]
 [ext_resource type="PackedScene" uid="uid://dmxdx3fwc1nfh" path="res://character/Family/famil.tscn" id="3_j4n2k"]
-[ext_resource type="PackedScene" path="res://character/Friend/friend.tscn" id="4_frn01"]
+[ext_resource type="PackedScene" uid="uid://drxfovylj05ic" path="res://character/Friend/friend.tscn" id="4_frn01"]
+[ext_resource type="PackedScene" path="res://character/Maggie/maggie.tscn" id="5_maggie"]
+[ext_resource type="PackedScene" path="res://character/Kai/kai.tscn" id="6_kai"]
+[ext_resource type="PackedScene" uid="uid://d5nm8ubav8ew" path="res://character/Jessica/jessica.tscn" id="7_jessica"]
+[ext_resource type="PackedScene" path="res://character/Aurora/aurora.tscn" id="8_aurora"]
+[ext_resource type="PackedScene" uid="uid://c3ard3nnpcqb" path="res://character/Arden/arden.tscn" id="9_arden"]
+[ext_resource type="PackedScene" uid="uid://un83v6peny40" path="res://character/Steven/steven.tscn" id="10_steven"]
+[ext_resource type="PackedScene" uid="uid://b0qsrv6j2v4c2" path="res://character/villagers/villagers.tscn" id="11_villagers"]
+[ext_resource type="PackedScene" uid="uid://c6qlnj8u8xhw4" path="res://character/Arden_Steven_Villagers/arden_steven_villagers.tscn" id="12_asv"]
 
 [node name="Main" type="Node2D" unique_id=1977179405]
 
 [node name="Penguine" parent="." unique_id=336928025 instance=ExtResource("1_fhdlg")]
 
 [node name="Human" parent="." unique_id=81819359 instance=ExtResource("2_b6oo2")]
+position = Vector2(-188, -13)
 
 [node name="Family" parent="." unique_id=1182704367 instance=ExtResource("3_j4n2k")]
+position = Vector2(-179, 8)
 
-[node name="Friend" parent="." instance=ExtResource("4_frn01")]
+[node name="Friend" parent="." unique_id=1311359023 instance=ExtResource("4_frn01")]
+position = Vector2(-184, 14)
+
+[node name="Maggie" parent="." unique_id=1224434304 instance=ExtResource("5_maggie")]
+position = Vector2(1356, 95)
+
+[node name="Kai" parent="." unique_id=1417196607 instance=ExtResource("6_kai")]
+position = Vector2(1365, 340)
+
+[node name="Jessica" parent="." unique_id=989292783 instance=ExtResource("7_jessica")]
+position = Vector2(1363, 552)
+
+[node name="Aurora" parent="." unique_id=1997513960 instance=ExtResource("8_aurora")]
+position = Vector2(1910, 82)
+
+[node name="Arden_Steven_Villagers" type="Node2D" parent="." unique_id=2099291272]
+
+[node name="Arden" parent="Arden_Steven_Villagers" unique_id=513018427 instance=ExtResource("9_arden")]
+position = Vector2(1904, 342)
+
+[node name="Steven" parent="Arden_Steven_Villagers" unique_id=484491093 instance=ExtResource("10_steven")]
+position = Vector2(1909, 589)
+
+[node name="Villagers" parent="Arden_Steven_Villagers" unique_id=2099291273 instance=ExtResource("11_villagers")]
+position = Vector2(2333, 289)
+
+[node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("12_asv")]
+position = Vector2(2731, 301)
