@@ -11,6 +11,6 @@ position = Vector2(175, 193.00002)
 [node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
 z_index = 2
 position = Vector2(812, 155)
-scale = Vector2(1.4, 1.4)
+scale = Vector2(2.25, 2.25)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=586456594]
