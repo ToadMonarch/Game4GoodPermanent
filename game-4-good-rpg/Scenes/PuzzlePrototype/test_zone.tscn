@@ -6,13 +6,13 @@
 [node name="Node2D" type="Node2D" unique_id=959813644]
 
 [node name="drop_zone" parent="." unique_id=1183835845 instance=ExtResource("1_xxalw")]
-position = Vector2(552, 395)
+position = Vector2(237, 587)
 
 [node name="drop_zone2" parent="." unique_id=703655427 instance=ExtResource("1_xxalw")]
 position = Vector2(826, 150)
 
 [node name="drop_zone3" parent="." unique_id=349105503 instance=ExtResource("1_xxalw")]
-position = Vector2(707, 452)
+position = Vector2(800, 501)
 
 [node name="Node2D" parent="." unique_id=892476415 instance=ExtResource("2_564yf")]
 position = Vector2(229, 144)
