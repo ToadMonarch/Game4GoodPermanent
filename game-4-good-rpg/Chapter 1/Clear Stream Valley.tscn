@@ -1,0 +1,34 @@
+[gd_scene format=4 uid="uid://drixsq6puqeru"]
+
+[ext_resource type="Texture2D" uid="uid://8krfml3l82bd" path="res://Chapter 1/图片2.png" id="1_gwevy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r83mq"]
+texture = ExtResource("1_gwevy")
+margins = Vector2i(1, 0)
+separation = Vector2i(7, 0)
+texture_region_size = Vector2i(86, 95)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(1, 0)
+2:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+3:0/0 = 0
+4:1/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_au278"]
+tile_shape = 1
+tile_size = Vector2i(80, 40)
+sources/0 = SubResource("TileSetAtlasSource_r83mq")
+
+[node name="ClearStreamValley" type="Node2D" unique_id=1628794416]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1245745413]
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAABAAAAAAAAAAAAAAABAP//AAAAAAAAAAACAP7/AAAAAAAAAAACAP3/AAAAAAAAAAADAPz/AAAAAAAAAAADAPv/AAAAAAAAAAADAPr/AAAAAAAAAAADAPn/AAAAAAAAAAACAPn/AAAAAAAAAAACAPr/AAAAAAAAAAABAPv/AAAAAAAAAAABAPz/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP7/AAAAAAAAAAABAP3/AAAAAAAAAAACAPz/AAAAAAAAAAACAPv/AAAAAAAAAAACAP//AAAAAAAAAAACAAAAAAAAAAAAAAABAAEAAAAAAAAAAAACAAIAAAAAAAAAAAABAAMAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAADAP7/AAAAAAAAAAADAP3/AAAAAAAAAAADAP//AAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAAAAAAAAAAAAAD///7/AAAAAAAAAAD/////AAAAAAAAAAAAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7/AAAAAAAAAAAEAPb/AAAAAAAAAAAOAP3/AAAAAAAAAAAKAP3/AAAAAAAAAAAFAAAAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_au278")
