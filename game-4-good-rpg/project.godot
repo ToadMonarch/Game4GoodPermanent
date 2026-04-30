@@ -11,18 +11,24 @@ config_version=5
 [application]
 
 config/name="Game4GoodRPG"
-run/main_scene="uid://b52aysa4i75el"
+run/main_scene="uid://b8ujmssuyemyx"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
 global="*uid://drpslnkubvagw"
+DialogueManager="*uid://c3rodes2l3gxb"
+QuestState="*res://Scripts/quest_state.gd"
 
 [display]
 
 window/size/viewport_width=1000
 window/size/viewport_height=1000
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
@@ -36,6 +42,15 @@ cycle_skin={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":81,"key_label":0,"unicode":113,"location":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialogue.dialogue")
+
+[layer_names]
+
+2d_render/layer_5="Human"
+2d_physics/layer_5="Actionables"
 
 [navigation]
 

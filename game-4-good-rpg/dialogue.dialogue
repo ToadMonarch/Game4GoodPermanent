@@ -1,0 +1,337 @@
+~ traveller_start
+Traveler: Hello, little one! I’ve traveled to many countries and seen people from different places helping each other and working hard together. This road is called the 
+	Path of Humanity. [#hint=Understand the core of the Path of Humanity]
+You: Is the Path of Humanity about saving others?
+Traveler: No. You don’t need to save anyone. You just need to see, listen, and cooperate. That is the Path of Humanity. [#hint=Do not be a little savior, assist equally]
+You: I understand! I want to set off on the Path of Humanity too!
+Traveler: Wonderful! Remember your mission: Observe more, listen more, help more, and do not take the lead. [#hint=Keep in mind the identity of an assistant]
+do QuestState.mark_chapter0_traveler_done()
+=> END
+
+~ family_start
+Family: Child, we support you to explore and learn! [#hint=Get family encouragement and support]
+Player: I will do my best!
+Family: Remember, respect everyone, help with small things, and bring warmth back.[#hint=Learn respect and kindness]
+Player: I will surely remember!
+do QuestState.mark_chapter0_family_done()
+=> END
+
+~ friend_start
+Adele: You’re leaving! That’s so cool![#hint=Get peer support]
+Player: When I come back, I’ll tell you all the stories along the way!
+Adele: Great! I’ll wait for you!
+do QuestState.mark_chapter0_friend_done()
+=> END
+
+~ maggie_start
+Maggie: Water has been getting less and less recently, not even enough for watering the fields. [#hint=Record the problem of reduced water volume]
+do QuestState.mark_quest1_maggie_done()
+=> END
+
+~ kai_start
+Kai: The canal is blocked, and water can’t flow to my fields. [#hint=Record the problem of canal blockage]
+do QuestState.mark_quest1_kai_done()
+=> END
+
+~ jessica_start
+Jessica: Sometimes there’s no water during the day; it’s so inconvenient.[#hint=Record the problem of uneven water use and life difficulties]
+do QuestState.mark_quest1_jessica_done()
+=> END
+
+~ chapter1_locked_finish_investigation
+Player: I should walk along the stream and talk to the households first—Maggie, Kai, and Jessica—to record what’s happening with the water. [#hint=Quest 1: complete on-site investigation]
+=> END
+
+~ chapter1_locked_gather_all_views
+Player: I need to collect everyone’s views—Grandpa Arden, Steven, and Aurora—in any order, before I can call the council. [#hint=Quest 2: finish all three opinion talks]
+=> END
+
+~ chapter1_locked_announce_council_first
+Player: I should speak with the villagers first and let everyone know about the council meeting—then we can gather here to decide together. [#hint=Quest 3: announce the meeting at the village entrance]
+=> END
+
+~ chapter1_locked_finish_council_at_square
+Player: I should go to the square and finish the council talk with Arden, Steven, and everyone before coming back to the villagers here. [#hint=Quest 4: reach consensus at the council group]
+=> END
+
+~ arden_start
+Player: What’s good about it?
+Arden: Water flows fairly to every household, conforming to nature. This is the wisdom left by our ancestors. Water is a common resource for everyone; fair sharing will make everyone live in peace. [#hint=Collect views on traditional wisdom]
+Player: Are you worried now that there’s not enough water?
+Arden: Of course I am! If we can repair the canal, everyone uses water according to the rules, and learns to cherish and yield, the problem can be solved. [#hint=Traditional water use solution]
+do QuestState.mark_quest2_arden_done()
+=> END
+
+~ steven_start
+Steven: I want to install modern water-saving equipment, so that we can waste a lot less water!
+Player: Is the water-saving equipment easy to use?
+Steven: Very easy to use! Irrigation is faster, uses less water, and can solve the problem of drought. Saving every drop of water is protecting our common home. [#hint=Collect modern water-saving solutions]
+Player: Grandpa Arden wants to keep the traditional canal. Are you willing to discuss together?
+Steven: I am willing! As long as everyone has water to use, traditional and new methods can be used together. [#hint=Recognize that tradition and modernity can be combined]
+do QuestState.mark_quest2_steven_done()
+=> END
+
+~ aurora_start
+Aurora: I really want to have clean water to wash my hands and water the little flowers every day!
+Player: Is it hard to use water now?
+Aurora: Sometimes there’s no water, and the vegetable field is almost dry. I’m so worried. [#hint=Collect real children’s needs]
+Player: Don’t worry, I’ll help you find a solution together!
+Aurora: Great! Thank you! Let’s cherish water resources together and keep the stream clear forever. [#hint=Children’s consensus on water conservation]
+do QuestState.mark_quest2_aurora_done()
+=> END
+
+~ arden_steven_villagers_start
+Player: Grandpa Arden, Steven, and everyone, let’s find a win-win solution together, okay? When encountering problems, discussing them well is better than quarreling. [#hint=Guide negotiation and communication]
+Arden: I want to repair the traditional canal to ensure fairness.
+Steven: I want to install water-saving equipment to save water efficiently.
+Player: Then let’s do both! Repair the canal to ensure fairness, install equipment to save water, and make a water use convention for everyone to abide by and supervise together. Is that okay? [#hint=Propose an integrated solution]
+Arden: This method is good! I agree!
+Steven: I agree too!
+Villagers: We all agree! [#hint=Reach full consensus]
+do QuestState.mark_quest4_complete()
+=> END
+
+~ villagers_quest5
+Player: Let’s work together to clear the canal! Unity is strength; we will finish it soon if we work together! [#hint=Cooperate to clear the canal]
+Villagers: Okay! Let’s work together!
+Player: The water-saving devices are installed! We will no longer waste water from now on! Saving water is everyone’s responsibility. [#hint=Complete the installation of water-saving equipment]
+do QuestState.mark_quest5_complete()
+=> END
+
+~ villagers_quest5_repeat
+Villagers: The canal is clear and the new gear is in—we’ll keep watching the water together. [#hint=Quest 5 complete]
+=> END
+
+~ villagers_start
+Player: Grandpa Arden, uncles and aunts, we will hold a council meeting at the village entrance this afternoon to discuss the water use issue. Everyone remember to come! [#hint=Notify villagers to attend the meeting]
+Villagers: Okay! We will definitely come!
+do QuestState.mark_quest3_complete()
+=> END
+
+~ chapter2_locked_finish_chapter1
+Player: I should finish Chapter 1 first and continue my journey from Clear Stream Valley before starting Seabreeze Village.
+=> END
+
+~ chapter2_locked_finish_quest1
+Player: I should complete Chapter 2 Quest 1 first by talking to all key people before moving on.
+=> END
+
+~ chapter2_locked_finish_quest2
+Player: I should gather residents' needs first before organizing warehouse and village-wide actions.
+=> END
+
+~ chapter2_locked_finish_quest3
+Player: I should complete Quest 3 first by helping Matt and Kai reach common understanding.
+=> END
+
+~ chapter2_locked_finish_quest4
+Player: I should finish the Chapter 2 meeting consensus first, then return for the final community action.
+=> END
+
+~ chapter3_locked_finish_chapter2
+Player: I should complete Seabreeze Village first before starting Star & Moon Town.
+=> END
+
+~ chapter3_locked_finish_quest1
+Player: I should complete Chapter 3 Quest 1 first by listening to each key perspective.
+=> END
+
+~ chapter3_locked_finish_quest2
+Player: I should finish home visits first so the festival setup reflects everyone's needs.
+=> END
+
+~ chapter3_locked_finish_quest3
+Player: I should finish Quest 3 first by helping everyone agree on an inclusive festival plan at the council house.
+=> END
+
+~ chapter3_locked_finish_quest4
+Player: I should finish the town dialogue first before celebrating the final chapter action.
+=> END
+
+~ chapter3_use_new_council_group
+Player: I should go to the new Star & Moon Council Group to discuss the multicultural plan for Chapter 3.
+=> END
+
+~ matt_ch2_start
+Matt: The sea has its own rules. When the tide rises and falls, we must follow them.
+Player: Why should we follow the rules of the sea?
+Matt: The sea gives us food. We must respect and take good care of it, so that it can nourish us forever. Humans and nature must get along well.
+do QuestState.mark_chapter2_quest1_matt_done()
+=> END
+
+~ kai_ch2_start
+Kai: I want to use new methods: ecological breeding, regular fishing moratorium, and low-carbon fishing.
+Player: Can traditional experience and innovation work together?
+Kai: Yes. Let the small fish grow up before catching; then there will always be fish in the sea.
+do QuestState.mark_chapter2_quest1_kai_done()
+=> END
+
+~ jessica_ch2_start
+Jessica: Look, there is a lot of garbage on the beach, and the seawater is not as clean as before.
+Player: Are the fish getting fewer too?
+Jessica: Yes! The fish we catch now are getting smaller and fewer. If we don’t take good care of the sea, there will be no fish in the future.
+do QuestState.mark_chapter2_quest1_jessica_done()
+=> END
+
+~ aurora_ch2_residents_start
+Aurora: I can help sort shells and bottles too. Let’s keep the beach clean together every day.
+=> END
+
+~ villagers_ch2_warehouse_start
+Matt: We elders never catch too much, leaving time for the sea to recover. This is respect for nature.
+Kai: I want to use new methods, ecological breeding, regular fishing moratorium, let the small fish grow up before catching. In this way, there will always be fish in the sea.
+Player: You are both for the good of the sea! Traditional experience and new methods can be used together! Learning from each other can make things better.
+do QuestState.mark_chapter2_quest3_warehouse_done()
+=> END
+
+~ matt_ch2_quest3_start
+Matt: We elders never catch too much, leaving time for the sea to recover. This is respect for nature.
+=> END
+
+~ kai_ch2_quest3_start
+Kai: I want to use new methods, ecological breeding, regular fishing moratorium, let the small fish grow up before catching. In this way, there will always be fish in the sea.
+Player: You are both for the good of the sea! Traditional experience and new methods can be used together! Learning from each other can make things better.
+do QuestState.mark_chapter2_quest3_warehouse_done()
+=> END
+
+~ fishing_village_residents_ch2_start
+Fishing Village Residents: We rely on the sea every day, but now we catch less fish and see more trash near the shore.
+Player: Let’s clean up the garbage together and make the beach beautiful! Protect the environment, start with small things.
+Villagers: Okay! Come on, everyone!
+Player: Put plastics here, recyclables there. Sorting is more environmentally friendly! Correct sorting can reduce pollution and protect marine life.
+do QuestState.mark_chapter2_quest2_residents_done()
+=> END
+
+~ arden_steven_villagers_ch2_start
+Player: Let’s set three ocean protection agreements together, okay?
+Player: 1) Clean the beach regularly. 2) Don’t catch small fish; use ocean-friendly nets. 3) Pilot ecological fish farming.
+Matt: Okay! I will abide by it!
+Kai: I will abide by it too!
+Villagers: We will protect the sea together!
+do QuestState.mark_chapter2_quest4_meeting_done()
+=> END
+
+~ matt_kai_villagers_ch2_quest4_start
+Player: Let’s set three ocean protection agreements together, okay?
+Player: 1. Clean the beach regularly.
+Player: 2. Don’t catch small fish, use ocean-friendly fishing nets.
+Player: 3. Pilot ecological fish farming.
+Matt: Okay! I will abide by it!
+Kai: I will abide by it too!
+Villagers: We will protect the sea together!
+do QuestState.mark_chapter2_quest4_meeting_done()
+=> END
+
+~ villagers_ch2_cleanup_start
+Player: Let’s take an oath together: Love the ocean, use sustainably, protect the blue coast!
+All Villagers: Love the ocean, use sustainably, protect the blue coast!
+do QuestState.mark_chapter2_quest5_cleanup_done()
+=> END
+
+~ villagers_ch2_cleanup_repeat
+Villagers: The beach is cleaner and we will keep the sea protection routine going together.
+=> END
+
+~ advaita_ch3_start
+Advaita: We make traditional pastries and hold thanksgiving ceremonies during the harvest festival. Thank the earth for the harvest, and thank the people around us.
+Player: Sounds so meaningful! Can I learn it?
+Advaita: Of course!
+do QuestState.mark_chapter3_quest1_advaita_done()
+=> END
+
+~ advaita_ch3_repeat
+Advaita: You can visit us again before the festival. We are preparing pastries and thanksgiving rituals carefully.
+=> END
+
+~ sarina_ch3_start
+Sarina: We like singing and dancing, celebrating lively. Share the joy of harvest with happiness.
+Player: So happy! It must be very fun!
+do QuestState.mark_chapter3_quest1_sarina_done()
+=> END
+
+~ sarina_ch3_repeat
+Sarina: We are still rehearsing songs and dances. Join us later and celebrate together!
+=> END
+
+~ aurora_ch3_start
+Aurora: We have special snacks and want to share them with everyone. Sharing makes happiness more.
+Player: Great! Everyone will love it!
+do QuestState.mark_chapter3_quest1_aurora_done()
+=> END
+
+~ aurora_ch3_repeat
+Aurora: I am preparing more snacks for everyone. Sharing food makes the festival warmer!
+=> END
+
+~ villagers_ch3_collect_needs_start
+Player: Everyone wants to have a happy harvest festival. Let me listen to your thoughts!
+Advaita: I want to keep the old traditional rituals.
+Sarina: I want performances to make it lively.
+Aurora: I want to set up a food stall to share delicious food.
+=> END
+
+~ chapter3_q2_collect_needs_start
+Player: Everyone wants to have a happy harvest festival. Let me listen to your thoughts!
+Advaita: I want to keep the old traditional rituals.
+Sarina: I want performances to make it lively.
+Aurora: I want to set up a food stall to share delicious food.
+=> END
+
+~ advaita_ch3_q2_collect_needs_start
+Player: Everyone wants to have a happy harvest festival. Let me listen to your thoughts!
+Advaita: I want to keep the old traditional rituals.
+do QuestState.mark_chapter3_quest2_advaita_done()
+=> END
+
+~ sarina_ch3_q2_collect_needs_start
+Player: Everyone wants to have a happy harvest festival. Let me listen to your thoughts!
+Sarina: I want performances to make it lively.
+do QuestState.mark_chapter3_quest2_sarina_done()
+=> END
+
+~ aurora_ch3_q2_collect_needs_start
+Player: Everyone wants to have a happy harvest festival. Let me listen to your thoughts!
+Aurora: I want to set up a food stall to share delicious food.
+do QuestState.mark_chapter3_quest2_aurora_done()
+=> END
+
+~ villagers_ch3_festival_setup_start
+Player: Let’s divide the work and cooperate! Some arrange the venue, some prepare food, some rehearse performances!
+Villagers: Okay! Help each other, we will get ready soon!
+do QuestState.mark_chapter3_quest4_town_dialogue_done()
+=> END
+
+~ arden_steven_villagers_ch3_dialogue_start
+Player: Everyone’s ideas are great! Let’s hold a multicultural harvest festival! Every culture is precious and worthy of respect.
+Player: Keep the traditional rituals of each family and take turns to display; set up a food area for everyone to share delicious food; build a stage together, harmony without uniformity, okay?
+Villagers: Great! We all agree!
+do QuestState.mark_chapter3_quest3_festival_setup_done()
+=> END
+
+~ star_moon_council_q3_start
+Player: Everyone’s ideas are great! Let’s hold a multicultural harvest festival! Every culture is precious and worthy of respect.
+Player: Keep the traditional rituals of each family and take turns to display; set up a food area for everyone to share delicious food; build a stage together, harmony without uniformity, okay?
+Villagers: Great! We all agree!
+do QuestState.mark_chapter3_quest3_festival_setup_done()
+=> END
+
+~ star_moon_council_q4_start
+Player: Let’s divide the work and cooperate! Some arrange the venue, some prepare food, some rehearse performances! Division of labor and cooperation are more efficient and happier.
+Villagers: Okay! Help each other, we will get ready soon!
+do QuestState.mark_chapter3_quest4_town_dialogue_done()
+=> END
+
+~ star_moon_council_q4_repeat
+Villagers: The preparation is on track. We are almost ready for the harvest festival!
+=> END
+
+~ villagers_ch3_celebration_start
+Player: Welcome to the Multicultural Harvest Festival! Every culture is great. Let’s respect each other and have fun together!
+Villagers: Happy Festival!
+Player: Let’s celebrate the harvest together!
+do QuestState.mark_chapter3_quest5_celebration_done()
+=> END
+
+~ villagers_ch3_celebration_repeat
+Villagers: Star & Moon Town feels warmer now. We will keep this spirit of inclusion.
+=> END
