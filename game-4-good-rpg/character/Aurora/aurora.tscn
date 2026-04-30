@@ -18,12 +18,25 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 24
+font_color = Color(1, 1, 1, 1)
+
 [node name="Aurora" type="StaticBody2D"]
 script = ExtResource("1_npc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2.2619042, 2.0833333)
 texture = ExtResource("3_tex")
+
+[node name="PlaceholderName" type="Label" parent="."]
+offset_left = -54.0
+offset_top = -94.0
+offset_right = 54.0
+offset_bottom = -62.0
+text = "AURORA"
+label_settings = SubResource("LabelSettings_placeholder")
+horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_body")
@@ -32,6 +45,8 @@ shape = SubResource("RectangleShape2D_body")
 dialogue_resource = ExtResource("4_dlg")
 dialogue_start = "aurora_start"
 chapter1_gate = 1
+dialogue_chapter2_start = "aurora_ch2_residents_start"
+dialogue_chapter3_start = "aurora_ch3_start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2"]
 shape = SubResource("CircleShape2D_talk")

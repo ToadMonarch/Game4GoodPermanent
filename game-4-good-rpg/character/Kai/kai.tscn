@@ -18,6 +18,10 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 24
+font_color = Color(1, 1, 1, 1)
+
 [node name="Kai" type="StaticBody2D"]
 script = ExtResource("1_npc")
 
@@ -25,12 +29,23 @@ script = ExtResource("1_npc")
 scale = Vector2(2.2619042, 2.0833333)
 texture = ExtResource("3_tex")
 
+[node name="PlaceholderName" type="Label" parent="."]
+offset_left = -28.0
+offset_top = -94.0
+offset_right = 28.0
+offset_bottom = -62.0
+text = "KAI"
+label_settings = SubResource("LabelSettings_placeholder")
+horizontal_alignment = 1
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_body")
 
 [node name="Actionable2" parent="." instance=ExtResource("2_act")]
 dialogue_resource = ExtResource("4_dlg")
 dialogue_start = "kai_start"
+dialogue_chapter2_start = "kai_ch2_start"
+dialogue_chapter2_after_quest2 = "kai_ch2_quest3_start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2"]
 shape = SubResource("CircleShape2D_talk")

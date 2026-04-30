@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dup4w75ispm5t" path="res://character/Arden/south.png" id="3_tex"]
 [ext_resource type="Resource" uid="uid://bn8tk18yvoarj" path="res://dialogue.dialogue" id="4_dlg"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 24
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
 size = Vector2(110, 127)
 
@@ -18,30 +21,37 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="Arden" type="StaticBody2D"]
+[node name="Arden" type="StaticBody2D" unique_id=312356370]
 script = ExtResource("1_npc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2000357754]
 scale = Vector2(2.2619042, 2.0833333)
 texture = ExtResource("3_tex")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlaceholderName" type="Label" parent="." unique_id=999581949]
+offset_left = -44.0
+offset_top = -94.0
+offset_right = 44.0
+offset_bottom = -62.0
+text = "ARDEN"
+label_settings = SubResource("LabelSettings_placeholder")
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1787134841]
 shape = SubResource("RectangleShape2D_body")
 
-[node name="Actionable2" type="Area2D" parent="." instance=ExtResource("2_act")]
-collision_layer = 16
+[node name="Actionable2" parent="." unique_id=1853106845 instance=ExtResource("2_act")]
 collision_mask = 0
-monitoring = true
 dialogue_resource = ExtResource("4_dlg")
 dialogue_start = "arden_start"
 chapter1_gate = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2" unique_id=152052009]
 shape = SubResource("CircleShape2D_talk")
 
-[node name="TalkHintLayer" type="CanvasLayer" parent="."]
+[node name="TalkHintLayer" type="CanvasLayer" parent="." unique_id=997696156]
 
-[node name="TalkHintPanel" type="PanelContainer" parent="TalkHintLayer"]
+[node name="TalkHintPanel" type="PanelContainer" parent="TalkHintLayer" unique_id=164778673]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -54,7 +64,7 @@ offset_right = 140.0
 offset_bottom = -26.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_talk_hint")
 
-[node name="TalkHintLabel" type="Label" parent="TalkHintLayer/TalkHintPanel"]
+[node name="TalkHintLabel" type="Label" parent="TalkHintLayer/TalkHintPanel" unique_id=256115830]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Press Space to talk"

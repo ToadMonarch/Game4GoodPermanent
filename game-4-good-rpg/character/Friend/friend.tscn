@@ -18,6 +18,10 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 24
+font_color = Color(1, 1, 1, 1)
+
 [node name="Friend" type="StaticBody2D" unique_id=514691783]
 script = ExtResource("1_friend_script")
 
@@ -25,6 +29,15 @@ script = ExtResource("1_friend_script")
 position = Vector2(1043.5238, 319.66666)
 scale = Vector2(2.2619042, 2.0833333)
 texture = ExtResource("2_ly7if")
+
+[node name="PlaceholderName" type="Label" parent="."]
+offset_left = 986.0
+offset_top = 228.0
+offset_right = 1102.0
+offset_bottom = 260.0
+text = "ADELE"
+label_settings = SubResource("LabelSettings_placeholder")
+horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703588319]
 visible = false

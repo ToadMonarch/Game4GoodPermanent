@@ -18,6 +18,10 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 24
+font_color = Color(1, 1, 1, 1)
+
 [node name="Human" type="StaticBody2D" unique_id=2008200534]
 script = ExtResource("1_uyjct")
 
@@ -25,6 +29,15 @@ script = ExtResource("1_uyjct")
 position = Vector2(1036, 120.5)
 scale = Vector2(2.2619042, 2.0833333)
 texture = ExtResource("2_866mf")
+
+[node name="PlaceholderName" type="Label" parent="."]
+offset_left = 970.0
+offset_top = 30.0
+offset_right = 1100.0
+offset_bottom = 62.0
+text = "TRAVELER"
+label_settings = SubResource("LabelSettings_placeholder")
+horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=404378259]
 

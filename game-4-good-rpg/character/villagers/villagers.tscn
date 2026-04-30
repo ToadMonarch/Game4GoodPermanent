@@ -18,12 +18,25 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 20
+font_color = Color(1, 1, 1, 1)
+
 [node name="Villagers" type="StaticBody2D" unique_id=1160193524]
 script = ExtResource("1_npc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=621665351]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_tex")
+
+[node name="PlaceholderName" type="Label" parent="."]
+offset_left = -120.0
+offset_top = -132.0
+offset_right = 120.0
+offset_bottom = -102.0
+text = "VILLAGERS"
+label_settings = SubResource("LabelSettings_placeholder")
+horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1528831592]
 position = Vector2(-0.5, 0.5)

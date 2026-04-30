@@ -18,12 +18,25 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 24
+font_color = Color(1, 1, 1, 1)
+
 [node name="Steven" type="StaticBody2D" unique_id=337081630]
 script = ExtResource("1_npc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=680768751]
 scale = Vector2(2.2619042, 2.0833333)
 texture = ExtResource("3_tex")
+
+[node name="PlaceholderName" type="Label" parent="."]
+offset_left = -52.0
+offset_top = -94.0
+offset_right = 52.0
+offset_bottom = -62.0
+text = "STEVEN"
+label_settings = SubResource("LabelSettings_placeholder")
+horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=990871656]
 shape = SubResource("RectangleShape2D_body")
