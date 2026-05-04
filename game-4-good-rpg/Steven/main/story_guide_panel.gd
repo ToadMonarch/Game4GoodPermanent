@@ -112,7 +112,7 @@ const CHAPTER_CONTEXT_ENTRIES := {
 	{
 		"chapter": "Chapter 1 - Clear Stream Valley",
 		"title": "Chapter Context",
-		"description": "",
+		"description": "Clear Stream Valley depends on mountain stream water for fields and daily life. When flow drops, canals clog, and use feels unfair, neighbors disagree on what should change first.\n\nYour role is to observe, listen without judging, record what each household needs, and help the community combine traditional care for the stream with practical steps everyone can follow.",
 	},
 	],
 	2: [
@@ -136,6 +136,27 @@ const CHAPTER0_COMPLETION_SUMMARY := {
 	"title": "Great job, little helper!",
 	"description": "You listened to the Traveler, received support from your Family and Adele, and learned your mission: observe more, listen more, and help more.\n\nDo you want to continue to Chapter 1: Clear Stream Valley?",
 }
+
+# =============================================================================
+# CHAPTER 0 → CHAPTER 1 (bypass / strict gate)
+# -----------------------------------------------------------------------------
+# EN:
+#   Set REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 to true  → normal game: you must
+#   finish Chapter 0 in-world (QuestState: traveler, family, friend) before the
+#   “Chapter 0 complete” prompt and Chapter 1 descriptions can appear.
+#
+#   Set to false (default for fast iteration) → after you close the Chapter 0
+#   guide pages (text only), Chapter 0 is auto-marked complete and Chapter 1
+#   context + quest descriptions open immediately — no need to talk to every
+#   Chapter 0 NPC first, and the Chapter 0 completion confirmation panel is skipped.
+#
+# VI:
+#   true  = bắt buộc hoàn thành hết Chapter 0 trong game (trò chuyện đủ NPC) rồi
+#           mới vào luồng Chapter 1 như thiết kế gốc.
+#   false = chỉ đọc xong các trang mô tả Chapter 0 là có thể sang mô tả Chapter 1
+#           ngay, không cần hoàn thành hội thoại Chapter 0 với tất cả nhân vật.
+# =============================================================================
+const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := false
 
 enum PanelMode {
 	GUIDE,
@@ -171,42 +192,37 @@ var final_summary_chapter_id: int = -1
 var active_guide_kind: String = ""
 
 func _ready() -> void:
-	# ===================== TEMP SKIP TO CHAPTER 3 (DELETE LATER) =====================
-	 #Uncomment this block to instantly mark Chapter 0/1/2 complete for testing.
-	 #When re-commented, game flow returns to normal from Chapter 0.
-	
-	QuestState.chapter0_traveler_done = true
-	QuestState.chapter0_family_done = true
-	QuestState.chapter0_friend_done = true
-
-	QuestState.quest1_maggie_done = true
-	QuestState.quest1_kai_done = true
-	QuestState.quest1_jessica_done = true
-	QuestState.quest2_arden_done = true
-	QuestState.quest2_steven_done = true
-	QuestState.quest2_aurora_done = true
-	QuestState.quest3_complete = true
-	QuestState.quest4_complete = true
-	QuestState.quest5_complete = true
-	QuestState.chapter1_description_shown = true
-	QuestState.chapter1_summary_shown = true
-	
-	QuestState.chapter2_quest1_matt_done = true
-	QuestState.chapter2_quest1_kai_done = true
-	QuestState.chapter2_quest1_jessica_done = true
-	QuestState.chapter2_quest2_residents_done = true
-	QuestState.chapter2_quest3_warehouse_done = true
-	QuestState.chapter2_quest4_meeting_done = true
-	QuestState.chapter2_quest5_cleanup_done = true
-	QuestState.chapter2_description_shown = true
-	QuestState.chapter2_summary_shown = true
-	
-	chapter0_guide_closed = true
-	chapter1_confirmation_shown = true
-	chapter2_confirmation_shown = true
-	chapter3_confirmation_shown = false
-	active_chapter_id = 3
-	# ================================================================================
+	# Set true to jump quest flags to Chapter 3 for editor testing (normal play keeps Chapter 0 flow).
+	const SKIP_TO_CHAPTER_3_TEST := false
+	if SKIP_TO_CHAPTER_3_TEST:
+		QuestState.chapter0_traveler_done = true
+		QuestState.chapter0_family_done = true
+		QuestState.chapter0_friend_done = true
+		QuestState.quest1_maggie_done = true
+		QuestState.quest1_kai_done = true
+		QuestState.quest1_jessica_done = true
+		QuestState.quest2_arden_done = true
+		QuestState.quest2_steven_done = true
+		QuestState.quest2_aurora_done = true
+		QuestState.quest3_complete = true
+		QuestState.quest4_complete = true
+		QuestState.quest5_complete = true
+		QuestState.chapter1_description_shown = true
+		QuestState.chapter1_summary_shown = true
+		QuestState.chapter2_quest1_matt_done = true
+		QuestState.chapter2_quest1_kai_done = true
+		QuestState.chapter2_quest1_jessica_done = true
+		QuestState.chapter2_quest2_residents_done = true
+		QuestState.chapter2_quest3_warehouse_done = true
+		QuestState.chapter2_quest4_meeting_done = true
+		QuestState.chapter2_quest5_cleanup_done = true
+		QuestState.chapter2_description_shown = true
+		QuestState.chapter2_summary_shown = true
+		chapter0_guide_closed = true
+		chapter1_confirmation_shown = true
+		chapter2_confirmation_shown = true
+		chapter3_confirmation_shown = false
+		active_chapter_id = 3
 
 	# ===================== TEMP STORY AUTOPLAY TEST (DELETE LATER) =====================
 	# Uncomment this block to auto-run Chapter 0 -> 1 -> 2 flow test.
@@ -328,11 +344,22 @@ func _show_entry(index: int) -> void:
 func _close_guide_panel() -> void:
 	if active_guide_kind == "chapter0":
 		chapter0_guide_closed = true
+
+	var bypass_chapter_0_for_chapter_1 := (
+		active_guide_kind == "chapter0" and not REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1
+	)
+
 	story_guide_layer.visible = false
 	is_guide_open = false
 	panel_mode = PanelMode.GUIDE
 	active_guide_kind = ""
 	get_tree().paused = false
+
+	if bypass_chapter_0_for_chapter_1:
+		QuestState.chapter0_traveler_done = true
+		QuestState.chapter0_family_done = true
+		QuestState.chapter0_friend_done = true
+		_start_chapter_flow(1)
 
 
 func _open_guide(entries: Array, guide_kind: String) -> void:

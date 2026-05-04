@@ -1,15 +1,121 @@
 [gd_scene format=3 uid="uid://b52aysa4i75el"]
 
 [ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="1_3bxa3"]
-[ext_resource type="PackedScene" uid="uid://cnrxqsji5wjmh" path="res://Scenes/chapter0.tscn" id="2_r48yj"]
+[ext_resource type="PackedScene" path="res://Scenes/chapter0.tscn" id="2_r48yj"]
+[ext_resource type="PackedScene" uid="uid://d2507i7g6rxk" path="res://character/Maggie/maggie.tscn" id="3_maggie"]
+[ext_resource type="PackedScene" uid="uid://b7ka1npc01npc" path="res://character/Kai/kai.tscn" id="4_kai"]
+[ext_resource type="PackedScene" uid="uid://d5nm8ubav8ew" path="res://character/Jessica/jessica.tscn" id="5_jessica"]
+[ext_resource type="PackedScene" uid="uid://c3ard3nnpcqb" path="res://character/Arden/arden.tscn" id="6_arden"]
+[ext_resource type="PackedScene" uid="uid://un83v6peny40" path="res://character/Steven/steven.tscn" id="7_steven"]
+[ext_resource type="PackedScene" uid="uid://cuy6xuu3igyi" path="res://character/Aurora/aurora.tscn" id="8_aurora"]
+[ext_resource type="PackedScene" uid="uid://b0qsrv6j2v4c2" path="res://character/villagers/villagers.tscn" id="9_villagers"]
+[ext_resource type="Script" uid="uid://dbwy243yfc0pn" path="res://Steven/main/story_guide_panel.gd" id="10_storyguide"]
+[ext_resource type="PackedScene" uid="uid://c6qlnj8u8xhw4" path="res://character/Arden_Steven_Villagers/arden_steven_villagers.tscn" id="11_asv"]
 
 [node name="Start" type="Node2D" unique_id=1268696800]
+position = Vector2(-1, 0)
+script = ExtResource("10_storyguide")
+
+[node name="TileMapLayer" parent="." unique_id=272419504 instance=ExtResource("2_r48yj")]
+
+[node name="Maggie" parent="." unique_id=1224434304 instance=ExtResource("3_maggie")]
+z_index = 1
+position = Vector2(900, -30)
+
+[node name="Kai" parent="." unique_id=1417196607 instance=ExtResource("4_kai")]
+z_index = 1
+position = Vector2(1109, -80)
+
+[node name="Jessica" parent="." unique_id=989292783 instance=ExtResource("5_jessica")]
+z_index = 1
+position = Vector2(938, -198)
+
+[node name="Aurora" parent="." unique_id=1997513960 instance=ExtResource("8_aurora")]
+z_index = 1
+position = Vector2(438, -123)
+
+[node name="Arden_Steven_Villagers" type="Node2D" parent="." unique_id=2099291272]
+
+[node name="Arden" parent="Arden_Steven_Villagers" unique_id=513018427 instance=ExtResource("6_arden")]
+z_index = 1
+position = Vector2(969, 160)
+
+[node name="Steven" parent="Arden_Steven_Villagers" unique_id=484491093 instance=ExtResource("7_steven")]
+z_index = 1
+position = Vector2(1121, 138)
+
+[node name="Villagers" parent="Arden_Steven_Villagers" unique_id=2099291273 instance=ExtResource("9_villagers")]
+z_index = 1
+position = Vector2(476, 157)
+
+[node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
+z_index = 1
+position = Vector2(1392, 64)
 
 [node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
 z_index = 2
-position = Vector2(812, 155)
+position = Vector2(771, 153)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=586456594]
 
-[node name="TileMapLayer" parent="." unique_id=272419504 instance=ExtResource("2_r48yj")]
+[node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
+layer = 100
+
+[node name="GuidePanel" type="PanelContainer" parent="StoryGuideLayer" unique_id=906313394]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -145.0
+offset_right = 270.0
+offset_bottom = 145.0
+
+[node name="ContentMargin" type="MarginContainer" parent="StoryGuideLayer/GuidePanel" unique_id=1851657183]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ContentVBox" type="VBoxContainer" parent="StoryGuideLayer/GuidePanel/ContentMargin" unique_id=171650617]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ChapterLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=243774275]
+layout_mode = 2
+text = "Chapter"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=538838741]
+layout_mode = 2
+text = "Title"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=1790015144]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description"
+autowrap_mode = 3
+
+[node name="FooterRow" type="HBoxContainer" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=1365845943]
+layout_mode = 2
+alignment = 2
+
+[node name="PageLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=380495178]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1/1"
+
+[node name="NextButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=1781923389]
+layout_mode = 2
+text = "Next"
+
+[node name="AltButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=146728390]
+visible = false
+layout_mode = 2
+text = "Alt"

@@ -5,11 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://dpgqu8an3tw1l" path="res://character/Aurora/south.png" id="3_tex"]
 [ext_resource type="Resource" uid="uid://bn8tk18yvoarj" path="res://dialogue.dialogue" id="4_dlg"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 24
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(110, 127)
+size = Vector2(49, 102)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_talk"]
-radius = 86.05231
+radius = 58.077534
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_talk_hint"]
 bg_color = Color(0, 0, 0, 0.65)
@@ -18,18 +21,15 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
-font_size = 24
-font_color = Color(1, 1, 1, 1)
-
-[node name="Aurora" type="StaticBody2D"]
+[node name="Aurora" type="StaticBody2D" unique_id=1982226422]
 script = ExtResource("1_npc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2.2619042, 2.0833333)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1013369470]
+position = Vector2(2, 1.000001)
+scale = Vector2(1.790043, 1.6553029)
 texture = ExtResource("3_tex")
 
-[node name="PlaceholderName" type="Label" parent="."]
+[node name="PlaceholderName" type="Label" parent="." unique_id=66088972]
 offset_left = -54.0
 offset_top = -94.0
 offset_right = 54.0
@@ -38,22 +38,25 @@ text = "AURORA"
 label_settings = SubResource("LabelSettings_placeholder")
 horizontal_alignment = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1114472202]
+position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_body")
 
-[node name="Actionable2" parent="." instance=ExtResource("2_act")]
+[node name="Actionable2" parent="." unique_id=1692568831 instance=ExtResource("2_act")]
+position = Vector2(0, 32)
 dialogue_resource = ExtResource("4_dlg")
 dialogue_start = "aurora_start"
 chapter1_gate = 1
 dialogue_chapter2_start = "aurora_ch2_residents_start"
 dialogue_chapter3_start = "aurora_ch3_start"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2" unique_id=202129213]
+position = Vector2(1, -32)
 shape = SubResource("CircleShape2D_talk")
 
-[node name="TalkHintLayer" type="CanvasLayer" parent="."]
+[node name="TalkHintLayer" type="CanvasLayer" parent="." unique_id=426556581]
 
-[node name="TalkHintPanel" type="PanelContainer" parent="TalkHintLayer"]
+[node name="TalkHintPanel" type="PanelContainer" parent="TalkHintLayer" unique_id=1082273203]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -66,7 +69,7 @@ offset_right = 140.0
 offset_bottom = -26.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_talk_hint")
 
-[node name="TalkHintLabel" type="Label" parent="TalkHintLayer/TalkHintPanel"]
+[node name="TalkHintLabel" type="Label" parent="TalkHintLayer/TalkHintPanel" unique_id=88915969]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Press Space to talk"
