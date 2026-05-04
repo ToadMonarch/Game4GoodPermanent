@@ -20,37 +20,37 @@ script = ExtResource("10_storyguide")
 
 [node name="Maggie" parent="." unique_id=1224434304 instance=ExtResource("3_maggie")]
 z_index = 1
-position = Vector2(900, -30)
+position = Vector2(488, -1799)
 
 [node name="Kai" parent="." unique_id=1417196607 instance=ExtResource("4_kai")]
 z_index = 1
-position = Vector2(1109, -80)
+position = Vector2(1949, -1073)
 
 [node name="Jessica" parent="." unique_id=989292783 instance=ExtResource("5_jessica")]
 z_index = 1
-position = Vector2(938, -198)
+position = Vector2(3448, -509)
 
 [node name="Aurora" parent="." unique_id=1997513960 instance=ExtResource("8_aurora")]
 z_index = 1
-position = Vector2(438, -123)
+position = Vector2(1071, -322)
 
 [node name="Arden_Steven_Villagers" type="Node2D" parent="." unique_id=2099291272]
 
 [node name="Arden" parent="Arden_Steven_Villagers" unique_id=513018427 instance=ExtResource("6_arden")]
 z_index = 1
-position = Vector2(969, 160)
+position = Vector2(210, 661)
 
 [node name="Steven" parent="Arden_Steven_Villagers" unique_id=484491093 instance=ExtResource("7_steven")]
 z_index = 1
-position = Vector2(1121, 138)
+position = Vector2(436, -573)
 
 [node name="Villagers" parent="Arden_Steven_Villagers" unique_id=2099291273 instance=ExtResource("9_villagers")]
 z_index = 1
-position = Vector2(476, 157)
+position = Vector2(3022, -1207)
 
 [node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
 z_index = 1
-position = Vector2(1392, 64)
+position = Vector2(2290, -1778)
 
 [node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
 z_index = 2

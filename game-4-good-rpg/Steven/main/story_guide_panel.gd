@@ -174,6 +174,19 @@ enum PanelMode {
 @onready var next_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/NextButton
 @onready var alt_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/AltButton
 
+## Chapter 1 square: unified council sprite vs separate Arden / Steven / Villagers.
+@onready var _ch1_council_group: Node2D = $Arden_Steven_Villagers/ArdenStevenVillagersGroup
+@onready var _ch1_arden_square: Node2D = $Arden_Steven_Villagers/Arden
+@onready var _ch1_steven_square: Node2D = $Arden_Steven_Villagers/Steven
+@onready var _ch1_villagers_square: Node2D = $Arden_Steven_Villagers/Villagers
+
+## Instance id -> saved collision flags (so hidden branches are not invisible obstacles).
+var _ch1_collision_restore: Dictionary = {}
+
+## Dialogue Manager skips mutated for do-lines that assign (e.g. QuestState.mark_*), so sync visibility when quest3/quest4 flags change.
+var _ch1_square_snap_quest3: bool = false
+var _ch1_square_snap_quest4: bool = false
+
 var current_index: int = 0
 var active_entries: Array = []
 var is_guide_open: bool = false
@@ -241,10 +254,76 @@ func _ready() -> void:
 	alt_button.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	next_button.pressed.connect(_on_next_button_pressed)
 	alt_button.pressed.connect(_on_alt_button_pressed)
+	_refresh_chapter1_square_assembly_visibility()
+	_ch1_square_snap_quest3 = QuestState.quest3_complete
+	_ch1_square_snap_quest4 = QuestState.quest4_complete
 	_open_guide(CHAPTER0_ENTRIES, "chapter0")
 
 
+## Quest 4 (after meeting announced, before council dialogue finishes): Council Group visible;
+## Arden / Steven / Villagers at the square hidden. Quest 5 onward (after quest4_complete): swap back.
+## Hidden branches also disable collision (no invisible walls / talk zones).
+func _refresh_chapter1_square_assembly_visibility() -> void:
+	var quest4_active := QuestState.quest3_complete and not QuestState.quest4_complete
+	if is_instance_valid(_ch1_council_group):
+		_ch1_council_group.visible = quest4_active
+		_ch1_set_branch_physics_enabled(_ch1_council_group, quest4_active)
+	for n: Node2D in [_ch1_arden_square, _ch1_steven_square, _ch1_villagers_square]:
+		if is_instance_valid(n):
+			var show_individuals := not quest4_active
+			n.visible = show_individuals
+			_ch1_set_branch_physics_enabled(n, show_individuals)
+
+
+func _ch1_set_branch_physics_enabled(root: Node, enabled: bool) -> void:
+	if root is CollisionObject2D:
+		_ch1_set_one_collision_object(root as CollisionObject2D, enabled)
+	for child in root.get_children():
+		_ch1_set_branch_physics_enabled(child, enabled)
+
+
+func _ch1_set_one_collision_object(co: CollisionObject2D, enabled: bool) -> void:
+	var id := co.get_instance_id()
+	if enabled:
+		if not _ch1_collision_restore.has(id):
+			return
+		var s: Dictionary = _ch1_collision_restore[id]
+		co.collision_layer = s["layer"]
+		co.collision_mask = s["mask"]
+		if co is Area2D:
+			var a := co as Area2D
+			a.monitoring = s["monitoring"]
+			a.monitorable = s["monitorable"]
+	else:
+		if not _ch1_collision_restore.has(id):
+			var snap := {"layer": co.collision_layer, "mask": co.collision_mask}
+			if co is Area2D:
+				var a2 := co as Area2D
+				snap["monitoring"] = a2.monitoring
+				snap["monitorable"] = a2.monitorable
+			_ch1_collision_restore[id] = snap
+		co.collision_layer = 0
+		co.collision_mask = 0
+		if co is Area2D:
+			var a3 := co as Area2D
+			a3.monitoring = false
+			a3.monitorable = false
+
+
+func _ch1_poll_quest_flags_for_square_visibility() -> void:
+	if not is_instance_valid(_ch1_council_group):
+		return
+	var q3 := QuestState.quest3_complete
+	var q4 := QuestState.quest4_complete
+	if q3 == _ch1_square_snap_quest3 and q4 == _ch1_square_snap_quest4:
+		return
+	_ch1_square_snap_quest3 = q3
+	_ch1_square_snap_quest4 = q4
+	_refresh_chapter1_square_assembly_visibility()
+
+
 func _process(_delta: float) -> void:
+	_ch1_poll_quest_flags_for_square_visibility()
 	if _handle_quest_completion_flow():
 		return
 	if _handle_final_summary_flow():
