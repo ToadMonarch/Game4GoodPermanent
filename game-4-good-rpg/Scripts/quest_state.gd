@@ -42,6 +42,8 @@ var chapter0_friend_done: bool = false
 var chapter1_description_shown: bool = false
 var chapter1_summary_shown: bool = false
 
+#bridge repair - Ayden Tran
+var bridge_repaired := false
 
 func is_quest1_complete() -> bool:
 	return quest1_maggie_done and quest1_kai_done and quest1_jessica_done

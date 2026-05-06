@@ -1,5 +1,6 @@
 extends Node2D
 
+
 const CHAPTER0_ENTRIES := [
 	{
 		"chapter": "Chapter 0 - Origin Town",
@@ -164,6 +165,41 @@ enum PanelMode {
 	QUEST_COMPLETION_CONFIRMATION,
 	CHAPTER_FINAL_SUMMARY,
 }
+#Ayden
+@onready var bridge_tilemap: TileMap = $TileMap
+
+var bridge_tiles := [
+	Vector2i(19, -13),
+	Vector2i(19, -14),
+	Vector2i(18, -15),
+
+	Vector2i(20, -14),
+	Vector2i(19, -15),
+	Vector2i(19, -16),
+
+	Vector2i(20, -15),
+	Vector2i(20, -16),
+	Vector2i(19, -17),
+
+	Vector2i(21, -16),
+	Vector2i(20, -17),
+	Vector2i(20, -18),
+
+	Vector2i(21, -17),
+	Vector2i(21, -18),
+	Vector2i(20, -19),
+
+	Vector2i(22, -18),
+	Vector2i(21, -19),
+	Vector2i(21, -20),
+
+	Vector2i(22, -19),
+	Vector2i(22, -20),
+	Vector2i(21, -21),
+]
+
+var repaired_source_id := 0
+var repaired_atlas_coords := Vector2i(4, 2)
 
 @onready var story_guide_layer: CanvasLayer = $StoryGuideLayer
 @onready var guide_panel: PanelContainer = $StoryGuideLayer/GuidePanel
@@ -236,6 +272,10 @@ func _ready() -> void:
 		chapter2_confirmation_shown = true
 		chapter3_confirmation_shown = false
 		active_chapter_id = 3
+	
+	#Ayden	
+	if QuestState.bridge_repaired:
+		repair_bridge()
 
 	# ===================== TEMP STORY AUTOPLAY TEST (DELETE LATER) =====================
 	# Uncomment this block to auto-run Chapter 0 -> 1 -> 2 flow test.
@@ -677,3 +717,8 @@ func _start_chapter_flow(chapter_id: int) -> void:
 	active_chapter_id = chapter_id
 	next_chapter_quest_to_describe = 0
 	_open_chapter_context(chapter_id)
+
+#Ayden
+func repair_bridge() -> void:
+	for pos in bridge_tiles:
+		bridge_tilemap.set_cell(0, pos, repaired_source_id, repaired_atlas_coords)

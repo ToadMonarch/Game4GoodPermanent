@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://b52aysa4i75el"]
+[gd_scene format=4 uid="uid://b52aysa4i75el"]
 
 [ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="1_3bxa3"]
-[ext_resource type="PackedScene" path="res://Scenes/chapter0.tscn" id="2_r48yj"]
+[ext_resource type="PackedScene" uid="uid://cnrxqsji5wjmh" path="res://Scenes/chapter0.tscn" id="2_r48yj"]
 [ext_resource type="PackedScene" uid="uid://d2507i7g6rxk" path="res://character/Maggie/maggie.tscn" id="3_maggie"]
 [ext_resource type="PackedScene" uid="uid://b7ka1npc01npc" path="res://character/Kai/kai.tscn" id="4_kai"]
 [ext_resource type="PackedScene" uid="uid://d5nm8ubav8ew" path="res://character/Jessica/jessica.tscn" id="5_jessica"]
@@ -11,12 +11,17 @@
 [ext_resource type="PackedScene" uid="uid://b0qsrv6j2v4c2" path="res://character/villagers/villagers.tscn" id="9_villagers"]
 [ext_resource type="Script" uid="uid://dbwy243yfc0pn" path="res://Steven/main/story_guide_panel.gd" id="10_storyguide"]
 [ext_resource type="PackedScene" uid="uid://c6qlnj8u8xhw4" path="res://character/Arden_Steven_Villagers/arden_steven_villagers.tscn" id="11_asv"]
+[ext_resource type="Script" uid="uid://bac2hu1d1ruef" path="res://Scenes/bridge_repair_trigger.gd" id="12_knwj7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_knwj7"]
+radius = 85.0
 
 [node name="Start" type="Node2D" unique_id=1268696800]
 position = Vector2(-1, 0)
 script = ExtResource("10_storyguide")
 
 [node name="TileMapLayer" parent="." unique_id=272419504 instance=ExtResource("2_r48yj")]
+tile_map_data = PackedByteArray("AAABAN7/AAAAAAAAAAABANz/AAAAAAAAAAABANv/AAAAAAAAAAACABAABQAAAAAAAAD+/xYABQAAAAAAAAABAPb/BQAAAAAAAAADAO//BQAAAAAAAAAFAOn/BQAAAAAAAAAIAOT/BQAAAAAAAAAUAPD/DAAAAAAAAAA=")
 
 [node name="Maggie" parent="." unique_id=1224434304 instance=ExtResource("3_maggie")]
 z_index = 1
@@ -119,3 +124,21 @@ text = "Next"
 visible = false
 layout_mode = 2
 text = "Alt"
+
+[node name="RepairPromptLabel" type="Label" parent="StoryGuideLayer" unique_id=1881278857]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = 2373.0
+offset_top = -317.0
+offset_right = 2588.0
+offset_bottom = -294.0
+text = "Press space to repair bridge"
+
+[node name="BridgeRepairTrigger" type="Area2D" parent="." unique_id=1933422119 node_paths=PackedStringArray("repair_prompt")]
+position = Vector2(2555, -366)
+script = ExtResource("12_knwj7")
+repair_prompt = NodePath("../StoryGuideLayer/RepairPromptLabel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BridgeRepairTrigger" unique_id=902528200]
+position = Vector2(-64, 58)
+shape = SubResource("CircleShape2D_knwj7")
