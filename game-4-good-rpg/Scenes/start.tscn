@@ -42,23 +42,23 @@ position = Vector2(1071, -322)
 [node name="Arden_Steven_Villagers" type="Node2D" parent="." unique_id=2099291272]
 
 [node name="Arden" parent="Arden_Steven_Villagers" unique_id=513018427 instance=ExtResource("6_arden")]
-z_index = 1
+z_index = 3
 position = Vector2(210, 661)
 
 [node name="Steven" parent="Arden_Steven_Villagers" unique_id=484491093 instance=ExtResource("7_steven")]
-z_index = 1
+z_index = 3
 position = Vector2(436, -573)
 
 [node name="Villagers" parent="Arden_Steven_Villagers" unique_id=2099291273 instance=ExtResource("9_villagers")]
-z_index = 1
+z_index = 3
 position = Vector2(3022, -1207)
 
 [node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
-z_index = 1
+z_index = 3
 position = Vector2(2290, -1778)
 
 [node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
-z_index = 2
+z_index = 1
 position = Vector2(771, 153)
 scale = Vector2(2, 2)
 

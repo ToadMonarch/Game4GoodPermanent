@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://3yd3i02a5hjk" path="res://Sprites/TileMaps/Haifeng Village Tile Image.png" id="6_bmgg6"]
 [ext_resource type="Texture2D" uid="uid://dl0k4s2xsndvl" path="res://Sprites/TileMaps/Haifeng Village Tile Image1.png" id="7_48aqm"]
 [ext_resource type="Texture2D" uid="uid://c7si8lxn37w0p" path="res://Sprites/TileMaps/mountain.png" id="7_yp0rm"]
-[ext_resource type="Script" path="res://Scenes/chapter0tiles.gd" id="8_yp0rm"]
+[ext_resource type="Script" uid="uid://ndw2joerkbxd" path="res://Scenes/chapter0tiles.gd" id="8_yp0rm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iy1kd"]
 texture = ExtResource("1_ywojy")
@@ -103,10 +103,11 @@ texture_region_size = Vector2i(381, 490)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(30, 127)
 0:0/0/z_index = 1
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -33, -141, -91, -143, 12, -32, 75, 92, 7, 90, -93)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(96, -90, 109, -104, 36, -208, -102, -145, -162, -114, -143, -93, -144.36775, 12.553711, -30, 81, 96, 7)
 0:1/0 = 0
 0:1/0/texture_origin = Vector2i(7, 175)
-0:1/0/z_index = 1
+0:1/0/z_index = 2
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-23.55426, -33.879585, -71, -10, -54, 19, 0, 37, 55, 21, 76, -10, 31, -35)
 1:2/0 = 0
 0:2/0 = 0
 0:2/0/texture_origin = Vector2i(1, 46)

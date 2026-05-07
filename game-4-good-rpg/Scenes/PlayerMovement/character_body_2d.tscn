@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://eolybku4v1so" path="res://Sprites/Player Sprites/DefaultSS/ArabBoySS.tres" id="2_7c1s5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewqnc"]
-radius = 14.199982
-height = 64.0
+radius = 8.0
+height = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_action_finder"]
 radius = 31.0
@@ -20,6 +20,8 @@ sprite_frames = ExtResource("2_7c1s5")
 animation = &"16 Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=59239980]
+position = Vector2(0, 22.87)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ewqnc")
 
 [node name="Direction" type="Marker2D" parent="." unique_id=1409215425]
