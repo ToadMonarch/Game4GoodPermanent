@@ -33,10 +33,6 @@ const NPC_PATHS := {
 	"matt_kai_villagers": "MattKaiVillagers",
 }
 
-var _main_scene: Node = null
-var _story_panel: Node = null
-
-
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	if run_on_ready:
@@ -48,11 +44,9 @@ func _run() -> void:
 
 
 func run_story_flow() -> void:
-	_main_scene = get_tree().current_scene
-	if _main_scene == null:
+	if get_tree().current_scene == null:
 		_log("No current scene.")
 		return
-	_story_panel = _main_scene
 
 	_log("Start autoplay flow (chapter 0 -> 1 -> 2)")
 
@@ -113,17 +107,22 @@ func _talk(npc_key: String) -> void:
 		_log("Unknown npc key: %s" % npc_key)
 		return
 
+	var scene := get_tree().current_scene
+	if scene == null:
+		_log("No current scene for talk.")
+		return
+
 	var npc_path: String = NPC_PATHS[npc_key]
-	if not _main_scene.has_node(npc_path):
+	if not scene.has_node(npc_path):
 		_log("Missing npc node: %s" % npc_path)
 		return
 
 	var actionable_path := "%s/Actionable2" % npc_path
-	if not _main_scene.has_node(actionable_path):
+	if not scene.has_node(actionable_path):
 		_log("Missing Actionable2: %s" % actionable_path)
 		return
 
-	var actionable := _main_scene.get_node(actionable_path)
+	var actionable := scene.get_node(actionable_path)
 	_log("Talk: %s" % npc_key)
 
 	# Requirement says auto-press Space during talks.
@@ -154,21 +153,25 @@ func _press_space() -> bool:
 
 
 func _advance_panel_until_closed(max_presses: int = 32) -> void:
-	if _story_panel == null:
-		return
-	if not _story_panel.has_method("_on_next_button_pressed"):
-		return
-	if not "is_guide_open" in _story_panel:
-		return
-
 	var i := 0
-	while _story_panel.is_guide_open and i < max_presses:
-		_story_panel._on_next_button_pressed()
+	while i < max_presses:
+		var scene := get_tree().current_scene
+		if scene == null:
+			return
+		if not scene.has_method("_on_next_button_pressed"):
+			return
+		if not "is_guide_open" in scene:
+			return
+		if not scene.is_guide_open:
+			return
+
+		scene._on_next_button_pressed()
 		i += 1
 		await get_tree().process_frame
 		await _sleep(step_delay_sec)
 
-	if _story_panel.is_guide_open:
+	var final_scene := get_tree().current_scene
+	if final_scene != null and "is_guide_open" in final_scene and final_scene.is_guide_open:
 		_log("Panel still open after %d presses." % i)
 
 

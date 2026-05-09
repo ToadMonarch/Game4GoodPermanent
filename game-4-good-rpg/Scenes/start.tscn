@@ -1,17 +1,12 @@
 [gd_scene format=4 uid="uid://b52aysa4i75el"]
 
 [ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="1_3bxa3"]
-[ext_resource type="PackedScene" uid="uid://6insc0nd7ly6" path="res://Scenes/tiles.tscn" id="1_r48yj"]
-[ext_resource type="PackedScene" uid="uid://d2507i7g6rxk" path="res://character/Maggie/maggie.tscn" id="3_maggie"]
-[ext_resource type="PackedScene" uid="uid://b7ka1npc01npc" path="res://character/Kai/kai.tscn" id="4_kai"]
-[ext_resource type="PackedScene" uid="uid://d5nm8ubav8ew" path="res://character/Jessica/jessica.tscn" id="5_jessica"]
-[ext_resource type="PackedScene" uid="uid://c3ard3nnpcqb" path="res://character/Arden/arden.tscn" id="6_arden"]
-[ext_resource type="PackedScene" uid="uid://un83v6peny40" path="res://character/Steven/steven.tscn" id="7_steven"]
-[ext_resource type="PackedScene" uid="uid://cuy6xuu3igyi" path="res://character/Aurora/aurora.tscn" id="8_aurora"]
-[ext_resource type="PackedScene" uid="uid://b0qsrv6j2v4c2" path="res://character/villagers/villagers.tscn" id="9_villagers"]
+[ext_resource type="PackedScene" uid="uid://cnrxqsji5wjmh" path="res://Scenes/chapter0.tscn" id="2_r48yj"]
 [ext_resource type="Script" uid="uid://dbwy243yfc0pn" path="res://Steven/main/story_guide_panel.gd" id="10_storyguide"]
-[ext_resource type="PackedScene" uid="uid://c6qlnj8u8xhw4" path="res://character/Arden_Steven_Villagers/arden_steven_villagers.tscn" id="11_asv"]
 [ext_resource type="Script" uid="uid://bac2hu1d1ruef" path="res://Scenes/bridge_repair_trigger.gd" id="12_knwj7"]
+[ext_resource type="PackedScene" uid="uid://chfx2i51458r7" path="res://character/Traveller/human.tscn" id="13_traveller"]
+[ext_resource type="PackedScene" uid="uid://dmxdx3fwc1nfh" path="res://character/Family/famil.tscn" id="14_family"]
+[ext_resource type="PackedScene" uid="uid://drxfovylj05ic" path="res://character/Friend/friend.tscn" id="15_adele"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knwj7"]
 radius = 85.0
@@ -23,46 +18,21 @@ script = ExtResource("10_storyguide")
 [node name="TileMapLayer" parent="." unique_id=272419504 instance=ExtResource("2_r48yj")]
 tile_map_data = PackedByteArray("AAABAN7/AAAAAAAAAAABANz/AAAAAAAAAAABANv/AAAAAAAAAAACABAABQAAAAAAAAD+/xYABQAAAAAAAAABAPb/BQAAAAAAAAADAO//BQAAAAAAAAAFAOn/BQAAAAAAAAAIAOT/BQAAAAAAAAAUAPD/DAAAAAAAAAA=")
 
-[node name="Maggie" parent="." unique_id=1224434304 instance=ExtResource("3_maggie")]
+[node name="Traveller" parent="." unique_id=1997513961 instance=ExtResource("13_traveller")]
 z_index = 1
-position = Vector2(488, -1799)
+position = Vector2(-444, -172)
 
-[node name="Kai" parent="." unique_id=1417196607 instance=ExtResource("4_kai")]
+[node name="Family" parent="." unique_id=1997513962 instance=ExtResource("14_family")]
 z_index = 1
-position = Vector2(1949, -1073)
+position = Vector2(-326, -457)
 
-[node name="Jessica" parent="." unique_id=989292783 instance=ExtResource("5_jessica")]
+[node name="Adele" parent="." unique_id=1997513963 instance=ExtResource("15_adele")]
 z_index = 1
-position = Vector2(3448, -509)
-
-[node name="Aurora" parent="." unique_id=1997513960 instance=ExtResource("8_aurora")]
-z_index = 1
-position = Vector2(1071, -322)
-
-[node name="Arden_Steven_Villagers" type="Node2D" parent="." unique_id=2099291272]
-
-[node name="Arden" parent="Arden_Steven_Villagers" unique_id=513018427 instance=ExtResource("6_arden")]
-z_index = 1
-position = Vector2(210, 661)
-
-[node name="Steven" parent="Arden_Steven_Villagers" unique_id=484491093 instance=ExtResource("7_steven")]
-z_index = 1
-position = Vector2(436, -573)
-
-[node name="Villagers" parent="Arden_Steven_Villagers" unique_id=2099291273 instance=ExtResource("9_villagers")]
-z_index = 1
-position = Vector2(3022, -1207)
-
-[node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
-z_index = 1
-position = Vector2(2290, -1778)
-
-[node name="Tiles" parent="." unique_id=1294684342 instance=ExtResource("1_r48yj")]
-position = Vector2(553.91705, -67.83534)
+position = Vector2(-177, -172)
 
 [node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
 z_index = 2
-position = Vector2(771, 153)
+position = Vector2(503, 153)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=586456594]

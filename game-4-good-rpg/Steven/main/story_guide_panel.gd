@@ -157,7 +157,10 @@ const CHAPTER0_COMPLETION_SUMMARY := {
 #   false = chỉ đọc xong các trang mô tả Chapter 0 là có thể sang mô tả Chapter 1
 #           ngay, không cần hoàn thành hội thoại Chapter 0 với tất cả nhân vật.
 # =============================================================================
-const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := false
+const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := true
+
+## When true (Clear Stream Valley root), skip Chapter 0 intro pages and open Chapter 1 context.
+@export var begins_on_chapter1_map: bool = false
 
 enum PanelMode {
 	GUIDE,
@@ -166,7 +169,7 @@ enum PanelMode {
 	CHAPTER_FINAL_SUMMARY,
 }
 #Ayden
-@onready var bridge_tilemap: TileMap = $TileMap
+var bridge_tilemap: TileMap
 
 var bridge_tiles := [
 	Vector2i(19, -13),
@@ -210,11 +213,11 @@ var repaired_atlas_coords := Vector2i(4, 2)
 @onready var next_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/NextButton
 @onready var alt_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/AltButton
 
-## Chapter 1 square: unified council sprite vs separate Arden / Steven / Villagers.
-@onready var _ch1_council_group: Node2D = $Arden_Steven_Villagers/ArdenStevenVillagersGroup
-@onready var _ch1_arden_square: Node2D = $Arden_Steven_Villagers/Arden
-@onready var _ch1_steven_square: Node2D = $Arden_Steven_Villagers/Steven
-@onready var _ch1_villagers_square: Node2D = $Arden_Steven_Villagers/Villagers
+## Chapter 1 square: unified council sprite vs separate Arden / Steven / Villagers (present only on Chapter 1 scene).
+var _ch1_council_group: Node2D
+var _ch1_arden_square: Node2D
+var _ch1_steven_square: Node2D
+var _ch1_villagers_square: Node2D
 
 ## Instance id -> saved collision flags (so hidden branches are not invisible obstacles).
 var _ch1_collision_restore: Dictionary = {}
@@ -240,7 +243,16 @@ var chapter_confirmation_target: int = 1
 var final_summary_chapter_id: int = -1
 var active_guide_kind: String = ""
 
+func _resolve_optional_nodes() -> void:
+	bridge_tilemap = get_node_or_null("TileMap") as TileMap
+	_ch1_council_group = get_node_or_null("Arden_Steven_Villagers/ArdenStevenVillagersGroup") as Node2D
+	_ch1_arden_square = get_node_or_null("Arden_Steven_Villagers/Arden") as Node2D
+	_ch1_steven_square = get_node_or_null("Arden_Steven_Villagers/Steven") as Node2D
+	_ch1_villagers_square = get_node_or_null("Arden_Steven_Villagers/Villagers") as Node2D
+
 func _ready() -> void:
+	_resolve_optional_nodes()
+
 	# Set true to jump quest flags to Chapter 3 for editor testing (normal play keeps Chapter 0 flow).
 	const SKIP_TO_CHAPTER_3_TEST := false
 	if SKIP_TO_CHAPTER_3_TEST:
@@ -297,7 +309,12 @@ func _ready() -> void:
 	_refresh_chapter1_square_assembly_visibility()
 	_ch1_square_snap_quest3 = QuestState.quest3_complete
 	_ch1_square_snap_quest4 = QuestState.quest4_complete
-	_open_guide(CHAPTER0_ENTRIES, "chapter0")
+	if begins_on_chapter1_map:
+		chapter0_guide_closed = true
+		active_chapter_id = 1
+		_open_chapter_context(1)
+	else:
+		_open_guide(CHAPTER0_ENTRIES, "chapter0")
 
 
 ## Quest 4 (after meeting announced, before council dialogue finishes): Council Group visible;
@@ -716,9 +733,14 @@ func _start_chapter_flow(chapter_id: int) -> void:
 	_set_chapter_description_shown(chapter_id)
 	active_chapter_id = chapter_id
 	next_chapter_quest_to_describe = 0
+	if chapter_id == 1:
+		get_tree().change_scene_to_file("res://Chapter 1/Clear Stream Valley.tscn")
+		return
 	_open_chapter_context(chapter_id)
 
 #Ayden
 func repair_bridge() -> void:
+	if bridge_tilemap == null:
+		return
 	for pos in bridge_tiles:
 		bridge_tilemap.set_cell(0, pos, repaired_source_id, repaired_atlas_coords)
