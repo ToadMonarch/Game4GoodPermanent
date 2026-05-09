@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://b52aysa4i75el"]
 
 [ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="1_3bxa3"]
-[ext_resource type="PackedScene" uid="uid://cnrxqsji5wjmh" path="res://Scenes/chapter0.tscn" id="2_r48yj"]
+[ext_resource type="PackedScene" uid="uid://6insc0nd7ly6" path="res://Scenes/tiles.tscn" id="1_r48yj"]
 [ext_resource type="PackedScene" uid="uid://d2507i7g6rxk" path="res://character/Maggie/maggie.tscn" id="3_maggie"]
 [ext_resource type="PackedScene" uid="uid://b7ka1npc01npc" path="res://character/Kai/kai.tscn" id="4_kai"]
 [ext_resource type="PackedScene" uid="uid://d5nm8ubav8ew" path="res://character/Jessica/jessica.tscn" id="5_jessica"]
@@ -56,6 +56,9 @@ position = Vector2(3022, -1207)
 [node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
 z_index = 1
 position = Vector2(2290, -1778)
+
+[node name="Tiles" parent="." unique_id=1294684342 instance=ExtResource("1_r48yj")]
+position = Vector2(553.91705, -67.83534)
 
 [node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
 z_index = 2

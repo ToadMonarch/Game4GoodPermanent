@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Game4GoodRPG"
-run/main_scene="uid://b52aysa4i75el"
+run/main_scene="uid://drixsq6puqeru"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 
@@ -23,8 +23,8 @@ QuestState="*res://Scripts/quest_state.gd"
 
 [display]
 
-window/size/viewport_width=1000
-window/size/viewport_height=1000
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [editor_plugins]
 
