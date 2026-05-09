@@ -1,0 +1,117 @@
+[gd_scene format=4 uid="uid://b52aysa4i75el"]
+
+[ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="1_3bxa3"]
+[ext_resource type="PackedScene" uid="uid://cnrxqsji5wjmh" path="res://Scenes/chapter0.tscn" id="2_r48yj"]
+[ext_resource type="Script" uid="uid://dbwy243yfc0pn" path="res://Steven/main/story_guide_panel.gd" id="10_storyguide"]
+[ext_resource type="Script" uid="uid://bac2hu1d1ruef" path="res://Scenes/bridge_repair_trigger.gd" id="12_knwj7"]
+[ext_resource type="PackedScene" uid="uid://chfx2i51458r7" path="res://character/Traveller/human.tscn" id="13_traveller"]
+[ext_resource type="PackedScene" uid="uid://dmxdx3fwc1nfh" path="res://character/Family/famil.tscn" id="14_family"]
+[ext_resource type="PackedScene" uid="uid://drxfovylj05ic" path="res://character/Friend/friend.tscn" id="15_adele"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_knwj7"]
+radius = 85.0
+
+[node name="Start" type="Node2D" unique_id=1268696800]
+position = Vector2(-1, 0)
+script = ExtResource("10_storyguide")
+
+[node name="TileMapLayer" parent="." unique_id=272419504 instance=ExtResource("2_r48yj")]
+tile_map_data = PackedByteArray("AAABAN7/AAAAAAAAAAABANz/AAAAAAAAAAABANv/AAAAAAAAAAACABAABQAAAAAAAAD+/xYABQAAAAAAAAABAPb/BQAAAAAAAAADAO//BQAAAAAAAAAFAOn/BQAAAAAAAAAIAOT/BQAAAAAAAAAUAPD/DAAAAAAAAAA=")
+
+[node name="Traveller" parent="." unique_id=1997513961 instance=ExtResource("13_traveller")]
+z_index = 1
+position = Vector2(-444, -172)
+
+[node name="Family" parent="." unique_id=1997513962 instance=ExtResource("14_family")]
+z_index = 1
+position = Vector2(-326, -457)
+
+[node name="Adele" parent="." unique_id=1997513963 instance=ExtResource("15_adele")]
+z_index = 1
+position = Vector2(-177, -172)
+
+[node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
+z_index = 2
+position = Vector2(503, 153)
+scale = Vector2(2, 2)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=586456594]
+
+[node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
+layer = 100
+
+[node name="GuidePanel" type="PanelContainer" parent="StoryGuideLayer" unique_id=906313394]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -145.0
+offset_right = 270.0
+offset_bottom = 145.0
+
+[node name="ContentMargin" type="MarginContainer" parent="StoryGuideLayer/GuidePanel" unique_id=1851657183]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ContentVBox" type="VBoxContainer" parent="StoryGuideLayer/GuidePanel/ContentMargin" unique_id=171650617]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ChapterLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=243774275]
+layout_mode = 2
+text = "Chapter"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=538838741]
+layout_mode = 2
+text = "Title"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=1790015144]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description"
+autowrap_mode = 3
+
+[node name="FooterRow" type="HBoxContainer" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=1365845943]
+layout_mode = 2
+alignment = 2
+
+[node name="PageLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=380495178]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1/1"
+
+[node name="NextButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=1781923389]
+layout_mode = 2
+text = "Next"
+
+[node name="AltButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=146728390]
+visible = false
+layout_mode = 2
+text = "Alt"
+
+[node name="RepairPromptLabel" type="Label" parent="StoryGuideLayer" unique_id=1881278857]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = 2373.0
+offset_top = -317.0
+offset_right = 2588.0
+offset_bottom = -294.0
+text = "Press space to repair bridge"
+
+[node name="BridgeRepairTrigger" type="Area2D" parent="." unique_id=1933422119 node_paths=PackedStringArray("repair_prompt")]
+position = Vector2(2555, -366)
+script = ExtResource("12_knwj7")
+repair_prompt = NodePath("../StoryGuideLayer/RepairPromptLabel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BridgeRepairTrigger" unique_id=902528200]
+position = Vector2(-64, 58)
+shape = SubResource("CircleShape2D_knwj7")

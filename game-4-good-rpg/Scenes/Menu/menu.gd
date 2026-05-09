@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 
 
 func GameRedirect() -> void:
-	get_tree().change_scene_to_file("res://Scenes/game.tscn")
+	get_tree().change_scene_to_file("res://Scenes/start.tscn")
 
 
 func SettingsRedirect() -> void:
