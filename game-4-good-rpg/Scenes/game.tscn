@@ -30,7 +30,7 @@ position = Vector2(-326, -457)
 z_index = 1
 position = Vector2(-177, -172)
 
-[node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
+[node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("2_wrm1d")]
 z_index = 2
 position = Vector2(503, 153)
 scale = Vector2(2, 2)
