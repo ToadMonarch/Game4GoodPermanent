@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://drixsq6puqeru"]
+[gd_scene format=4 uid="uid://vfsi4neh8rfd"]
 
 [ext_resource type="TileSet" uid="uid://yps8h3kuomvk" path="res://Sprites/tilemap1.tres" id="1_gwevy"]
 [ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="2_r83mq"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cuy6xuu3igyi" path="res://character/Aurora/aurora.tscn" id="9_aurora"]
 [ext_resource type="PackedScene" uid="uid://b0qsrv6j2v4c2" path="res://character/villagers/villagers.tscn" id="10_villagers"]
 [ext_resource type="PackedScene" uid="uid://c6qlnj8u8xhw4" path="res://character/Arden_Steven_Villagers/arden_steven_villagers.tscn" id="11_asv"]
+[ext_resource type="PackedScene" uid="uid://b3k7ixb34cr74" path="res://Scenes/castle_puzzle_trigger.tscn" id="12_castle_trigger"]
 
 [node name="ClearStreamValley" type="Node2D" unique_id=1628794416]
 script = ExtResource("3_storyguide")
@@ -69,6 +70,9 @@ position = Vector2(3296, -413)
 [node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
 z_index = 1
 position = Vector2(3259, -203)
+
+[node name="CastlePuzzleTrigger" parent="." unique_id=1782826142 instance=ExtResource("12_castle_trigger")]
+position = Vector2(2986, -588)
 
 [node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
 layer = 100
