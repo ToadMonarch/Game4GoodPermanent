@@ -12,23 +12,24 @@
 radius = 85.0
 
 [node name="Start" type="Node2D" unique_id=1268696800]
+y_sort_enabled = true
 position = Vector2(-1, 0)
 script = ExtResource("10_storyguide")
 
 [node name="TileMapLayer" parent="." unique_id=272419504 instance=ExtResource("2_r48yj")]
-tile_map_data = PackedByteArray("AAABAN7/AAAAAAAAAAABANz/AAAAAAAAAAABANv/AAAAAAAAAAACABAABQAAAAAAAAD+/xYABQAAAAAAAAABAPb/BQAAAAAAAAADAO//BQAAAAAAAAAFAOn/BQAAAAAAAAAIAOT/BQAAAAAAAAAUAPD/DAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAN7/AAAAAAAAAAABANz/AAAAAAAAAAABANv/AAAAAAAAAAACABAABQAAAAAAAAD+/xYABQAAAAAAAAABAPb/BQAAAAAAAAAFAOn/BQAAAAAAAAAIAOT/BQAAAAAAAAAUAPD/DAAAAAAAAAA=")
 
 [node name="Traveller" parent="." unique_id=1997513961 instance=ExtResource("13_traveller")]
-z_index = 1
-position = Vector2(-444, -172)
+z_index = 2
+position = Vector2(-361, -98)
 
 [node name="Family" parent="." unique_id=1997513962 instance=ExtResource("14_family")]
-z_index = 1
-position = Vector2(-326, -457)
+z_index = 2
+position = Vector2(827, 53)
 
 [node name="Adele" parent="." unique_id=1997513963 instance=ExtResource("15_adele")]
-z_index = 1
-position = Vector2(-177, -172)
+z_index = 2
+position = Vector2(-846, -505)
 
 [node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
 z_index = 2
@@ -36,6 +37,7 @@ position = Vector2(503, 153)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=586456594]
+position_smoothing_enabled = true
 
 [node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
 layer = 100

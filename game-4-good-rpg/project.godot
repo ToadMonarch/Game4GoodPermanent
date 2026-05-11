@@ -23,8 +23,11 @@ QuestState="*res://Scripts/quest_state.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=900
+window/size/viewport_height=600
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 

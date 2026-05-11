@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b3madqexb11mq" path="res://Sprites/TileMaps/4.png" id="2_cetdb"]
 [ext_resource type="Texture2D" uid="uid://dtsntftwc0wac" path="res://Sprites/TileMaps/wood.png" id="3_bysqi"]
 [ext_resource type="Texture2D" uid="uid://brudl2nf653sh" path="res://Sprites/TileMaps/5.png" id="4_bodqr"]
-[ext_resource type="Texture2D" uid="uid://3yd3i02a5hjk" path="res://Sprites/TileMaps/Haifeng Village Tile Image.png" id="5_h3un4"]
-[ext_resource type="Texture2D" uid="uid://dl0k4s2xsndvl" path="res://Sprites/TileMaps/Haifeng Village Tile Image1.png" id="6_pcuer"]
-[ext_resource type="Texture2D" uid="uid://c7si8lxn37w0p" path="res://Sprites/TileMaps/mountain.png" id="7_ddtvh"]
 [ext_resource type="Texture2D" uid="uid://bf1dwq82x35rb" path="res://Sprites/TileMaps/castle.png" id="8_qjck3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yp0rm"]
@@ -98,8 +95,11 @@ texture_region_size = Vector2i(150, 156)
 texture = ExtResource("4_bodqr")
 texture_region_size = Vector2i(128, 64)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v74l7"]
+load_path = "res://.godot/imported/Haifeng Village Tile Image.png-008aff8522d309203fb8eaedd7a78367.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bmgg6"]
-texture = ExtResource("5_h3un4")
+texture = SubResource("CompressedTexture2D_v74l7")
 texture_region_size = Vector2i(399, 389)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(85, 115)
@@ -113,19 +113,24 @@ texture_region_size = Vector2i(399, 389)
 3:4/0/texture_origin = Vector2i(-80, 100)
 3:4/0/z_index = 1
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k32nw"]
+load_path = "res://.godot/imported/Haifeng Village Tile Image1.png-5eab8c48bbec7144cfde8834bec563cb.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48aqm"]
-texture = ExtResource("6_pcuer")
+texture = SubResource("CompressedTexture2D_k32nw")
 margins = Vector2i(15, 0)
 separation = Vector2i(70, 30)
 texture_region_size = Vector2i(428, 491)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(30, 127)
-0:0/0/z_index = 1
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(102.75055, -107.002304, 38.974335, -211.87871, -146.68524, -111.25404, -146.68524, 7.794861, -34.722595, 80.074554, 94.24704, 6.3776245)
+0:0/0/z_index = 2
+0:0/0/y_sort_origin = -50
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(2.8223724, -102.734245, -136.0382, -50.80265, -136.60266, 6.2092133, -24.27237, 69.43028, 102.16977, 1.6934204, 100.47635, -53.625015)
 0:1/0 = 0
 0:1/0/texture_origin = Vector2i(7, 175)
-0:1/0/z_index = 1
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -37, -68.5, 0, 0, 37, 68.5, 0)
+0:1/0/z_index = 2
+0:1/0/y_sort_origin = -50
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.239957, -29.308344, -50.34366, -6.372616, 8.284393, 27.720875, 71.05466, -4.779461, 39.19159, -30.588552)
 1:0/0 = 0
 1:0/0/z_index = 1
 1:2/0 = 0
@@ -139,8 +144,11 @@ texture_region_size = Vector2i(428, 491)
 2:0/0/z_index = 1
 2:1/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j4lkc"]
+load_path = "res://.godot/imported/mountain.png-80d93ef6fe31e67355dd3486da9b5b78.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_emk3k"]
-texture = ExtResource("7_ddtvh")
+texture = SubResource("CompressedTexture2D_j4lkc")
 margins = Vector2i(97, 19)
 texture_region_size = Vector2i(1350, 976)
 0:0/0 = 0
