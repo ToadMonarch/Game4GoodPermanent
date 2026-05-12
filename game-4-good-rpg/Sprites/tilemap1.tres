@@ -132,7 +132,9 @@ texture_region_size = Vector2i(428, 491)
 0:1/0/y_sort_origin = -50
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.239957, -29.308344, -50.34366, -6.372616, 8.284393, 27.720875, 71.05466, -4.779461, 39.19159, -30.588552)
 1:0/0 = 0
-1:0/0/z_index = 1
+1:0/0/z_index = 2
+1:0/0/y_sort_origin = 35
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.002075, -51.446136, -192.92303, 32.58255, -192.92303, 168.05737, -74.596924, 207.49942, 26.580505, 178.34662, 107.179504, 133.75995, 114.03888, 15.433838)
 1:2/0 = 0
 1:2/0/z_index = 1
 2:2/0 = 0
@@ -141,7 +143,9 @@ texture_region_size = Vector2i(428, 491)
 0:2/0/texture_origin = Vector2i(1, 46)
 0:2/0/z_index = 1
 2:0/0 = 0
-2:0/0/z_index = 1
+2:0/0/z_index = 2
+2:0/0/y_sort_origin = 35
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(47.158997, -75.45433, -160.34045, 32.58255, -162.05536, 173.202, -54.018433, 233.2225, -23.150757, 231.5076, 174.05939, 137.1897, 175.77435, -6.859497)
 2:1/0 = 0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j4lkc"]
