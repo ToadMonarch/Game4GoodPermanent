@@ -7,9 +7,38 @@
 [ext_resource type="PackedScene" uid="uid://chfx2i51458r7" path="res://character/Traveller/human.tscn" id="13_traveller"]
 [ext_resource type="PackedScene" uid="uid://dmxdx3fwc1nfh" path="res://character/Family/famil.tscn" id="14_family"]
 [ext_resource type="PackedScene" uid="uid://drxfovylj05ic" path="res://character/Friend/friend.tscn" id="15_adele"]
+[ext_resource type="Script" uid="uid://c55m2pptkuvkl" path="res://Chapter 1/MenuScript.gd" id="16_menu"]
+[ext_resource type="AudioStream" uid="uid://rppq1u5vnrqv" path="res://Music/A Lonely Cherry Tree.mp3" id="17_au278"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_knwj7"]
 radius = 85.0
+
+[sub_resource type="FontFile" id="FontFile_acg6e"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_66dt1"]
+font = SubResource("FontFile_acg6e")
+font_size = 30
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.90588236)
 
 [node name="Start" type="Node2D" unique_id=1268696800]
 position = Vector2(-1, 0)
@@ -30,12 +59,77 @@ position = Vector2(-326, -457)
 z_index = 1
 position = Vector2(-177, -172)
 
-[node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("2_wrm1d")]
+[node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
 z_index = 2
 position = Vector2(503, 153)
 scale = Vector2(2, 2)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=586456594]
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1898344]
+layer = 110
+script = ExtResource("16_menu")
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer" unique_id=1755924974]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Settings"
+
+[node name="SettingsMenu" type="Panel" parent="CanvasLayer" unique_id=1457820727]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/SettingsMenu" unique_id=1735194172]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 121.0
+offset_right = 1063.0
+offset_bottom = 178.0
+min_value = -40.0
+max_value = 0.0
+
+[node name="Close" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=1262974917]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 618.0
+offset_right = 756.0
+offset_bottom = 683.0
+text = "Close"
+
+[node name="ChangeSkin" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=64276600]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 167.0
+offset_right = 585.0
+offset_bottom = 272.0
+text = "Change Skin"
+
+[node name="Save" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=1426633663]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 503.0
+offset_right = 817.0
+offset_bottom = 610.0
+text = "Save Changes"
+
+[node name="VolumeLabel" type="Label" parent="CanvasLayer/SettingsMenu" unique_id=292668444]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 90.0
+offset_right = 401.0
+offset_bottom = 168.0
+text = "Volume"
+label_settings = SubResource("LabelSettings_66dt1")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=2071684409]
+stream = ExtResource("17_au278")
+autoplay = true
 
 [node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
 layer = 100
@@ -115,3 +209,9 @@ repair_prompt = NodePath("../StoryGuideLayer/RepairPromptLabel")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BridgeRepairTrigger" unique_id=902528200]
 position = Vector2(-64, 58)
 shape = SubResource("CircleShape2D_knwj7")
+
+[connection signal="pressed" from="CanvasLayer/SettingsButton" to="CanvasLayer" method="_on_settings_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsMenu/VolumeSlider" to="CanvasLayer" method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/Close" to="CanvasLayer" method="_on_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/ChangeSkin" to="CanvasLayer" method="_on_change_skin_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/Save" to="CanvasLayer" method="_on_save_pressed"]
