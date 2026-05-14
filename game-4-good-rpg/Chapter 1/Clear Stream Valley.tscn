@@ -2,6 +2,35 @@
 
 [ext_resource type="TileSet" uid="uid://yps8h3kuomvk" path="res://Sprites/tilemap1.tres" id="1_gwevy"]
 [ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="2_r83mq"]
+[ext_resource type="Script" uid="uid://c55m2pptkuvkl" path="res://Chapter 1/MenuScript.gd" id="3_acg6e"]
+[ext_resource type="AudioStream" uid="uid://rppq1u5vnrqv" path="res://Music/A Lonely Cherry Tree.mp3" id="3_au278"]
+
+[sub_resource type="FontFile" id="FontFile_acg6e"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_66dt1"]
+font = SubResource("FontFile_acg6e")
+font_size = 30
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.90588236)
 [ext_resource type="Script" uid="uid://dbwy243yfc0pn" path="res://Steven/main/story_guide_panel.gd" id="3_storyguide"]
 [ext_resource type="PackedScene" uid="uid://d2507i7g6rxk" path="res://character/Maggie/maggie.tscn" id="4_maggie"]
 [ext_resource type="PackedScene" uid="uid://b7ka1npc01npc" path="res://character/Kai/kai.tscn" id="5_kai"]
@@ -36,120 +65,74 @@ position = Vector2(338, 33)
 scale = Vector2(1.7, 1.7)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=566808348]
-position_smoothing_enabled = true
 
-[node name="Maggie" parent="." unique_id=1224434304 instance=ExtResource("4_maggie")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(167, -875)
-
-[node name="Kai" parent="." unique_id=1417196607 instance=ExtResource("5_kai")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(632, -475)
-
-[node name="Jessica" parent="." unique_id=989292783 instance=ExtResource("6_jessica")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(-13, -182)
-
-[node name="Aurora" parent="." unique_id=1997513960 instance=ExtResource("9_aurora")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(305, 312)
-
-[node name="Arden_Steven_Villagers" type="Node2D" parent="." unique_id=2099291272]
-
-[node name="Arden" parent="Arden_Steven_Villagers" unique_id=513018427 instance=ExtResource("7_arden")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(-255, 757)
-
-[node name="Steven" parent="Arden_Steven_Villagers" unique_id=484491093 instance=ExtResource("8_steven")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(-717, -151)
-
-[node name="Villagers" parent="Arden_Steven_Villagers" unique_id=2099291273 instance=ExtResource("10_villagers")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(3296, -413)
-
-[node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(3259, -203)
-
-[node name="CastlePuzzleTrigger" parent="." unique_id=1782826142 instance=ExtResource("12_castle_trigger")]
-z_index = 2
-position = Vector2(2986, -588)
-
-[node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
-layer = 100
-
-[node name="GuidePanel" type="PanelContainer" parent="StoryGuideLayer" unique_id=906313394]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -270.0
-offset_top = -145.0
-offset_right = 270.0
-offset_bottom = 145.0
-
-[node name="ContentMargin" type="MarginContainer" parent="StoryGuideLayer/GuidePanel" unique_id=1851657183]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="ContentVBox" type="VBoxContainer" parent="StoryGuideLayer/GuidePanel/ContentMargin" unique_id=171650617]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="ChapterLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=243774275]
-layout_mode = 2
-text = "Chapter"
-horizontal_alignment = 1
-
-[node name="TitleLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=538838741]
-layout_mode = 2
-text = "Title"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="DescriptionLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=1790015144]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-size_flags_vertical = 3
-text = "Description"
-autowrap_mode = 3
-
-[node name="FooterRow" type="HBoxContainer" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=1365845943]
-layout_mode = 2
-alignment = 2
-
-[node name="PageLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=380495178]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "1/1"
-
-[node name="NextButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=1781923389]
-layout_mode = 2
-text = "Next"
-
-[node name="AltButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=146728390]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1898344]
 visible = false
-layout_mode = 2
-text = "Alt"
+script = ExtResource("3_acg6e")
 
-[node name="RepairPromptLabel" type="Label" parent="StoryGuideLayer" unique_id=1881278857]
-visible = false
-modulate = Color(0, 0, 0, 1)
-offset_left = 2373.0
-offset_top = -317.0
-offset_right = 2588.0
-offset_bottom = -294.0
-text = "Press space to repair bridge"
+[node name="SettingsButton" type="Button" parent="CanvasLayer" unique_id=1755924974]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Settings"
+
+[node name="SettingsMenu" type="Panel" parent="CanvasLayer" unique_id=1457820727]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/SettingsMenu" unique_id=1735194172]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 121.0
+offset_right = 1063.0
+offset_bottom = 178.0
+min_value = -40.0
+max_value = 0.0
+
+[node name="Close" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=1262974917]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 618.0
+offset_right = 756.0
+offset_bottom = 683.0
+text = "Close"
+
+[node name="ChangeSkin" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=64276600]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 167.0
+offset_right = 585.0
+offset_bottom = 272.0
+text = "Change Skin"
+
+[node name="Save" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=1426633663]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 503.0
+offset_right = 817.0
+offset_bottom = 610.0
+text = "Save Changes"
+
+[node name="VolumeLabel" type="Label" parent="CanvasLayer/SettingsMenu" unique_id=292668444]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 90.0
+offset_right = 401.0
+offset_bottom = 168.0
+text = "Volume"
+label_settings = SubResource("LabelSettings_66dt1")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=2071684409]
+stream = ExtResource("3_au278")
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/SettingsButton" to="CanvasLayer" method="_on_settings_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/SettingsMenu/VolumeSlider" to="CanvasLayer" method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/Close" to="CanvasLayer" method="_on_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/ChangeSkin" to="CanvasLayer" method="_on_change_skin_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/Save" to="Player" method="_on_save_pressed"]
+[connection signal="pressed" from="CanvasLayer/SettingsMenu/Save" to="CanvasLayer" method="_on_save_pressed"]
