@@ -6,10 +6,10 @@
 [ext_resource type="Resource" uid="uid://bn8tk18yvoarj" path="res://dialogue.dialogue" id="4_dlg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(110, 127)
+size = Vector2(51, 99)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_talk"]
-radius = 86.05231
+radius = 63.007935
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_talk_hint"]
 bg_color = Color(0, 0, 0, 0.65)
@@ -26,13 +26,14 @@ font_color = Color(1, 1, 1, 1)
 script = ExtResource("1_npc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=971516156]
-scale = Vector2(2.2619042, 2.0833333)
+position = Vector2(-1, 1)
+scale = Vector2(1.7673159, 1.5871211)
 texture = ExtResource("3_tex")
 
 [node name="PlaceholderName" type="Label" parent="."]
-offset_left = -60.0
+offset_left = -52.0
 offset_top = -94.0
-offset_right = 60.0
+offset_right = 52.0
 offset_bottom = -62.0
 text = "JESSICA"
 label_settings = SubResource("LabelSettings_placeholder")

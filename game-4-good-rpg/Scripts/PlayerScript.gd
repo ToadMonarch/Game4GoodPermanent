@@ -3,8 +3,11 @@ extends CharacterBody2D
 @export var speed := 400
 var target_position: Vector2
 var using_mouse := false
+var is_in_dialogue := false
 
 @onready var animsprite = $AnimatedSprite2D
+@onready var direction_marker: Marker2D = $Direction
+@onready var actionable_finder: Area2D = $Direction/ActionableFinder
 
 const SPRITES: Dictionary[String, SpriteFrames] = {
 	"AfricanBoy": preload("res://Sprites/Player Sprites/DefaultSS/AfricanBoySS.tres"),
@@ -43,11 +46,15 @@ var last_direction := Vector2.RIGHT
 
 func _ready():
 	target_position = global_position
-	
+	add_to_group("player")
+	actionable_finder.add_to_group("player_interaction_area")
+	DialogueManager.dialogue_started.connect(_on_dialogue_started)
+	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
+
 	current_skin_index = SKIN_ORDER.find("LGBT2")
 	if current_skin_index == -1:
 		current_skin_index = 0
-	
+
 	set_skin(SKIN_ORDER[current_skin_index])
 
 func set_skin(name: String):
@@ -61,12 +68,28 @@ func cycle_skin():
 	current_skin_index = (current_skin_index + 1) % SKIN_ORDER.size()
 	set_skin(SKIN_ORDER[current_skin_index])
 
+func _unhandled_input(_event: InputEvent) -> void:
+	if is_in_dialogue:
+		return
+	if Input.is_action_just_pressed("ui_accept"):
+		var actionables := actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+
+
 func _input(event):
+	if is_in_dialogue:
+		return
 	if event is InputEventMouseButton and event.pressed:
 		target_position = get_global_mouse_position()
 		using_mouse = true
 
+
 func _physics_process(delta):
+	if is_in_dialogue:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 
 	# 🔥 Proper input action (make sure it's added in Input Map)
 	if Input.is_action_just_pressed("cycle_skin"):
@@ -101,7 +124,23 @@ func _physics_process(delta):
 
 	var real_velocity = global_position - prev_position
 
+	if last_direction.length_squared() > 0.0001:
+		direction_marker.rotation = last_direction.angle() - PI / 2.0
+
 	update_animation(real_velocity)
+
+
+func _on_dialogue_started(_resource) -> void:
+	is_in_dialogue = true
+	using_mouse = false
+	velocity = Vector2.ZERO
+	animsprite.flip_h = false
+	animsprite.play("16 Idle")
+
+
+func _on_dialogue_ended(_resource) -> void:
+	is_in_dialogue = false
+
 
 func update_animation(real_velocity: Vector2):
 

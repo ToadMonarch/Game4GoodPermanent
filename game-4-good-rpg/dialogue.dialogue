@@ -55,36 +55,45 @@ Player: I should go to the square and finish the council talk with Arden, Steven
 => END
 
 ~ arden_start
-Player: What’s good about it?
-Arden: Water flows fairly to every household, conforming to nature. This is the wisdom left by our ancestors. Water is a common resource for everyone; fair sharing will make everyone live in peace. [#hint=Collect views on traditional wisdom]
-Player: Are you worried now that there’s not enough water?
-Arden: Of course I am! If we can repair the canal, everyone uses water according to the rules, and learns to cherish and yield, the problem can be solved. [#hint=Traditional water use solution]
+Arden: Hi there, kiddo! Our old canal has worked for decades—through nice rains and small dry spells, it always gave us water. But lately, climate change has made the weather go crazy: hotter heatwaves that last longer, less rain, and sudden big storms that break the canal. [#hint=Collect views on traditional wisdom]
+Player: Why is the canal so smart, especially now that the climate is getting warmer?
+Arden: The canal shares water evenly with every family, following the way mountains and valleys naturally let water flow. Our grandparents knew nature’s balance is easy to break—so they built it to save water when it rains, and let it out slowly when it’s dry. 
+Arden: Water belongs to everyone, not just one person. When the climate is in trouble, sharing fairly and going with nature’s flow is the only way we can all live happily together.
+Player: Are you scared that warmer weather will make water even harder to get?
+Arden: We are—but being sad won’t fix it. The canal teaches us to be patient: fix it well, use water when the seasons say so, and help each other when the sun is super hot. [#hint=Traditional water use solution]
+Arden: Climate change shows us we’re all connected to the earth; if we fight against nature, we’ll lose. Working with it, like the canal does, is the smart way our ancestors knew. [#hint=Traditional water use solution]
+Arden: You can find Steven to explore his insights about the water savings.
 do QuestState.mark_quest2_arden_done()
 => END
 
 ~ steven_start
-Steven: I want to install modern water-saving equipment, so that we can waste a lot less water!
-Player: Is the water-saving equipment easy to use?
-Steven: Very easy to use! Irrigation is faster, uses less water, and can solve the problem of drought. Saving every drop of water is protecting our common home. [#hint=Collect modern water-saving solutions]
-Player: Grandpa Arden wants to keep the traditional canal. Are you willing to discuss together?
-Steven: I am willing! As long as everyone has water to use, traditional and new methods can be used together. [#hint=Recognize that tradition and modernity can be combined]
+Steven: I want to put in new water-saving tools—climate change is drying up our wells faster than ever, and we can’t just use old ways anymore!
+Player: Is this water-saving stuff easy to use, and can it really help with global warming?
+Steven: Super easy! There are sprinklers that water plant roots directly, filters that clean dirty water, and tanks that catch rain when storms hit. [#hint=Collect modern water-saving solutions]
+Steven: Since it’s getting hotter, we have less water to waste—these tools save half the water we used to lose. Saving every drop isn’t just a saying now [#hint=Collect modern water-saving solutions]
+Steven: It’s something we need to do to get used to climate change. Our home’s future depends on using new ideas and being responsible [#hint=Collect modern water-saving solutions]
+Player: Grandpa Arden wants to keep the old canal. Would you work with everyone to find a way that works for both?
+Steven: Totally! Climate change doesn’t care if we use old or new things—what matters is we do something. The canal can save water, and my tools can too.[#hint=Recognize that tradition and modernity can be combined]
+Steven: Putting them together will make us stronger against hot weather and weird rains. That’s the smart plan! [#hint=Recognize that tradition and modernity can be combined]
+Steven: Also Aurora, she has some problem with her water resources, you will understand more about the problem if sympathizing to her ideas.
 do QuestState.mark_quest2_steven_done()
 => END
 
 ~ aurora_start
-Aurora: I really want to have clean water to wash my hands and water the little flowers every day!
-Player: Is it hard to use water now?
-Aurora: Sometimes there’s no water, and the vegetable field is almost dry. I’m so worried. [#hint=Collect real children’s needs]
-Player: Don’t worry, I’ll help you find a solution together!
-Aurora: Great! Thank you! Let’s cherish water resources together and keep the stream clear forever. [#hint=Children’s consensus on water conservation]
+Aurora: I wish I had clean water every day to wash my hands and water my flowers! But lately, the stream is either dry or muddy because climate change is making the weather so strange.
+Player: Is it really hard to get water now that the climate is getting worse?
+Aurora: Sometimes there’s no water for days—Mom can’t cook right, and our vegetable garden is almost dead. I’m so scared that one day, it will never rain again because the earth is too hot.[#hint=Collect real children’s needs]
+Player: Don’t worry, we’ll find a way together. Climate change is a big problem, but if we all help each other, we can beat it.
+Aurora: Yay! Thank you! Let’s cherish every drop of water, fix the canal, and use the new tools.  [#hint=Children’s consensus on water conservation]
+Aurora: If we take good care of water, water will take care of us—even when the climate is bad. Let’s keep the stream clean forever, for us and all the little animals that drink from it!  [#hint=Children’s consensus on water conservation]
 do QuestState.mark_quest2_aurora_done()
 => END
 
 ~ arden_steven_villagers_start
-Player: Grandpa Arden, Steven, and everyone, let’s find a win-win solution together, okay? When encountering problems, discussing them well is better than quarreling. [#hint=Guide negotiation and communication]
+Player: Grandpa Arden, Steven, and everyone, let’s work together! When encountering problems, discussing them well can help you understand each others perspective and find a solution together  [#hint=Guide negotiation and communication]
 Arden: I want to repair the traditional canal to ensure fairness.
 Steven: I want to install water-saving equipment to save water efficiently.
-Player: Then let’s do both! Repair the canal to ensure fairness, install equipment to save water, and make a water use convention for everyone to abide by and supervise together. Is that okay? [#hint=Propose an integrated solution]
+Player: Then let’s do both! Repair the canal to ensure fairness, install equipment to save water, and make a water use pact for everyone to  agree to and take care of together. Is that okay?  [#hint=Propose an integrated solution]
 Arden: This method is good! I agree!
 Steven: I agree too!
 Villagers: We all agree! [#hint=Reach full consensus]

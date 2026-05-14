@@ -1,5 +1,6 @@
 extends Node2D
 
+
 const CHAPTER0_ENTRIES := [
 	{
 		"chapter": "Chapter 0 - Origin Town",
@@ -112,7 +113,7 @@ const CHAPTER_CONTEXT_ENTRIES := {
 	{
 		"chapter": "Chapter 1 - Clear Stream Valley",
 		"title": "Chapter Context",
-		"description": "",
+		"description": "Clear Stream Valley depends on mountain stream water for fields and daily life. When flow drops, canals clog, and use feels unfair, neighbors disagree on what should change first.\n\nYour role is to observe, listen without judging, record what each household needs, and help the community combine traditional care for the stream with practical steps everyone can follow.",
 	},
 	],
 	2: [
@@ -137,12 +138,71 @@ const CHAPTER0_COMPLETION_SUMMARY := {
 	"description": "You listened to the Traveler, received support from your Family and Adele, and learned your mission: observe more, listen more, and help more.\n\nDo you want to continue to Chapter 1: Clear Stream Valley?",
 }
 
+# =============================================================================
+# CHAPTER 0 → CHAPTER 1 (bypass / strict gate)
+# -----------------------------------------------------------------------------
+# EN:
+#   Set REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 to true  → normal game: you must
+#   finish Chapter 0 in-world (QuestState: traveler, family, friend) before the
+#   “Chapter 0 complete” prompt and Chapter 1 descriptions can appear.
+#
+#   Set to false (default for fast iteration) → after you close the Chapter 0
+#   guide pages (text only), Chapter 0 is auto-marked complete and Chapter 1
+#   context + quest descriptions open immediately — no need to talk to every
+#   Chapter 0 NPC first, and the Chapter 0 completion confirmation panel is skipped.
+#
+# VI:
+#   true  = bắt buộc hoàn thành hết Chapter 0 trong game (trò chuyện đủ NPC) rồi
+#           mới vào luồng Chapter 1 như thiết kế gốc.
+#   false = chỉ đọc xong các trang mô tả Chapter 0 là có thể sang mô tả Chapter 1
+#           ngay, không cần hoàn thành hội thoại Chapter 0 với tất cả nhân vật.
+# =============================================================================
+const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := true
+
+## When true (Clear Stream Valley root), skip Chapter 0 intro pages and open Chapter 1 context.
+@export var begins_on_chapter1_map: bool = false
+
 enum PanelMode {
 	GUIDE,
 	CHAPTER_CONFIRMATION,
 	QUEST_COMPLETION_CONFIRMATION,
 	CHAPTER_FINAL_SUMMARY,
 }
+#Ayden
+var bridge_tilemap: TileMap
+
+var bridge_tiles := [
+	Vector2i(19, -13),
+	Vector2i(19, -14),
+	Vector2i(18, -15),
+
+	Vector2i(20, -14),
+	Vector2i(19, -15),
+	Vector2i(19, -16),
+
+	Vector2i(20, -15),
+	Vector2i(20, -16),
+	Vector2i(19, -17),
+
+	Vector2i(21, -16),
+	Vector2i(20, -17),
+	Vector2i(20, -18),
+
+	Vector2i(21, -17),
+	Vector2i(21, -18),
+	Vector2i(20, -19),
+
+	Vector2i(22, -18),
+	Vector2i(21, -19),
+	Vector2i(21, -20),
+
+	Vector2i(22, -19),
+	Vector2i(22, -20),
+	Vector2i(21, -21),
+]
+
+var repaired_source_id := 0
+var repaired_atlas_coords := Vector2i(4, 2)
 
 @onready var story_guide_layer: CanvasLayer = $StoryGuideLayer
 @onready var guide_panel: PanelContainer = $StoryGuideLayer/GuidePanel
@@ -152,6 +212,19 @@ enum PanelMode {
 @onready var page_label: Label = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/PageLabel
 @onready var next_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/NextButton
 @onready var alt_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/AltButton
+
+## Chapter 1 square: unified council sprite vs separate Arden / Steven / Villagers (present only on Chapter 1 scene).
+var _ch1_council_group: Node2D
+var _ch1_arden_square: Node2D
+var _ch1_steven_square: Node2D
+var _ch1_villagers_square: Node2D
+
+## Instance id -> saved collision flags (so hidden branches are not invisible obstacles).
+var _ch1_collision_restore: Dictionary = {}
+
+## Dialogue Manager skips mutated for do-lines that assign (e.g. QuestState.mark_*), so sync visibility when quest3/quest4 flags change.
+var _ch1_square_snap_quest3: bool = false
+var _ch1_square_snap_quest4: bool = false
 
 var current_index: int = 0
 var active_entries: Array = []
@@ -170,43 +243,51 @@ var chapter_confirmation_target: int = 1
 var final_summary_chapter_id: int = -1
 var active_guide_kind: String = ""
 
-func _ready() -> void:
-	# ===================== TEMP SKIP TO CHAPTER 3 (DELETE LATER) =====================
-	 #Uncomment this block to instantly mark Chapter 0/1/2 complete for testing.
-	 #When re-commented, game flow returns to normal from Chapter 0.
-	
-	QuestState.chapter0_traveler_done = true
-	QuestState.chapter0_family_done = true
-	QuestState.chapter0_friend_done = true
+func _resolve_optional_nodes() -> void:
+	bridge_tilemap = get_node_or_null("TileMap") as TileMap
+	_ch1_council_group = get_node_or_null("Arden_Steven_Villagers/ArdenStevenVillagersGroup") as Node2D
+	_ch1_arden_square = get_node_or_null("Arden_Steven_Villagers/Arden") as Node2D
+	_ch1_steven_square = get_node_or_null("Arden_Steven_Villagers/Steven") as Node2D
+	_ch1_villagers_square = get_node_or_null("Arden_Steven_Villagers/Villagers") as Node2D
 
-	QuestState.quest1_maggie_done = true
-	QuestState.quest1_kai_done = true
-	QuestState.quest1_jessica_done = true
-	QuestState.quest2_arden_done = true
-	QuestState.quest2_steven_done = true
-	QuestState.quest2_aurora_done = true
-	QuestState.quest3_complete = true
-	QuestState.quest4_complete = true
-	QuestState.quest5_complete = true
-	QuestState.chapter1_description_shown = true
-	QuestState.chapter1_summary_shown = true
+func _ready() -> void:
+	_resolve_optional_nodes()
+
+	# Set true to jump quest flags to Chapter 3 for editor testing (normal play keeps Chapter 0 flow).
+	const SKIP_TO_CHAPTER_3_TEST := false
+	if SKIP_TO_CHAPTER_3_TEST:
+		QuestState.chapter0_traveler_done = true
+		QuestState.chapter0_family_done = true
+		QuestState.chapter0_friend_done = true
+		QuestState.quest1_maggie_done = true
+		QuestState.quest1_kai_done = true
+		QuestState.quest1_jessica_done = true
+		QuestState.quest2_arden_done = true
+		QuestState.quest2_steven_done = true
+		QuestState.quest2_aurora_done = true
+		QuestState.quest3_complete = true
+		QuestState.quest4_complete = true
+		QuestState.quest5_complete = true
+		QuestState.chapter1_description_shown = true
+		QuestState.chapter1_summary_shown = true
+		QuestState.chapter2_quest1_matt_done = true
+		QuestState.chapter2_quest1_kai_done = true
+		QuestState.chapter2_quest1_jessica_done = true
+		QuestState.chapter2_quest2_residents_done = true
+		QuestState.chapter2_quest3_warehouse_done = true
+		QuestState.chapter2_quest4_meeting_done = true
+		QuestState.chapter2_quest5_cleanup_done = true
+		QuestState.chapter2_description_shown = true
+		QuestState.chapter2_summary_shown = true
+		chapter0_guide_closed = true
+		chapter1_confirmation_shown = true
+		chapter2_confirmation_shown = true
+		chapter3_confirmation_shown = false
+		active_chapter_id = 3
 	
-	QuestState.chapter2_quest1_matt_done = true
-	QuestState.chapter2_quest1_kai_done = true
-	QuestState.chapter2_quest1_jessica_done = true
-	QuestState.chapter2_quest2_residents_done = true
-	QuestState.chapter2_quest3_warehouse_done = true
-	QuestState.chapter2_quest4_meeting_done = true
-	QuestState.chapter2_quest5_cleanup_done = true
-	QuestState.chapter2_description_shown = true
-	QuestState.chapter2_summary_shown = true
-	
-	chapter0_guide_closed = true
-	chapter1_confirmation_shown = true
-	chapter2_confirmation_shown = true
-	chapter3_confirmation_shown = false
-	active_chapter_id = 3
-	# ================================================================================
+	#Ayden	
+	if QuestState.bridge_repaired:
+		repair_bridge()
 
 	# ===================== TEMP STORY AUTOPLAY TEST (DELETE LATER) =====================
 	# Uncomment this block to auto-run Chapter 0 -> 1 -> 2 flow test.
@@ -225,10 +306,81 @@ func _ready() -> void:
 	alt_button.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	next_button.pressed.connect(_on_next_button_pressed)
 	alt_button.pressed.connect(_on_alt_button_pressed)
-	_open_guide(CHAPTER0_ENTRIES, "chapter0")
+	_refresh_chapter1_square_assembly_visibility()
+	_ch1_square_snap_quest3 = QuestState.quest3_complete
+	_ch1_square_snap_quest4 = QuestState.quest4_complete
+	if begins_on_chapter1_map:
+		chapter0_guide_closed = true
+		active_chapter_id = 1
+		_open_chapter_context(1)
+	else:
+		_open_guide(CHAPTER0_ENTRIES, "chapter0")
+
+
+## Quest 4 (after meeting announced, before council dialogue finishes): Council Group visible;
+## Arden / Steven / Villagers at the square hidden. Quest 5 onward (after quest4_complete): swap back.
+## Hidden branches also disable collision (no invisible walls / talk zones).
+func _refresh_chapter1_square_assembly_visibility() -> void:
+	var quest4_active := QuestState.quest3_complete and not QuestState.quest4_complete
+	if is_instance_valid(_ch1_council_group):
+		_ch1_council_group.visible = quest4_active
+		_ch1_set_branch_physics_enabled(_ch1_council_group, quest4_active)
+	for n: Node2D in [_ch1_arden_square, _ch1_steven_square, _ch1_villagers_square]:
+		if is_instance_valid(n):
+			var show_individuals := not quest4_active
+			n.visible = show_individuals
+			_ch1_set_branch_physics_enabled(n, show_individuals)
+
+
+func _ch1_set_branch_physics_enabled(root: Node, enabled: bool) -> void:
+	if root is CollisionObject2D:
+		_ch1_set_one_collision_object(root as CollisionObject2D, enabled)
+	for child in root.get_children():
+		_ch1_set_branch_physics_enabled(child, enabled)
+
+
+func _ch1_set_one_collision_object(co: CollisionObject2D, enabled: bool) -> void:
+	var id := co.get_instance_id()
+	if enabled:
+		if not _ch1_collision_restore.has(id):
+			return
+		var s: Dictionary = _ch1_collision_restore[id]
+		co.collision_layer = s["layer"]
+		co.collision_mask = s["mask"]
+		if co is Area2D:
+			var a := co as Area2D
+			a.monitoring = s["monitoring"]
+			a.monitorable = s["monitorable"]
+	else:
+		if not _ch1_collision_restore.has(id):
+			var snap := {"layer": co.collision_layer, "mask": co.collision_mask}
+			if co is Area2D:
+				var a2 := co as Area2D
+				snap["monitoring"] = a2.monitoring
+				snap["monitorable"] = a2.monitorable
+			_ch1_collision_restore[id] = snap
+		co.collision_layer = 0
+		co.collision_mask = 0
+		if co is Area2D:
+			var a3 := co as Area2D
+			a3.monitoring = false
+			a3.monitorable = false
+
+
+func _ch1_poll_quest_flags_for_square_visibility() -> void:
+	if not is_instance_valid(_ch1_council_group):
+		return
+	var q3 := QuestState.quest3_complete
+	var q4 := QuestState.quest4_complete
+	if q3 == _ch1_square_snap_quest3 and q4 == _ch1_square_snap_quest4:
+		return
+	_ch1_square_snap_quest3 = q3
+	_ch1_square_snap_quest4 = q4
+	_refresh_chapter1_square_assembly_visibility()
 
 
 func _process(_delta: float) -> void:
+	_ch1_poll_quest_flags_for_square_visibility()
 	if _handle_quest_completion_flow():
 		return
 	if _handle_final_summary_flow():
@@ -328,11 +480,22 @@ func _show_entry(index: int) -> void:
 func _close_guide_panel() -> void:
 	if active_guide_kind == "chapter0":
 		chapter0_guide_closed = true
+
+	var bypass_chapter_0_for_chapter_1 := (
+		active_guide_kind == "chapter0" and not REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1
+	)
+
 	story_guide_layer.visible = false
 	is_guide_open = false
 	panel_mode = PanelMode.GUIDE
 	active_guide_kind = ""
 	get_tree().paused = false
+
+	if bypass_chapter_0_for_chapter_1:
+		QuestState.chapter0_traveler_done = true
+		QuestState.chapter0_family_done = true
+		QuestState.chapter0_friend_done = true
+		_start_chapter_flow(1)
 
 
 func _open_guide(entries: Array, guide_kind: String) -> void:
@@ -570,4 +733,14 @@ func _start_chapter_flow(chapter_id: int) -> void:
 	_set_chapter_description_shown(chapter_id)
 	active_chapter_id = chapter_id
 	next_chapter_quest_to_describe = 0
+	if chapter_id == 1:
+		get_tree().change_scene_to_file("res://Chapter 1/Clear Stream Valley.tscn")
+		return
 	_open_chapter_context(chapter_id)
+
+#Ayden
+func repair_bridge() -> void:
+	if bridge_tilemap == null:
+		return
+	for pos in bridge_tiles:
+		bridge_tilemap.set_cell(0, pos, repaired_source_id, repaired_atlas_coords)
