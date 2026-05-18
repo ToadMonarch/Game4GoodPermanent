@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var achievement_popup = $AchievementPopup
+
 const TILE_SIZE := 150
 const BOARD_OFFSET := Vector2(150, 0)
 
@@ -30,6 +32,15 @@ func shuffle_tiles():
 			previous = tile
 
 func _process(delta):
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		AchievementManager.unlock_badge("puzzle_solver")
+		print("Test badge unlocked!")
+		emit_signal("puzzle_completed")
+		AchievementManager.unlock_badge("puzzle_solver")
+		show_achievement()
+		
+	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and mouse:
 		var mouse_copy = mouse
 		mouse = false
@@ -40,7 +51,13 @@ func _process(delta):
 
 		if tiles == solved:
 			print("You win!")
-
+			
+			if AchievementManager.has_badge("puzzle_solver") == false:
+				AchievementManager.unlock_badge("puzzle_solver")
+				
+			emit_signal("puzzle_completed")
+			queue_free()
+	
 func check_neighbours(rows, cols):
 	var empty = false
 	var done = false
@@ -94,3 +111,14 @@ func swap_tiles(tile_src, tile_dst):
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		mouse = event
+
+func show_achievement():
+	achievement_popup.visible = true
+
+	await get_tree().create_timer(3.0).timeout
+
+	achievement_popup.visible = false
+
+	emit_signal("puzzle_completed")
+
+	get_parent().queue_free()

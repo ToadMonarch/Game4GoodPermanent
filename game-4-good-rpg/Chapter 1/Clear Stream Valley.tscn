@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b0qsrv6j2v4c2" path="res://character/villagers/villagers.tscn" id="10_villagers"]
 [ext_resource type="PackedScene" uid="uid://c6qlnj8u8xhw4" path="res://character/Arden_Steven_Villagers/arden_steven_villagers.tscn" id="11_asv"]
 [ext_resource type="PackedScene" uid="uid://b3k7ixb34cr74" path="res://Scenes/castle_puzzle_trigger.tscn" id="12_castle_trigger"]
-[ext_resource type="Script" uid="uid://c55m2pptkuvkl" path="res://Chapter 1/MenuScript.gd" id="13_menu"]
+[ext_resource type="Script" path="res://Chapter 1/MenuScript.gd" id="13_menu"]
 [ext_resource type="AudioStream" uid="uid://rppq1u5vnrqv" path="res://Music/A Lonely Cherry Tree.mp3" id="14_au278"]
 
 [sub_resource type="FontFile" id="FontFile_acg6e"]
