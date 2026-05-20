@@ -10,9 +10,6 @@
 [ext_resource type="Script" uid="uid://c55m2pptkuvkl" path="res://Chapter 1/MenuScript.gd" id="16_menu"]
 [ext_resource type="AudioStream" uid="uid://rppq1u5vnrqv" path="res://Music/A Lonely Cherry Tree.mp3" id="17_au278"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_knwj7"]
-radius = 85.0
-
 [sub_resource type="FontFile" id="FontFile_acg6e"]
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
@@ -39,6 +36,9 @@ font = SubResource("FontFile_acg6e")
 font_size = 30
 shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.90588236)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_knwj7"]
+radius = 85.0
 
 [node name="Start" type="Node2D" unique_id=1268696800]
 position = Vector2(-1, 0)
@@ -75,6 +75,7 @@ script = ExtResource("16_menu")
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Settings"
+metadata/_edit_use_anchors_ = true
 
 [node name="SettingsMenu" type="Panel" parent="CanvasLayer" unique_id=1457820727]
 process_mode = 2
@@ -84,6 +85,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="VolumeSlider" type="HSlider" parent="CanvasLayer/SettingsMenu" unique_id=1735194172]
 layout_mode = 0
@@ -93,6 +95,7 @@ offset_right = 1063.0
 offset_bottom = 178.0
 min_value = -40.0
 max_value = 0.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Close" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=1262974917]
 layout_mode = 0
@@ -101,6 +104,7 @@ offset_top = 618.0
 offset_right = 756.0
 offset_bottom = 683.0
 text = "Close"
+metadata/_edit_use_anchors_ = true
 
 [node name="ChangeSkin" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=64276600]
 layout_mode = 0
@@ -109,6 +113,7 @@ offset_top = 167.0
 offset_right = 585.0
 offset_bottom = 272.0
 text = "Change Skin"
+metadata/_edit_use_anchors_ = true
 
 [node name="Save" type="Button" parent="CanvasLayer/SettingsMenu" unique_id=1426633663]
 layout_mode = 0
@@ -117,6 +122,7 @@ offset_top = 503.0
 offset_right = 817.0
 offset_bottom = 610.0
 text = "Save Changes"
+metadata/_edit_use_anchors_ = true
 
 [node name="VolumeLabel" type="Label" parent="CanvasLayer/SettingsMenu" unique_id=292668444]
 layout_mode = 0
@@ -126,6 +132,7 @@ offset_right = 401.0
 offset_bottom = 168.0
 text = "Volume"
 label_settings = SubResource("LabelSettings_66dt1")
+metadata/_edit_use_anchors_ = true
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=2071684409]
 stream = ExtResource("17_au278")

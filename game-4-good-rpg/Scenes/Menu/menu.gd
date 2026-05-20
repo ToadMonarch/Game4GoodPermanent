@@ -1,5 +1,5 @@
 extends Control
-
+@onready var settings_menu = $CanvasLayer/SettingsMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,7 +16,8 @@ func GameRedirect() -> void:
 
 
 func SettingsRedirect() -> void:
-	pass # Replace with function body.
+	settings_menu.visible = !settings_menu.visible
+	get_tree().paused = settings_menu.visible
 
 
 func QuitGame() -> void:
