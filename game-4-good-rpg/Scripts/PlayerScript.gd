@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed := 400
+@export var speed := 300
 var target_position: Vector2
 var using_mouse := false
 var is_in_dialogue := false
