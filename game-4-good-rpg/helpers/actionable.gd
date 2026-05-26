@@ -1,5 +1,7 @@
 extends Area2D
 
+const CHAPTER_2_SCENE := "res://Scenes/chapter_2.tscn"
+
 enum Chapter1Gate {
 	NONE,
 	## Quest 2 — Arden, Steven, Aurora: any order; only Quest 1 (three households) must be done first.
@@ -8,7 +10,7 @@ enum Chapter1Gate {
 	VILLAGERS_COUNCIL,
 	## Council group sprite — [member dialogue_start] only after Quest 1, Quest 2, and Quest 3 (meeting announced).
 	QUEST4_COUNCIL_GROUP,
-	## Chapter 2 quest 1 members (e.g., Matt/Kai/Jessica) unlock only after Chapter 1 summary.
+	## Chapter 2 quest 1 members (Matt/Jessica) unlock only after Chapter 1 summary.
 	CHAPTER2_QUEST1,
 	## Chapter 2 follow-up interactions that require chapter 2 quest 1 done first.
 	CHAPTER2_AFTER_QUEST1,
@@ -43,6 +45,23 @@ func action() -> void:
 
 
 func _resolve_dialogue_start() -> String:
+	if _is_on_chapter2_map() and not dialogue_chapter2_start.is_empty():
+		match chapter1_gate:
+			Chapter1Gate.CHAPTER2_AFTER_QUEST1:
+				if not QuestState.chapter1_summary_shown:
+					return "chapter2_locked_finish_chapter1"
+				if not QuestState.is_chapter2_quest1_complete():
+					return "chapter2_locked_finish_quest1"
+				if QuestState.chapter2_quest2_residents_done:
+					if not QuestState.chapter2_quest3_warehouse_done:
+						return "chapter2_locked_finish_quest3"
+					return "fishing_village_residents_ch2_repeat"
+				return dialogue_start
+			Chapter1Gate.CHAPTER2_QUEST4_GROUP:
+				pass
+			_:
+				return _resolve_chapter2_quest1_npc_dialogue()
+
 	var active_start := _resolve_active_dialogue_start()
 
 	match chapter1_gate:
@@ -84,6 +103,8 @@ func _resolve_dialogue_start() -> String:
 				return "villagers_ch2_cleanup_repeat"
 			if not QuestState.is_quest2_complete():
 				return "chapter1_locked_gather_all_views"
+			if QuestState.needs_chapter1_bridge_repair():
+				return "chapter1_locked_repair_bridge"
 			if not QuestState.quest3_complete:
 				return active_start
 			if not QuestState.quest4_complete:
@@ -116,16 +137,16 @@ func _resolve_dialogue_start() -> String:
 				return "chapter1_locked_announce_council_first"
 			return active_start
 		Chapter1Gate.CHAPTER2_QUEST1:
-			if not QuestState.chapter1_summary_shown:
-				return "chapter2_locked_finish_chapter1"
-			if QuestState.chapter2_quest2_residents_done and not QuestState.chapter2_quest3_warehouse_done and not dialogue_chapter2_after_quest2.is_empty():
-				return dialogue_chapter2_after_quest2
-			return active_start
+			return _resolve_chapter2_quest1_npc_dialogue()
 		Chapter1Gate.CHAPTER2_AFTER_QUEST1:
 			if not QuestState.chapter1_summary_shown:
 				return "chapter2_locked_finish_chapter1"
 			if not QuestState.is_chapter2_quest1_complete():
 				return "chapter2_locked_finish_quest1"
+			if QuestState.chapter2_quest2_residents_done:
+				if not QuestState.chapter2_quest3_warehouse_done:
+					return "chapter2_locked_finish_quest3"
+				return "fishing_village_residents_ch2_repeat"
 			return active_start
 		Chapter1Gate.CHAPTER3_QUEST1:
 			if not _is_chapter3_unlocked():
@@ -168,14 +189,70 @@ func _resolve_dialogue_start() -> String:
 			return active_start
 
 
+func _resolve_chapter2_quest1_npc_dialogue() -> String:
+	if not QuestState.chapter1_summary_shown:
+		return "chapter2_locked_finish_chapter1"
+	if not QuestState.is_chapter2_quest1_complete():
+		var quest1_title := dialogue_chapter2_start if not dialogue_chapter2_start.is_empty() else dialogue_start
+		if quest1_title.is_empty():
+			return "chapter2_locked_finish_quest1"
+		return _resolve_chapter2_quest1_dialogue(quest1_title)
+	if not QuestState.chapter2_quest2_residents_done:
+		return "chapter2_locked_finish_quest2"
+	if not QuestState.chapter2_quest3_warehouse_done:
+		if dialogue_chapter2_after_quest2.is_empty():
+			return "chapter2_locked_finish_quest3"
+		return _resolve_chapter2_quest3_dialogue(dialogue_chapter2_after_quest2)
+	if not QuestState.chapter2_quest4_meeting_done:
+		return "chapter2_locked_finish_quest4"
+	if not QuestState.chapter2_quest5_cleanup_done:
+		return "chapter2_locked_finish_quest4"
+	return dialogue_chapter2_start if not dialogue_chapter2_start.is_empty() else dialogue_start
+
+
+func _resolve_chapter2_quest1_dialogue(quest1_title: String) -> String:
+	if quest1_title.begins_with("kai_ch2"):
+		return "chapter2_locked_finish_quest1"
+	match quest1_title:
+		"matt_ch2_start":
+			if QuestState.chapter2_quest1_matt_done:
+				return "matt_ch2_repeat"
+			return "matt_ch2_start"
+		"jessica_ch2_start":
+			if QuestState.chapter2_quest1_jessica_done:
+				return "jessica_ch2_repeat"
+			return "jessica_ch2_start"
+	return quest1_title
+
+
+func _resolve_chapter2_quest3_dialogue(quest3_title: String) -> String:
+	match quest3_title:
+		"matt_ch2_quest3_start":
+			if QuestState.chapter2_quest3_matt_done:
+				return "matt_ch2_quest3_repeat"
+			if QuestState.chapter2_quest3_kai_done:
+				return "matt_ch2_quest3_finish"
+			return "matt_ch2_quest3_start"
+		"kai_ch2_quest3_start":
+			if QuestState.chapter2_quest3_kai_done:
+				return "kai_ch2_quest3_repeat"
+			if QuestState.chapter2_quest3_matt_done:
+				return "kai_ch2_quest3_finish"
+			return "kai_ch2_quest3_start"
+	return quest3_title
+
+
 func _resolve_active_dialogue_start() -> String:
-	if QuestState.chapter1_summary_shown and QuestState.chapter2_quest2_residents_done and not QuestState.chapter2_quest3_warehouse_done and not dialogue_chapter2_after_quest2.is_empty():
-		return dialogue_chapter2_after_quest2
 	if _is_chapter3_unlocked() and not dialogue_chapter3_start.is_empty():
 		return dialogue_chapter3_start
-	if QuestState.chapter1_summary_shown and not dialogue_chapter2_start.is_empty():
+	if _is_on_chapter2_map() and QuestState.chapter1_summary_shown and not dialogue_chapter2_start.is_empty():
 		return dialogue_chapter2_start
 	return dialogue_start
+
+
+func _is_on_chapter2_map() -> bool:
+	var scene := get_tree().current_scene
+	return scene != null and scene.scene_file_path == CHAPTER_2_SCENE
 
 
 func _villagers_title_after_quest5() -> String:

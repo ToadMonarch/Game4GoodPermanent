@@ -14,13 +14,18 @@ var is_in_dialogue := false
 @onready var actionable_finder: Area2D = $Direction/ActionableFinder
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_to_group("player")
 	actionable_finder.add_to_group("player_interaction_area")
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
+func _is_input_blocked() -> bool:
+	return is_in_dialogue or QuestState.is_story_guide_blocking_input()
+
+
 func _unhandled_input(_event: InputEvent) -> void:
-	if is_in_dialogue:
+	if _is_input_blocked():
 		return
 
 	if Input.is_action_just_pressed("ui_accept"):
@@ -30,7 +35,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 			return
 
 func _physics_process(_delta: float) -> void:
-	if is_in_dialogue:
+	if _is_input_blocked():
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return

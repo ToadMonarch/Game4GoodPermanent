@@ -11,9 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://cuy6xuu3igyi" path="res://character/Aurora/aurora.tscn" id="9_aurora"]
 [ext_resource type="PackedScene" uid="uid://b0qsrv6j2v4c2" path="res://character/villagers/villagers.tscn" id="10_villagers"]
 [ext_resource type="PackedScene" uid="uid://c6qlnj8u8xhw4" path="res://character/Arden_Steven_Villagers/arden_steven_villagers.tscn" id="11_asv"]
-[ext_resource type="PackedScene" uid="uid://b3k7ixb34cr74" path="res://Scenes/castle_puzzle_trigger.tscn" id="12_castle_trigger"]
+[ext_resource type="PackedScene" path="res://Scenes/castle_puzzle_trigger.tscn" id="12_castle_trigger"]
 [ext_resource type="Script" path="res://Chapter 1/MenuScript.gd" id="13_menu"]
 [ext_resource type="AudioStream" uid="uid://rppq1u5vnrqv" path="res://Music/A Lonely Cherry Tree.mp3" id="14_au278"]
+[ext_resource type="PackedScene" uid="uid://dbexl2wsicxt3" path="res://Scenes/bridge_repair_trigger.tscn" id="15_bridge_trigger"]
 
 [sub_resource type="FontFile" id="FontFile_acg6e"]
 cache/0/variation_coordinates = {}
@@ -166,12 +167,16 @@ position = Vector2(-717, -151)
 [node name="Villagers" parent="Arden_Steven_Villagers" unique_id=2099291273 instance=ExtResource("10_villagers")]
 z_index = 2
 y_sort_enabled = true
-position = Vector2(3296, -413)
+position = Vector2(3289, -220)
 
 [node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
 z_index = 2
 y_sort_enabled = true
-position = Vector2(3259, -203)
+position = Vector2(3688, -210)
+
+[node name="BridgeRepairTrigger" parent="." unique_id=1810067865 instance=ExtResource("15_bridge_trigger")]
+z_index = 2
+position = Vector2(2746, 678)
 
 [node name="CastlePuzzleTrigger" parent="." unique_id=1782826142 instance=ExtResource("12_castle_trigger")]
 z_index = 2
@@ -237,15 +242,6 @@ text = "Next"
 visible = false
 layout_mode = 2
 text = "Alt"
-
-[node name="RepairPromptLabel" type="Label" parent="StoryGuideLayer" unique_id=1881278857]
-visible = false
-modulate = Color(0, 0, 0, 1)
-offset_left = 2373.0
-offset_top = -317.0
-offset_right = 2588.0
-offset_bottom = -294.0
-text = "Press space to repair bridge"
 
 [connection signal="pressed" from="CanvasLayer/SettingsButton" to="CanvasLayer" method="_on_settings_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/SettingsMenu/VolumeSlider" to="CanvasLayer" method="_on_volume_slider_value_changed"]

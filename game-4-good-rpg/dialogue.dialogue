@@ -46,6 +46,10 @@ Player: I should walk along the stream and talk to the households first—Maggie
 Player: I need to collect everyone’s views—Grandpa Arden, Steven, and Aurora—in any order, before I can call the council. [#hint=Quest 2: finish all three opinion talks]
 => END
 
+~ chapter1_locked_repair_bridge
+Player: Quest 2 is done, but the wooden bridge on the way to the village entrance is broken. I need to lay planks across the gap before I can start Quest 3. [#hint=On the path to Quest 3: press Space at the bridge warning icon]
+=> END
+
 ~ chapter1_locked_announce_council_first
 Player: I should speak with the villagers first and let everyone know about the council meeting—then we can gather here to decide together. [#hint=Quest 3: announce the meeting at the village entrance]
 => END
@@ -122,7 +126,7 @@ Player: I should finish Chapter 1 first and continue my journey from Clear Strea
 => END
 
 ~ chapter2_locked_finish_quest1
-Player: I should complete Chapter 2 Quest 1 first by talking to all key people before moving on.
+Player: I should complete Chapter 2 Quest 1 first by talking to Matt and Jessica before moving on.
 => END
 
 ~ chapter2_locked_finish_quest2
@@ -130,7 +134,7 @@ Player: I should gather residents' needs first before organizing warehouse and v
 => END
 
 ~ chapter2_locked_finish_quest3
-Player: I should complete Quest 3 first by helping Matt and Kai reach common understanding.
+Player: I should complete Quest 3 first by talking to both Matt and Kai so they can reach common understanding. [#hint=Quest 3: speak with Matt and Kai]
 => END
 
 ~ chapter2_locked_finish_quest4
@@ -164,8 +168,12 @@ Player: I should go to the new Star & Moon Council Group to discuss the multicul
 ~ matt_ch2_start
 Matt: The sea has its own rules. When the tide rises and falls, we must follow them.
 Player: Why should we follow the rules of the sea?
-Matt: The sea gives us food. We must respect and take good care of it, so that it can nourish us forever. Humans and nature must get along well.
+Matt: The sea gives us food. We must respect and take good care of it, so that it can nourish us forever. Humans and nature must get along well [#hint=learn traditional marine ecological knowledge]
 do QuestState.mark_chapter2_quest1_matt_done()
+=> END
+
+~ matt_ch2_repeat
+Matt: Respect the tide and the sea will keep giving. Talk to Jessica too—you need both perspectives for Quest 1.
 => END
 
 ~ kai_ch2_start
@@ -175,11 +183,19 @@ Kai: Yes. Let the small fish grow up before catching; then there will always be 
 do QuestState.mark_chapter2_quest1_kai_done()
 => END
 
+~ kai_ch2_repeat
+Kai: Ecological breeding and fishing moratoriums can work with tradition. Finish Quest 1 by speaking with Matt and Jessica as well.
+=> END
+
 ~ jessica_ch2_start
-Jessica: Look, there is a lot of garbage on the beach, and the seawater is not as clean as before.
+Jessica: Look, there is a lot of garbage on the beach, and the seawater is not as clean as before [#hint=Record the problem of marine garbage]
 Player: Are the fish getting fewer too?
-Jessica: Yes! The fish we catch now are getting smaller and fewer. If we don’t take good care of the sea, there will be no fish in the future.
+Jessica: Yes! The fish we catch now are getting smaller and fewer. If we don’t take good care of the sea, there will be no fish in the future.[#hint=Record the reduction of fishery resources]
 do QuestState.mark_chapter2_quest1_jessica_done()
+=> END
+
+~ jessica_ch2_repeat
+Jessica: The beach still needs our care. Once you've heard from Matt too, you can move on to Quest 2 with the fishing villagers.
 => END
 
 ~ aurora_ch2_residents_start
@@ -187,36 +203,57 @@ Aurora: I can help sort shells and bottles too. Let’s keep the beach clean tog
 => END
 
 ~ villagers_ch2_warehouse_start
-Matt: We elders never catch too much, leaving time for the sea to recover. This is respect for nature.
-Kai: I want to use new methods, ecological breeding, regular fishing moratorium, let the small fish grow up before catching. In this way, there will always be fish in the sea.
-Player: You are both for the good of the sea! Traditional experience and new methods can be used together! Learning from each other can make things better.
-do QuestState.mark_chapter2_quest3_warehouse_done()
+Player: I should talk to both Matt and Kai first so they can find common ground on protecting the sea. [#hint=Quest 3: speak with Matt and Kai]
 => END
 
 ~ matt_ch2_quest3_start
+Matt: We elders never catch too much, leaving time for the sea to recover. This is respect for nature.[#hint=Collect traditional sea protection concepts]
+do QuestState.mark_chapter2_quest3_matt_done()
+=> END
+
+~ matt_ch2_quest3_finish
 Matt: We elders never catch too much, leaving time for the sea to recover. This is respect for nature.
+do QuestState.mark_chapter2_quest3_matt_done()
+Player: You are both for the good of the sea! Traditional experience and new methods can be used together! Learning from each other can make things better.[#hint=Promote mutual understanding and consensus]
+=> END
+
+~ matt_ch2_quest3_repeat
+Matt: Kai has his ideas, and I have mine—we both want the sea to stay healthy. Hear him out, then we'll find a way forward.
 => END
 
 ~ kai_ch2_quest3_start
+Kai: I want to use new methods, ecological breeding, regular fishing moratorium, let the small fish grow up before catching. In this way, there will always be fish in the sea.[#hint=Collect innovative sea protection solutions]
+do QuestState.mark_chapter2_quest3_kai_done()
+=> END
+
+~ kai_ch2_quest3_finish
 Kai: I want to use new methods, ecological breeding, regular fishing moratorium, let the small fish grow up before catching. In this way, there will always be fish in the sea.
-Player: You are both for the good of the sea! Traditional experience and new methods can be used together! Learning from each other can make things better.
-do QuestState.mark_chapter2_quest3_warehouse_done()
+do QuestState.mark_chapter2_quest3_kai_done()
+Player: You are both for the good of the sea! Traditional experience and new methods can be used together! Learning from each other can make things better.[#hint=Promote mutual understanding and consensus]
+=> END
+
+~ kai_ch2_quest3_repeat
+Kai: Talk to Matt too—his experience matters. Once you've heard us both, we can agree on how to protect the sea together.
 => END
 
 ~ fishing_village_residents_ch2_start
 Fishing Village Residents: We rely on the sea every day, but now we catch less fish and see more trash near the shore.
-Player: Let’s clean up the garbage together and make the beach beautiful! Protect the environment, start with small things.
+Player: Let’s clean up the garbage together and make the beach beautiful! Protect the environment, start with small things.[#hint=Carry out beach cleaning]
 Villagers: Okay! Come on, everyone!
-Player: Put plastics here, recyclables there. Sorting is more environmentally friendly! Correct sorting can reduce pollution and protect marine life.
+Player: Put plastics here, recyclables there. Sorting is more environmentally friendly! Correct sorting can reduce pollution and protect marine life.[#hint=Practice garbage sorting]
 do QuestState.mark_chapter2_quest2_residents_done()
 => END
 
+~ fishing_village_residents_ch2_repeat
+Fishing Village Residents: We're still sorting trash and keeping the shore clean. Talk to Matt and Kai next for Quest 3.
+=> END
+
 ~ arden_steven_villagers_ch2_start
-Player: Let’s set three ocean protection agreements together, okay?
+Player: Let’s set three ocean protection agreements together, okay?[#hint=Organize negotiation on the sea protection plan]
 Player: 1) Clean the beach regularly. 2) Don’t catch small fish; use ocean-friendly nets. 3) Pilot ecological fish farming.
 Matt: Okay! I will abide by it!
 Kai: I will abide by it too!
-Villagers: We will protect the sea together!
+Villagers: We will protect the sea together![#hint=The whole village reaches an agreement]
 do QuestState.mark_chapter2_quest4_meeting_done()
 => END
 
@@ -232,7 +269,7 @@ do QuestState.mark_chapter2_quest4_meeting_done()
 => END
 
 ~ villagers_ch2_cleanup_start
-Player: Let’s take an oath together: Love the ocean, use sustainably, protect the blue coast!
+Player: Let’s take an oath together: Love the ocean, use sustainably, protect the blue coast![#hint=Host the sea protection oath]
 All Villagers: Love the ocean, use sustainably, protect the blue coast!
 do QuestState.mark_chapter2_quest5_cleanup_done()
 => END

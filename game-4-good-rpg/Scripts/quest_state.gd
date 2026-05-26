@@ -17,6 +17,8 @@ var chapter2_quest1_matt_done: bool = false
 var chapter2_quest1_kai_done: bool = false
 var chapter2_quest1_jessica_done: bool = false
 var chapter2_quest2_residents_done: bool = false
+var chapter2_quest3_matt_done: bool = false
+var chapter2_quest3_kai_done: bool = false
 var chapter2_quest3_warehouse_done: bool = false
 var chapter2_quest4_meeting_done: bool = false
 var chapter2_quest5_cleanup_done: bool = false
@@ -40,10 +42,23 @@ var chapter0_traveler_done: bool = false
 var chapter0_family_done: bool = false
 var chapter0_friend_done: bool = false
 var chapter1_description_shown: bool = false
+var chapter1_castle_gate_shown: bool = false
 var chapter1_summary_shown: bool = false
 
 #bridge repair - Ayden Tran
 var bridge_repaired := false
+const BRIDGE_RETURN_POSITION_META := "bridge_puzzle_return_position"
+
+## Chapter 1: broken bridge on the path toward Quest 3 (not part of Quest 2).
+## Active only after Quest 2 is done, until the plank puzzle is finished.
+func needs_chapter1_bridge_repair() -> bool:
+	return is_quest2_complete() and not bridge_repaired
+
+
+## Player may open the bridge plank puzzle (Quest 2 finished, bridge not yet repaired).
+func can_repair_chapter1_bridge() -> bool:
+	return needs_chapter1_bridge_repair()
+
 
 func is_quest1_complete() -> bool:
 	return quest1_maggie_done and quest1_kai_done and quest1_jessica_done
@@ -53,8 +68,16 @@ func is_quest2_complete() -> bool:
 	return quest2_arden_done and quest2_steven_done and quest2_aurora_done
 
 
+func is_chapter1_complete() -> bool:
+	return is_quest1_complete() and is_quest2_complete() and quest3_complete and quest4_complete and quest5_complete
+
+
 func is_chapter2_quest1_complete() -> bool:
 	return chapter2_quest1_matt_done and chapter2_quest1_jessica_done
+
+
+func is_chapter2_quest3_complete() -> bool:
+	return chapter2_quest3_matt_done and chapter2_quest3_kai_done
 
 
 func is_chapter2_complete() -> bool:
@@ -111,30 +134,69 @@ func mark_quest5_complete() -> void:
 
 func mark_chapter2_quest1_matt_done() -> void:
 	chapter2_quest1_matt_done = true
+	_update_chapter2_quest1_completion()
 
 
 func mark_chapter2_quest1_kai_done() -> void:
 	chapter2_quest1_kai_done = true
+	_update_chapter2_quest1_completion()
 
 
 func mark_chapter2_quest1_jessica_done() -> void:
 	chapter2_quest1_jessica_done = true
+	_update_chapter2_quest1_completion()
 
 
 func mark_chapter2_quest2_residents_done() -> void:
 	chapter2_quest2_residents_done = true
+	_notify_chapter2_cast_refresh()
+
+
+func _update_chapter2_quest1_completion() -> void:
+	if is_chapter2_quest1_complete():
+		_notify_chapter2_cast_refresh()
+
+
+func mark_chapter2_quest3_matt_done() -> void:
+	chapter2_quest3_matt_done = true
+	_update_chapter2_quest3_completion()
+
+
+func mark_chapter2_quest3_kai_done() -> void:
+	chapter2_quest3_kai_done = true
+	_update_chapter2_quest3_completion()
 
 
 func mark_chapter2_quest3_warehouse_done() -> void:
+	chapter2_quest3_matt_done = true
+	chapter2_quest3_kai_done = true
 	chapter2_quest3_warehouse_done = true
+
+
+func _update_chapter2_quest3_completion() -> void:
+	if is_chapter2_quest3_complete():
+		chapter2_quest3_warehouse_done = true
+		_notify_chapter2_cast_refresh()
+
+
+func _notify_chapter2_cast_refresh() -> void:
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return
+	for node in tree.get_nodes_in_group("story_guide_panel"):
+		if node.has_method("_refresh_chapter2_cast_visibility"):
+			node.call_deferred("_refresh_chapter2_cast_visibility")
+			return
 
 
 func mark_chapter2_quest4_meeting_done() -> void:
 	chapter2_quest4_meeting_done = true
+	_notify_chapter2_cast_refresh()
 
 
 func mark_chapter2_quest5_cleanup_done() -> void:
 	chapter2_quest5_cleanup_done = true
+	_notify_chapter2_cast_refresh()
 
 
 func mark_chapter3_quest1_advaita_done() -> void:
@@ -194,6 +256,17 @@ func mark_chapter0_friend_done() -> void:
 
 func is_chapter0_complete() -> bool:
 	return chapter0_traveler_done and chapter0_family_done and chapter0_friend_done
+
+
+## True while story guide / quest description panel is open (blocks player movement).
+func is_story_guide_blocking_input() -> bool:
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return false
+	for node in tree.get_nodes_in_group("story_guide_panel"):
+		if "is_guide_open" in node and node.is_guide_open:
+			return true
+	return false
 
 
 func _update_chapter3_quest2_completion() -> void:

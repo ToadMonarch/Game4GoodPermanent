@@ -1,6 +1,5 @@
 extends Node2D
 
-
 const CHAPTER0_ENTRIES := [
 	{
 		"chapter": "Chapter 0 - Origin Town",
@@ -11,11 +10,6 @@ const CHAPTER0_ENTRIES := [
 		"chapter": "Chapter 0 - Origin Town",
 		"title": "Get support from family and friends",
 		"description": "Go home and talk to your Family, then meet Adele at the village entrance to receive encouragement before departure.",
-	},
-	{
-		"chapter": "Chapter 0 - Origin Town",
-		"title": "Open the world map",
-		"description": "Return to the Traveler, check the world map, and confirm the next three destinations of your journey.",
 	},
 	{
 		"chapter": "Chapter 0 - Origin Town",
@@ -39,7 +33,7 @@ const CHAPTER_QUEST_ENTRIES := {
 	{
 		"chapter": "Chapter 1 - Clear Stream Valley",
 		"title": "Quest 3 - Prepare the Community Meeting",
-		"description": "Notify villagers, arrange the meeting space, and organize both sides' viewpoints into a clear discussion board.",
+		"description": "Head toward the village entrance. After Quest 2, repair the broken wooden bridge on the way (press Space at the warning icon), then notify villagers and organize both sides' viewpoints into a clear discussion board.",
 	},
 	{
 		"chapter": "Chapter 1 - Clear Stream Valley",
@@ -54,29 +48,82 @@ const CHAPTER_QUEST_ENTRIES := {
 	],
 	2: [
 	{
+		"quest_index": 0,
 		"chapter": "Chapter 2 - Seabreeze Village",
-		"title": "Quest 1 - Marine Ecological Observation",
-		"description": "Get the Marine Observation Log, follow Jessica to observe the beach and shallow sea, then learn tide rules and marine knowledge from Elder Matt.",
+		"title": "Quest 1 — Goal",
+		"description": "Observe marine problems and learn marine knowledge.\n\nFollow Jessica to observe the beach, shallow sea, and fishing gear warehouse.",
 	},
 	{
+		"quest_index": 0,
 		"chapter": "Chapter 2 - Seabreeze Village",
-		"title": "Quest 2 - Beach Clean-up",
-		"description": "Get gloves, garbage clamps, and sorting bags. Clean in groups on the public beach, focus on tide lines and rocky cracks, then sort plastics, shells, and glass bottles correctly at the collection point to restore a clean beach.",
+		"title": "Quest 1 — What to Do",
+		"description": "Go to the seaside rocky area and learn tides and marine knowledge from Elder Matt.",
 	},
 	{
+		"quest_index": 0,
 		"chapter": "Chapter 2 - Seabreeze Village",
-		"title": "Quest 3 - Dialogue Between Tradition and Innovation",
-		"description": "First talk to Matt at the fishing wharf about traditional concepts, then go to Kai's ecological breeding test site to learn innovative solutions. Help both sides listen to each other, eliminate misunderstandings, and reach a shared Protecting the Sea Together consensus.",
+		"title": "Quest 1 — Complete When",
+		"description": "You complete the quest when you have talked to both Jessica and Matt.",
 	},
 	{
+		"quest_index": 1,
 		"chapter": "Chapter 2 - Seabreeze Village",
-		"title": "Quest 4 - Develop an Ocean Protection Plan",
-		"description": "Call villager representatives in the fishing village meeting room to jointly determine three simple and practical ocean protection guidelines: regular beach cleaning, ocean-friendly fishing that protects young fish, and pilot ecological breeding. Then clap and recite together: Clean beaches, protect small fish, develop ecology, the sea is more beautiful.",
+		"title": "Quest 2 — Goal",
+		"description": "Clean up garbage, sort waste, and protect the environment.\n\nGet gloves, garbage clamps, and sorting bags, then clean in groups on the public beach from Fishing Villagers",
 	},
 	{
+		"quest_index": 2,
 		"chapter": "Chapter 2 - Seabreeze Village",
-		"title": "Quest 5 - Achievement Showcase and Commitment",
-		"description": "Set up the venue at the beach viewing platform, erect the Protect the Blue Coast sign, and organize villagers to line up for the oath. Follow the oath gestures in order: hand to heart, wave gesture, then guard gesture, and complete the ceremony together.",
+		"title": "Quest 3 — Goal",
+		"description": "Understand traditional concepts and innovative solutions, then help both sides reach a consensus.\n\nTalk to Matt at the fishing wharf, visit Kai's ecological breeding test site, and help them communicate face to face.",
+	},
+	{
+		"quest_index": 2,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 3 — What to Learn",
+		"description": "From Matt: conforming to nature and respecting the sea.\n\nFrom Kai: ecological breeding, fishing moratorium systems, and low-carbon fishing.\n\nHelp both sides listen to each other and eliminate misunderstandings.",
+	},
+	{
+		"quest_index": 2,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 3 — Complete When",
+		"description": "Two generations reach the consensus of \"Protecting the Sea Together.\"\n\nTraditional experience and new methods can work together when people learn from each other.",
+	},
+	{
+		"quest_index": 3,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 4 — Goal",
+		"description": "Jointly formulate three ocean protection guidelines.\n\nCall villager representatives to the fishing village meeting room and discuss simple, practical steps everyone can follow.",
+	},
+	{
+		"quest_index": 3,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 4 — Three Guidelines",
+		"description": "1. Regular beach cleaning activities.\n2. Use fishing methods that do not harm young fish and are friendly to the ocean.\n3. Pilot ecological breeding to protect the ocean while ensuring livelihoods.",
+	},
+	{
+		"quest_index": 3,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 4 — Complete When",
+		"description": "The whole village promises to abide by the ocean protection agreement.\n\nMatt, Kai, and all villagers agree to protect the sea together.",
+	},
+	{
+		"quest_index": 4,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 5 — Goal",
+		"description": "Set up signs, take oaths, and consolidate results.\n\nPrepare the beach viewing platform and erect the sign: \"Protect the Blue Coast.\"",
+	},
+	{
+		"quest_index": 4,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 5 — Ceremony",
+		"description": "Organize all villagers to line up for an oath.",
+	},
+	{
+		"quest_index": 4,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 5 — Final Results",
+		"description": "Improved environment and coexistence of tradition and innovation.\n\nThe village celebrates what you helped build together at the coast.",
 	},
 	],
 	3: [
@@ -119,8 +166,23 @@ const CHAPTER_CONTEXT_ENTRIES := {
 	2: [
 	{
 		"chapter": "Chapter 2 - Seabreeze Village",
-		"title": "Chapter Context",
-		"description": "People in Seabreeze Village have lived by fishing for generations, but offshore garbage, declining water quality, and fewer catches now threaten their future.\n\nElder Matt follows the sea's natural laws, while young Kai promotes innovative ecological protection. Your role is to help them cooperate so humans and the ocean can thrive together.",
+		"title": "Core Theme",
+		"description": "Ocean Protection and Sustainable Fisheries.\n\nCore themes: marine debris, ecological protection, sustainable fisheries, traditional experience, and innovative protection.",
+	},
+	{
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Your Role",
+		"description": "You are a Junior Observer, Cleaning Volunteer, and Plan Helper.\n\nObserve carefully, take practical action, and help villagers agree on a shared plan.",
+	},
+	{
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Chapter Story",
+		"description": "People in Seabreeze Village have lived by the sea for generations and made a living by fishing. Recently, garbage has piled up offshore, seawater quality has declined, and catches have dropped sharply — a challenge many seaside communities face.",
+	},
+	{
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Your Mission",
+		"description": "Elder Matt understands the laws of the sea and respects nature. Young Kai wants to use new methods to protect the sea and fish scientifically.\n\nHelp two generations cooperate so the sea and humans can thrive together.",
 	},
 	],
 	3: [
@@ -132,77 +194,130 @@ const CHAPTER_CONTEXT_ENTRIES := {
 	],
 }
 
+const CHAPTER_EDUCATIONAL_ENTRIES := {
+	2: [
+	{
+		"chapter": "Chapter 2 Complete!",
+		"title": "Seabreeze Village completed",
+		"description": "You completed all Chapter 2 quests and helped villagers protect the coast through cooperation.\n\nFinal result: improved environment and coexistence of tradition and innovation.\n\nEducational value:",
+	},
+	{
+		"chapter": "Chapter 2 — Educational Value",
+		"title": "Harmony with Nature",
+		"description": "Humans and nature must live in harmony.",
+	},
+	{
+		"chapter": "Chapter 2 — Educational Value",
+		"title": "Active Protection",
+		"description": "Humans take from nature, but also take the initiative to protect it.",
+	},
+	{
+		"chapter": "Chapter 2 — Educational Value",
+		"title": "Learning Across Generations",
+		"description": "Learn from each other and progress together between generations.",
+	},
+	{
+		"chapter": "Chapter 2 — Educational Value",
+		"title": "Small Actions Matter",
+		"description": "Small actions can also bring global environmental changes.",
+	},
+	],
+}
+
 const CHAPTER0_COMPLETION_SUMMARY := {
 	"chapter": "Chapter 0 Complete!",
 	"title": "Great job, little helper!",
 	"description": "You listened to the Traveler, received support from your Family and Adele, and learned your mission: observe more, listen more, and help more.\n\nDo you want to continue to Chapter 1: Clear Stream Valley?",
 }
 
+const CHAPTER1_CASTLE_GATE_SUMMARY := {
+	"chapter": "Chapter 1 - Clear Stream Valley",
+	"title": "One More Step Before the Road Opens",
+	"description": "The village meeting ends in quiet applause. Fields are tended, canals run clear again, and neighbors shake hands over a plan everyone helped shape.\n\nJust as you turn toward the path to Seabreeze Village, the Traveler's bell rings without warning. Overnight, the seal on the old castle watchtower cracked, and the spirit gate will not open for the next leg of the journey.\n\nThe elders whisper that only someone who can restore order within the castle stones may pass. Follow the stream to the valley castle, press Space at the gate, and solve the tile puzzle inside. Claim the Pathfinder Badge — the valley's pledge that you are ready to continue.",
+}
+
 # =============================================================================
-# CHAPTER 0 → CHAPTER 1 (bypass / strict gate)
+# STORY / CHAPTER TESTING — QUICK REFERENCE (đọc trước khi chỉnh cờ)
 # -----------------------------------------------------------------------------
-# EN:
-#   Set REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 to true  → normal game: you must
-#   finish Chapter 0 in-world (QuestState: traveler, family, friend) before the
-#   “Chapter 0 complete” prompt and Chapter 1 descriptions can appear.
+# Chỉ cần đổi true/false các hằng số bên dưới (không cần comment/uncomment logic).
+# Sau khi đổi cờ, restart scene hoặc xóa save nếu QuestState còn cờ cũ.
 #
-#   Set to false (default for fast iteration) → after you close the Chapter 0
-#   guide pages (text only), Chapter 0 is auto-marked complete and Chapter 1
-#   context + quest descriptions open immediately — no need to talk to every
-#   Chapter 0 NPC first, and the Chapter 0 completion confirmation panel is skipped.
+# --- Chạy / bỏ qua từng chapter (từ menu → start.tscn) ---
 #
-# VI:
-#   true  = bắt buộc hoàn thành hết Chapter 0 trong game (trò chuyện đủ NPC) rồi
-#           mới vào luồng Chapter 1 như thiết kế gốc.
-#   false = chỉ đọc xong các trang mô tả Chapter 0 là có thể sang mô tả Chapter 1
-#           ngay, không cần hoàn thành hội thoại Chapter 0 với tất cả nhân vật.
+# | Mục tiêu                         | Cờ cần chỉnh |
+# |----------------------------------|--------------|
+# | Chơi đủ luồng 0→1→2→3           | Tất cả REQUIRE_* = true, SKIP_* = false, SKIP_TO_CH3 = false |
+# | Chỉ đọc text Ch0 → vào Ch1       | REQUIRE_CH0 = false, SKIP_CH1 = false |
+# | Ch0 → thẳng Ch2 (bỏ Ch1)         | REQUIRE_CH0 = false, SKIP_CH1 = true |
+# | Ch0 → thẳng Ch3 (bỏ Ch1+Ch2)     | SKIP_TO_CHAPTER_3_TEST = true (trong _ready) |
+# | Đang ở Ch1, chỉ đọc Context → Ch2| REQUIRE_CH1 = false (bấm Start Chapter trên map Ch1) |
+# | Ch1 xong → thẳng Ch3 (bỏ Ch2)    | SKIP_CHAPTER_2_FROM_CHAPTER_1 = true |
+# | Ch1: bỏ puzzle castle            | REQUIRE_CHAPTER_1_CASTLE_PUZZLE = false |
+# | Ch1: bỏ 5 quest → thẳng castle   | SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST = true (F6 map Ch1) |
+# | Puzzle castle: giả đã thắng      | slide_puzzle_main.gd → simulate_puzzle_completed = true |
+# | Ch1: NPC square không trùng      | tự động qua _refresh_chapter1_square_assembly_visibility (map Ch1) |
+# | Ch1: cầu gỗ                    | sau Quest 2, trên đường Quest 3 (không thuộc Quest 2); QuestState.needs_chapter1_bridge_repair() |
+# | Đang ở Ch2, chỉ đọc Context → Ch3| REQUIRE_CH2 = false (bấm Start Chapter trên map Ch2) |
+#
+# --- Mở thẳng một map (F6 / Run Current Scene) ---
+#
+# | Chapter | Scene | Inspector trên root |
+# |---------|-------|---------------------|
+# | 1       | res://Chapter 1/Clear Stream Valley.tscn | begins_on_chapter1_map = true |
+# | 2       | res://Scenes/chapter_2.tscn              | begins_on_chapter2_map = true |
+# | 3       | res://Steven/main/Main.tscn (tạm)        | begins_on_chapter3_map = true |
+#
+# Autoplay (tự bấm Space + panel): uncomment block trong _ready() (~dòng 280).
 # =============================================================================
+
+# --- Chapter 0 (Origin Town — start.tscn) ---
+# REQUIRE = true  → phải nói Traveler, Family, Friend xong mới sang Chapter 1.
+# REQUIRE = false → đóng xong guide text Chapter 0 là auto sang chapter tiếp theo.
 const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := true
 
-## When true (Clear Stream Valley root), skip Chapter 0 intro pages and open Chapter 1 context.
+# --- Chapter 1 (Clear Stream Valley) ---
+# SKIP = true → sau Chapter 0 không vào map Ch1; đánh dấu Ch1 xong → Chapter 2.
+const SKIP_CHAPTER_1_FROM_CHAPTER_0 := false
+# REQUIRE = true  → phải làm hết quest Ch1 mới sang Ch2.
+# REQUIRE = false → đọc xong "Chapter Context" trên map Ch1 → sang Ch2 (bỏ NPC Ch1).
+const REQUIRE_CHAPTER_1_COMPLETE_FOR_CHAPTER_2 := true
+# REQUIRE = true  → sau hết quest Ch1 phải thắng puzzle castle (badge puzzle_solver) mới coi Ch1 xong.
+const REQUIRE_CHAPTER_1_CASTLE_PUZZLE := true
+# SKIP = true → đánh dấu xong cả 5 quest Ch1, bỏ NPC quest, mở bảng castle ngay (test puzzle).
+# Cách dùng: đặt true → F6 chạy "Chapter 1/Clear Stream Valley.tscn" (begins_on_chapter1_map = true).
+# Bấm "Go to the Castle" → đi tới CastlePuzzleTrigger → Space. Nhớ đặt lại false trước khi commit.
+const SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST := false
+
+# --- Chapter 2 (Seabreeze Village — chapter_2.tscn) ---
+# SKIP = true → khi game muốn mở Chapter 2, nhảy thẳng Chapter 3 (bỏ map/tương tác Ch2).
+const SKIP_CHAPTER_2_FROM_CHAPTER_1 := false
+# REQUIRE = true  → phải làm hết quest Ch2 mới sang Ch3.
+# REQUIRE = false → đọc xong "Chapter Context" trên map Ch2 → sang Ch3 (bỏ NPC Ch2).
+const REQUIRE_CHAPTER_2_COMPLETE_FOR_CHAPTER_3 := true
+
+# --- Chapter 3 (Star & Moon Town) ---
+# SKIP = true trong _ready → nhảy thẳng Ch3, bỏ qua 0/1/2 (test nhanh).
+const SKIP_TO_CHAPTER_3_TEST := false
+
+const CHAPTER_1_SCENE := "res://Chapter 1/Clear Stream Valley.tscn"
+const CHAPTER_2_SCENE := "res://Scenes/chapter_2.tscn"
+const CHAPTER_3_SCENE := "res://Steven/main/Main.tscn" # TODO: đổi khi có scene Ch3 riêng
+const MENU_SCENE := "res://Scenes/Menu/menu.tscn"
+
+## F6 map Ch1: bỏ intro Ch0, mở Chapter Context Ch1.
 @export var begins_on_chapter1_map: bool = false
+## F6 map Ch2: bỏ Ch0–Ch1, mở Chapter Context Ch2.
+@export var begins_on_chapter2_map: bool = false
+## F6 map Ch3 (Main.tscn tạm): bỏ Ch0–Ch2, mở Chapter Context Ch3.
+@export var begins_on_chapter3_map: bool = false
 
 enum PanelMode {
 	GUIDE,
 	CHAPTER_CONFIRMATION,
 	QUEST_COMPLETION_CONFIRMATION,
+	CHAPTER1_CASTLE_GATE,
 	CHAPTER_FINAL_SUMMARY,
 }
-#Ayden
-var bridge_tilemap: TileMap
-
-var bridge_tiles := [
-	Vector2i(19, -13),
-	Vector2i(19, -14),
-	Vector2i(18, -15),
-
-	Vector2i(20, -14),
-	Vector2i(19, -15),
-	Vector2i(19, -16),
-
-	Vector2i(20, -15),
-	Vector2i(20, -16),
-	Vector2i(19, -17),
-
-	Vector2i(21, -16),
-	Vector2i(20, -17),
-	Vector2i(20, -18),
-
-	Vector2i(21, -17),
-	Vector2i(21, -18),
-	Vector2i(20, -19),
-
-	Vector2i(22, -18),
-	Vector2i(21, -19),
-	Vector2i(21, -20),
-
-	Vector2i(22, -19),
-	Vector2i(22, -20),
-	Vector2i(21, -21),
-]
-
-var repaired_source_id := 0
-var repaired_atlas_coords := Vector2i(4, 2)
 
 @onready var story_guide_layer: CanvasLayer = $StoryGuideLayer
 @onready var guide_panel: PanelContainer = $StoryGuideLayer/GuidePanel
@@ -213,18 +328,32 @@ var repaired_atlas_coords := Vector2i(4, 2)
 @onready var next_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/NextButton
 @onready var alt_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/AltButton
 
-## Chapter 1 square: unified council sprite vs separate Arden / Steven / Villagers (present only on Chapter 1 scene).
+## Chapter 1 square — Arden / Steven / Villagers / Council Group (chỉ có trên map Clear Stream Valley).
+## Quest 1: ẩn cả nhóm. Quest 2: Arden + Steven. Cầu gỗ (puzzle): sau Q2, trên đường tới Q3 — không thuộc Q2. Quest 3: + Villagers (sau sửa cầu). Quest 4: Council Group. Quest 5+: lại cá nhân.
 var _ch1_council_group: Node2D
 var _ch1_arden_square: Node2D
 var _ch1_steven_square: Node2D
 var _ch1_villagers_square: Node2D
-
-## Instance id -> saved collision flags (so hidden branches are not invisible obstacles).
 var _ch1_collision_restore: Dictionary = {}
-
-## Dialogue Manager skips mutated for do-lines that assign (e.g. QuestState.mark_*), so sync visibility when quest3/quest4 flags change.
+var _ch1_square_snap_quest1: bool = false
+var _ch1_square_snap_quest2: bool = false
 var _ch1_square_snap_quest3: bool = false
 var _ch1_square_snap_quest4: bool = false
+var _ch1_square_snap_quest5: bool = false
+var _ch1_square_snap_bridge_repaired: bool = false
+
+## Chapter 2 — cast theo quest (chapter_2.tscn).
+## Q1: Matt + Jessica. Q2: FishingVillageResidents. Q3: Matt + Kai. Q4–5: MattKaiVillagers.
+var _ch2_matt: Node2D
+var _ch2_kai: Node2D
+var _ch2_jessica: Node2D
+var _ch2_fishing_villagers: Node2D
+var _ch2_matt_kai_villagers: Node2D
+var _ch2_snap_quest1_done: bool = false
+var _ch2_snap_quest2_done: bool = false
+var _ch2_snap_quest3_done: bool = false
+var _ch2_snap_quest4_done: bool = false
+var _ch2_snap_quest5_done: bool = false
 
 var current_index: int = 0
 var active_entries: Array = []
@@ -234,27 +363,20 @@ var chapter1_confirmation_shown: bool = false
 var chapter2_confirmation_shown: bool = false
 var chapter3_confirmation_shown: bool = false
 var panel_mode: PanelMode = PanelMode.GUIDE
-var active_chapter_id: int = 1
+var active_chapter_id: int = 0
 var current_chapter_quest_index: int = -1
 var next_chapter_quest_to_describe: int = 0
 var pending_completion_prompt_index: int = -1
 var suppressed_completion_prompt_index: int = -1
+## Quest index saved when the completion panel opens (used when Yes is pressed).
+var _completion_prompt_quest_index: int = -1
 var chapter_confirmation_target: int = 1
 var final_summary_chapter_id: int = -1
 var active_guide_kind: String = ""
-
-func _resolve_optional_nodes() -> void:
-	bridge_tilemap = get_node_or_null("TileMap") as TileMap
-	_ch1_council_group = get_node_or_null("Arden_Steven_Villagers/ArdenStevenVillagersGroup") as Node2D
-	_ch1_arden_square = get_node_or_null("Arden_Steven_Villagers/Arden") as Node2D
-	_ch1_steven_square = get_node_or_null("Arden_Steven_Villagers/Steven") as Node2D
-	_ch1_villagers_square = get_node_or_null("Arden_Steven_Villagers/Villagers") as Node2D
+## Open dialogue balloons block quest-completion UI if we pause mid-conversation.
+var _story_dialogue_sessions: int = 0
 
 func _ready() -> void:
-	_resolve_optional_nodes()
-
-	# Set true to jump quest flags to Chapter 3 for editor testing (normal play keeps Chapter 0 flow).
-	const SKIP_TO_CHAPTER_3_TEST := false
 	if SKIP_TO_CHAPTER_3_TEST:
 		QuestState.chapter0_traveler_done = true
 		QuestState.chapter0_family_done = true
@@ -269,7 +391,9 @@ func _ready() -> void:
 		QuestState.quest4_complete = true
 		QuestState.quest5_complete = true
 		QuestState.chapter1_description_shown = true
+		QuestState.chapter1_castle_gate_shown = true
 		QuestState.chapter1_summary_shown = true
+		AchievementManager.unlock_badge("puzzle_solver")
 		QuestState.chapter2_quest1_matt_done = true
 		QuestState.chapter2_quest1_kai_done = true
 		QuestState.chapter2_quest1_jessica_done = true
@@ -284,13 +408,18 @@ func _ready() -> void:
 		chapter2_confirmation_shown = true
 		chapter3_confirmation_shown = false
 		active_chapter_id = 3
-	
-	#Ayden	
-	if QuestState.bridge_repaired:
-		repair_bridge()
 
-	# ===================== TEMP STORY AUTOPLAY TEST (DELETE LATER) =====================
-	# Uncomment this block to auto-run Chapter 0 -> 1 -> 2 flow test.
+	if SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST and begins_on_chapter1_map:
+		_apply_skip_chapter1_quests_to_castle_test()
+
+	_resolve_chapter1_square_nodes()
+	_resolve_chapter2_cast_nodes()
+	if _is_on_chapter1_map():
+		call_deferred("_restore_player_after_bridge_puzzle")
+
+	# ===================== AUTOPLAY (tự chạy hội thoại + panel) =====================
+	# Bật khi muốn bot chạy thử Ch0→Ch1→Ch2 (không thay cho SKIP_* ở trên).
+	# Uncomment block dưới:
 	#var autoplay_script := preload("res://Scripts/story_flow_autoplay.gd")
 	#var autoplay = autoplay_script.new()
 	#autoplay.run_on_ready = true
@@ -300,91 +429,70 @@ func _ready() -> void:
 	#add_child(autoplay)
 	# ================================================================================
 
+	add_to_group("story_guide_panel")
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	story_guide_layer.layer = maxi(story_guide_layer.layer, 101)
 	story_guide_layer.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	guide_panel.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	next_button.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	alt_button.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	next_button.pressed.connect(_on_next_button_pressed)
 	alt_button.pressed.connect(_on_alt_button_pressed)
+	if not DialogueManager.dialogue_started.is_connected(_on_story_dialogue_started):
+		DialogueManager.dialogue_started.connect(_on_story_dialogue_started)
+	if not DialogueManager.dialogue_ended.is_connected(_on_story_dialogue_ended):
+		DialogueManager.dialogue_ended.connect(_on_story_dialogue_ended)
 	_refresh_chapter1_square_assembly_visibility()
+	_ch1_square_snap_quest1 = QuestState.is_quest1_complete()
+	_ch1_square_snap_quest2 = QuestState.is_quest2_complete()
 	_ch1_square_snap_quest3 = QuestState.quest3_complete
 	_ch1_square_snap_quest4 = QuestState.quest4_complete
-	if begins_on_chapter1_map:
+	_ch1_square_snap_bridge_repaired = QuestState.bridge_repaired
+	if _is_on_chapter2_map():
+		_refresh_chapter2_cast_visibility()
+		_ch2_snap_quest1_done = QuestState.is_chapter2_quest1_complete()
+		_ch2_snap_quest2_done = QuestState.chapter2_quest2_residents_done
+		_ch2_snap_quest3_done = QuestState.chapter2_quest3_warehouse_done
+		_ch2_snap_quest4_done = QuestState.chapter2_quest4_meeting_done
+		_ch2_snap_quest5_done = QuestState.chapter2_quest5_cleanup_done
+	# Scene .tscn dùng placeholder "Chapter"/"Title" — ẩn tới khi script gán nội dung thật.
+	story_guide_layer.visible = false
+	is_guide_open = false
+	if begins_on_chapter3_map:
+		chapter0_guide_closed = true
+		chapter1_confirmation_shown = true
+		chapter2_confirmation_shown = true
+		chapter3_confirmation_shown = true
+		active_chapter_id = 3
+		_open_chapter_context(3)
+	elif begins_on_chapter2_map:
+		chapter0_guide_closed = true
+		chapter1_confirmation_shown = true
+		chapter2_confirmation_shown = true
+		active_chapter_id = 2
+		_open_chapter_context(2)
+	elif begins_on_chapter1_map:
 		chapter0_guide_closed = true
 		active_chapter_id = 1
-		_open_chapter_context(1)
+		_open_chapter1_entry_flow()
 	else:
+		active_chapter_id = 0
 		_open_guide(CHAPTER0_ENTRIES, "chapter0")
-
-
-## Quest 4 (after meeting announced, before council dialogue finishes): Council Group visible;
-## Arden / Steven / Villagers at the square hidden. Quest 5 onward (after quest4_complete): swap back.
-## Hidden branches also disable collision (no invisible walls / talk zones).
-func _refresh_chapter1_square_assembly_visibility() -> void:
-	var quest4_active := QuestState.quest3_complete and not QuestState.quest4_complete
-	if is_instance_valid(_ch1_council_group):
-		_ch1_council_group.visible = quest4_active
-		_ch1_set_branch_physics_enabled(_ch1_council_group, quest4_active)
-	for n: Node2D in [_ch1_arden_square, _ch1_steven_square, _ch1_villagers_square]:
-		if is_instance_valid(n):
-			var show_individuals := not quest4_active
-			n.visible = show_individuals
-			_ch1_set_branch_physics_enabled(n, show_individuals)
-
-
-func _ch1_set_branch_physics_enabled(root: Node, enabled: bool) -> void:
-	if root is CollisionObject2D:
-		_ch1_set_one_collision_object(root as CollisionObject2D, enabled)
-	for child in root.get_children():
-		_ch1_set_branch_physics_enabled(child, enabled)
-
-
-func _ch1_set_one_collision_object(co: CollisionObject2D, enabled: bool) -> void:
-	var id := co.get_instance_id()
-	if enabled:
-		if not _ch1_collision_restore.has(id):
-			return
-		var s: Dictionary = _ch1_collision_restore[id]
-		co.collision_layer = s["layer"]
-		co.collision_mask = s["mask"]
-		if co is Area2D:
-			var a := co as Area2D
-			a.monitoring = s["monitoring"]
-			a.monitorable = s["monitorable"]
-	else:
-		if not _ch1_collision_restore.has(id):
-			var snap := {"layer": co.collision_layer, "mask": co.collision_mask}
-			if co is Area2D:
-				var a2 := co as Area2D
-				snap["monitoring"] = a2.monitoring
-				snap["monitorable"] = a2.monitorable
-			_ch1_collision_restore[id] = snap
-		co.collision_layer = 0
-		co.collision_mask = 0
-		if co is Area2D:
-			var a3 := co as Area2D
-			a3.monitoring = false
-			a3.monitorable = false
-
-
-func _ch1_poll_quest_flags_for_square_visibility() -> void:
-	if not is_instance_valid(_ch1_council_group):
-		return
-	var q3 := QuestState.quest3_complete
-	var q4 := QuestState.quest4_complete
-	if q3 == _ch1_square_snap_quest3 and q4 == _ch1_square_snap_quest4:
-		return
-	_ch1_square_snap_quest3 = q3
-	_ch1_square_snap_quest4 = q4
-	_refresh_chapter1_square_assembly_visibility()
 
 
 func _process(_delta: float) -> void:
 	_ch1_poll_quest_flags_for_square_visibility()
-	if _handle_quest_completion_flow():
-		return
-	if _handle_final_summary_flow():
-		return
+	_ch2_poll_quest_flags_for_cast_visibility()
+	if _story_dialogue_sessions == 0:
+		if _try_show_pending_quest_completion():
+			return
+		if _handle_quest_completion_flow():
+			return
+		if _handle_final_summary_flow():
+			return
+	else:
+		_handle_quest_completion_flow()
+	_reconcile_stray_pause()
 	if not chapter0_guide_closed:
 		return
 	if is_guide_open:
@@ -405,37 +513,79 @@ func _process(_delta: float) -> void:
 
 func _on_next_button_pressed() -> void:
 	if panel_mode == PanelMode.CHAPTER_CONFIRMATION:
-		_start_chapter_flow(chapter_confirmation_target)
+		_start_chapter_flow(_resolve_chapter_flow_target(chapter_confirmation_target))
 		return
 
 	if panel_mode == PanelMode.QUEST_COMPLETION_CONFIRMATION:
-		var chapter_entries: Array = CHAPTER_QUEST_ENTRIES.get(active_chapter_id, [])
-		if pending_completion_prompt_index == chapter_entries.size() - 1:
+		_sync_active_chapter_from_scene()
+		var completed_idx := _completion_prompt_quest_index
+		if completed_idx < 0:
+			completed_idx = pending_completion_prompt_index
+		if completed_idx < 0:
+			completed_idx = current_chapter_quest_index
+		if completed_idx == _quest_count(active_chapter_id) - 1:
 			suppressed_completion_prompt_index = -1
 			pending_completion_prompt_index = -1
+			_completion_prompt_quest_index = -1
 			_close_guide_panel()
-			_open_chapter_final_summary(active_chapter_id)
+			if _should_show_chapter1_castle_gate():
+				_open_chapter1_castle_gate()
+			else:
+				_open_chapter_final_summary(active_chapter_id)
 			return
-		_handle_continue_to_next_quest()
+		_advance_after_quest_completion(completed_idx)
+		return
+
+	if panel_mode == PanelMode.CHAPTER1_CASTLE_GATE:
+		_dismiss_chapter1_castle_gate_panel()
 		return
 
 	if panel_mode == PanelMode.CHAPTER_FINAL_SUMMARY:
+		if final_summary_chapter_id == 1 and _should_show_chapter1_castle_gate():
+			_close_guide_panel()
+			_open_chapter1_castle_gate()
+			return
+		if active_guide_kind == "chapter_educational" and current_index < active_entries.size() - 1:
+			current_index += 1
+			_show_entry(current_index)
+			return
 		_mark_chapter_summary_shown(final_summary_chapter_id)
+		if final_summary_chapter_id == 2:
+			_return_to_main_menu()
+			return
 		if final_summary_chapter_id < 3:
-			_start_chapter_flow(final_summary_chapter_id + 1)
+			_start_chapter_flow(_resolve_chapter_flow_target(final_summary_chapter_id + 1))
 		else:
 			_close_guide_panel()
 		return
 
 	if panel_mode == PanelMode.GUIDE and active_guide_kind == "chapter_context":
+		if active_chapter_id == 1 and not REQUIRE_CHAPTER_1_COMPLETE_FOR_CHAPTER_2:
+			_set_chapter_description_shown(1)
+			_close_guide_panel()
+			_mark_chapter_1_complete_for_skip()
+			_start_chapter_flow(_resolve_chapter_flow_target(2))
+			return
+		if active_chapter_id == 2 and not REQUIRE_CHAPTER_2_COMPLETE_FOR_CHAPTER_3:
+			_set_chapter_description_shown(2)
+			_close_guide_panel()
+			_mark_chapter_2_complete_for_skip()
+			_start_chapter_flow(_resolve_chapter_flow_target(3))
+			return
+		_set_chapter_description_shown(active_chapter_id)
 		_close_guide_panel()
 		_open_next_chapter_quest_description()
 		return
 
 	if panel_mode == PanelMode.GUIDE and active_guide_kind == "quest":
-		current_chapter_quest_index = current_index
-		next_chapter_quest_to_describe = current_chapter_quest_index + 1
-		suppressed_completion_prompt_index = -1
+		if _has_more_quest_guide_pages(current_index):
+			current_index += 1
+			_show_entry(current_index)
+			return
+		var started_quest_index := _entry_quest_index(active_entries[current_index], current_index)
+		current_chapter_quest_index = started_quest_index
+		next_chapter_quest_to_describe = started_quest_index + 1
+		_acknowledge_quest_guide_started(started_quest_index)
 		_close_guide_panel()
 		return
 
@@ -449,8 +599,14 @@ func _on_next_button_pressed() -> void:
 
 func _on_alt_button_pressed() -> void:
 	if panel_mode == PanelMode.QUEST_COMPLETION_CONFIRMATION:
-		suppressed_completion_prompt_index = pending_completion_prompt_index
+		var completed_idx := _completion_prompt_quest_index
+		if completed_idx < 0:
+			completed_idx = pending_completion_prompt_index
+		if completed_idx < 0:
+			completed_idx = current_chapter_quest_index
+		suppressed_completion_prompt_index = completed_idx
 		pending_completion_prompt_index = -1
+		_completion_prompt_quest_index = -1
 		_close_guide_panel()
 		return
 
@@ -468,7 +624,10 @@ func _show_entry(index: int) -> void:
 	alt_button.visible = false
 
 	if active_guide_kind == "quest":
-		next_button.text = "Start Quest"
+		next_button.text = "Start Quest" if not _has_more_quest_guide_pages(index) else "Next"
+		return
+	if active_guide_kind == "chapter_educational":
+		next_button.text = "Finish all the journey" if index == active_entries.size() - 1 else "Next"
 		return
 	if active_guide_kind == "chapter_context":
 		next_button.text = "Start Chapter"
@@ -495,7 +654,7 @@ func _close_guide_panel() -> void:
 		QuestState.chapter0_traveler_done = true
 		QuestState.chapter0_family_done = true
 		QuestState.chapter0_friend_done = true
-		_start_chapter_flow(1)
+		_start_chapter_flow(_resolve_chapter_flow_target(1))
 
 
 func _open_guide(entries: Array, guide_kind: String) -> void:
@@ -523,7 +682,7 @@ func _open_chapter_confirmation(chapter_id: int) -> void:
 	elif chapter_id == 2:
 		chapter_label.text = "Chapter 1 Complete!"
 		title_label.text = "Ready for Seabreeze Village?"
-		description_label.text = "You helped Clear Stream Valley create a fair water plan.\n\nContinue to Chapter 2 to support marine protection and shared livelihood in Seabreeze Village."
+		description_label.text = "You helped Clear Stream Valley create a fair water plan and earned the Pathfinder Badge at the valley castle.\n\nContinue to Chapter 2 to support marine protection and shared livelihood in Seabreeze Village."
 	elif chapter_id == 3:
 		chapter_label.text = "Chapter 2 Complete!"
 		title_label.text = "Ready for Star & Moon Town?"
@@ -536,14 +695,73 @@ func _open_chapter_confirmation(chapter_id: int) -> void:
 	get_tree().paused = true
 
 
-func _open_next_chapter_quest_description() -> void:
-	var chapter_entries: Array = CHAPTER_QUEST_ENTRIES.get(active_chapter_id, [])
-	if next_chapter_quest_to_describe < 0 or next_chapter_quest_to_describe >= chapter_entries.size():
+func _entry_quest_index(entry: Dictionary, fallback_index: int) -> int:
+	return int(entry.get("quest_index", fallback_index))
+
+
+func _has_more_quest_guide_pages(index: int) -> bool:
+	if active_guide_kind != "quest":
+		return false
+	if index < 0 or index >= active_entries.size() - 1:
+		return false
+	var current_entry: Dictionary = active_entries[index]
+	var next_entry: Dictionary = active_entries[index + 1]
+	return _entry_quest_index(current_entry, index) == _entry_quest_index(next_entry, index + 1)
+
+
+func _first_quest_guide_index(chapter_id: int, quest_index: int) -> int:
+	var chapter_entries: Array = CHAPTER_QUEST_ENTRIES.get(chapter_id, [])
+	for i in chapter_entries.size():
+		var entry: Dictionary = chapter_entries[i]
+		if _entry_quest_index(entry, i) == quest_index:
+			return i
+	return -1
+
+
+func _quest_count(chapter_id: int) -> int:
+	var chapter_entries: Array = CHAPTER_QUEST_ENTRIES.get(chapter_id, [])
+	if chapter_entries.is_empty():
+		return 0
+	var max_quest_index := 0
+	for i in chapter_entries.size():
+		var entry: Dictionary = chapter_entries[i]
+		max_quest_index = maxi(max_quest_index, _entry_quest_index(entry, i) + 1)
+	return max_quest_index
+
+
+func _sync_active_chapter_from_scene() -> void:
+	if _is_on_chapter1_map():
+		active_chapter_id = 1
+	elif _is_on_chapter2_map():
+		active_chapter_id = 2
+	elif begins_on_chapter3_map:
+		active_chapter_id = 3
+
+
+func _open_next_chapter_quest_description(quest_index: int = -1) -> void:
+	_sync_active_chapter_from_scene()
+	var target_quest := quest_index if quest_index >= 0 else next_chapter_quest_to_describe
+	next_chapter_quest_to_describe = target_quest
+	_open_guide_for_quest(active_chapter_id, target_quest)
+
+
+func _open_guide_for_quest(chapter_id: int, quest_index: int) -> void:
+	var chapter_entries: Array = CHAPTER_QUEST_ENTRIES.get(chapter_id, [])
+	if chapter_entries.is_empty():
+		push_warning("story_guide: no quest guide entries for chapter %d" % chapter_id)
 		return
 
-	_open_guide(chapter_entries, "quest")
-	current_index = next_chapter_quest_to_describe
-	_show_entry(current_index)
+	var quest_entries: Array = []
+	for i in chapter_entries.size():
+		var entry: Dictionary = chapter_entries[i]
+		if _entry_quest_index(entry, i) == quest_index:
+			quest_entries.append(entry)
+
+	if quest_entries.is_empty():
+		push_warning("story_guide: no guide pages for chapter %d quest %d" % [chapter_id, quest_index + 1])
+		return
+
+	_open_guide(quest_entries, "quest")
 
 
 func _open_chapter_context(chapter_id: int) -> void:
@@ -554,6 +772,306 @@ func _open_chapter_context(chapter_id: int) -> void:
 	_open_guide(context_entries, "chapter_context")
 
 
+func _restore_player_after_bridge_puzzle() -> void:
+	if not get_tree().has_meta(QuestState.BRIDGE_RETURN_POSITION_META):
+		return
+	var saved_pos: Variant = get_tree().get_meta(QuestState.BRIDGE_RETURN_POSITION_META)
+	get_tree().remove_meta(QuestState.BRIDGE_RETURN_POSITION_META)
+	if saved_pos is not Vector2:
+		return
+	var player := get_tree().get_first_node_in_group("player")
+	if player == null:
+		return
+	player.global_position = saved_pos
+	if player.get("target_position") != null:
+		player.target_position = saved_pos
+
+
+func _resolve_chapter1_square_nodes() -> void:
+	_ch1_council_group = get_node_or_null("Arden_Steven_Villagers/ArdenStevenVillagersGroup") as Node2D
+	_ch1_arden_square = get_node_or_null("Arden_Steven_Villagers/Arden") as Node2D
+	_ch1_steven_square = get_node_or_null("Arden_Steven_Villagers/Steven") as Node2D
+	_ch1_villagers_square = get_node_or_null("Arden_Steven_Villagers/Villagers") as Node2D
+
+
+## Không cho Arden / Steven / Villagers / Council Group trùng nhau theo quest (khôi phục từ commit 80fc0ce).
+func _refresh_chapter1_square_assembly_visibility() -> void:
+	if not is_instance_valid(_ch1_arden_square):
+		return
+
+	var quest4_active := QuestState.quest3_complete and not QuestState.quest4_complete
+	var show_council_group := quest4_active
+	var show_arden_steven := QuestState.is_quest1_complete() and not quest4_active
+	var show_villagers := (
+		QuestState.is_quest2_complete()
+		and QuestState.bridge_repaired
+		and not quest4_active
+	)
+
+	if is_instance_valid(_ch1_council_group):
+		_ch1_council_group.visible = show_council_group
+		_ch1_set_branch_physics_enabled(_ch1_council_group, show_council_group)
+	if is_instance_valid(_ch1_arden_square):
+		_ch1_arden_square.visible = show_arden_steven
+		_ch1_set_branch_physics_enabled(_ch1_arden_square, show_arden_steven)
+	if is_instance_valid(_ch1_steven_square):
+		_ch1_steven_square.visible = show_arden_steven
+		_ch1_set_branch_physics_enabled(_ch1_steven_square, show_arden_steven)
+	if is_instance_valid(_ch1_villagers_square):
+		_ch1_villagers_square.visible = show_villagers
+		_ch1_set_branch_physics_enabled(_ch1_villagers_square, show_villagers)
+
+
+func _ch1_set_branch_physics_enabled(root: Node, enabled: bool) -> void:
+	if root is CollisionObject2D:
+		_ch1_set_one_collision_object(root as CollisionObject2D, enabled)
+	for child in root.get_children():
+		_ch1_set_branch_physics_enabled(child, enabled)
+
+
+func _ch1_set_one_collision_object(co: CollisionObject2D, enabled: bool) -> void:
+	var id := co.get_instance_id()
+	if enabled:
+		if not _ch1_collision_restore.has(id):
+			return
+		var saved: Dictionary = _ch1_collision_restore[id]
+		co.collision_layer = saved["layer"]
+		co.collision_mask = saved["mask"]
+		if co is Area2D:
+			var area := co as Area2D
+			area.monitoring = saved["monitoring"]
+			area.monitorable = saved["monitorable"]
+	else:
+		if not _ch1_collision_restore.has(id):
+			var snap := {"layer": co.collision_layer, "mask": co.collision_mask}
+			if co is Area2D:
+				var area_snap := co as Area2D
+				snap["monitoring"] = area_snap.monitoring
+				snap["monitorable"] = area_snap.monitorable
+			_ch1_collision_restore[id] = snap
+		co.collision_layer = 0
+		co.collision_mask = 0
+		if co is Area2D:
+			var area_off := co as Area2D
+			area_off.monitoring = false
+			area_off.monitorable = false
+
+
+func _ch1_poll_quest_flags_for_square_visibility() -> void:
+	if not is_instance_valid(_ch1_arden_square):
+		return
+	var quest1_done := QuestState.is_quest1_complete()
+	var quest2_done := QuestState.is_quest2_complete()
+	var quest3_done := QuestState.quest3_complete
+	var quest4_done := QuestState.quest4_complete
+	var quest5_done := QuestState.quest5_complete
+	var bridge_repaired := QuestState.bridge_repaired
+	if (
+		quest1_done == _ch1_square_snap_quest1
+		and quest2_done == _ch1_square_snap_quest2
+		and quest3_done == _ch1_square_snap_quest3
+		and quest4_done == _ch1_square_snap_quest4
+		and quest5_done == _ch1_square_snap_quest5
+		and bridge_repaired == _ch1_square_snap_bridge_repaired
+	):
+		return
+	if quest1_done and not _ch1_square_snap_quest1:
+		_arm_quest_completion_prompt(0)
+	if quest2_done and not _ch1_square_snap_quest2:
+		_arm_quest_completion_prompt(1)
+	if quest3_done and not _ch1_square_snap_quest3:
+		_arm_quest_completion_prompt(2)
+	if quest4_done and not _ch1_square_snap_quest4:
+		_arm_quest_completion_prompt(3)
+	if QuestState.quest5_complete and not _ch1_square_snap_quest5:
+		_arm_quest_completion_prompt(4)
+	_ch1_square_snap_quest1 = quest1_done
+	_ch1_square_snap_quest2 = quest2_done
+	_ch1_square_snap_quest3 = quest3_done
+	_ch1_square_snap_quest4 = quest4_done
+	_ch1_square_snap_quest5 = quest5_done
+	_ch1_square_snap_bridge_repaired = bridge_repaired
+	_refresh_chapter1_square_assembly_visibility()
+
+
+func _is_on_chapter2_map() -> bool:
+	var scene := get_tree().current_scene
+	if scene != null and scene.scene_file_path == CHAPTER_2_SCENE:
+		return true
+	return begins_on_chapter2_map
+
+
+func _resolve_chapter2_cast_nodes() -> void:
+	if not _is_on_chapter2_map():
+		return
+	_ch2_matt = get_node_or_null("Matt") as Node2D
+	_ch2_kai = get_node_or_null("Kai") as Node2D
+	_ch2_jessica = get_node_or_null("Jessica") as Node2D
+	_ch2_fishing_villagers = get_node_or_null("FishingVillageResidents") as Node2D
+	_ch2_matt_kai_villagers = get_node_or_null("MattKaiVillagers") as Node2D
+
+
+func _refresh_chapter2_cast_visibility() -> void:
+	if not _is_on_chapter2_map():
+		return
+	if not is_instance_valid(_ch2_matt) and not is_instance_valid(_ch2_matt_kai_villagers):
+		_resolve_chapter2_cast_nodes()
+	if not is_instance_valid(_ch2_matt) and not is_instance_valid(_ch2_matt_kai_villagers):
+		return
+
+	var quest1_done := QuestState.is_chapter2_quest1_complete()
+	var quest2_done := QuestState.chapter2_quest2_residents_done
+	var quest3_done := QuestState.chapter2_quest3_warehouse_done
+	var quest5_done := QuestState.chapter2_quest5_cleanup_done
+
+	var show_matt_kai_villagers := quest3_done and not quest5_done
+	var show_quest1_npcs := not quest1_done
+	var show_quest2_fishing := quest1_done and not quest2_done
+	var show_quest3_npcs := quest2_done and not quest3_done
+
+	if is_instance_valid(_ch2_matt):
+		_ch2_matt.visible = show_quest1_npcs or show_quest3_npcs
+		_ch1_set_branch_physics_enabled(_ch2_matt, _ch2_matt.visible)
+	if is_instance_valid(_ch2_kai):
+		_ch2_kai.visible = show_quest3_npcs
+		_ch1_set_branch_physics_enabled(_ch2_kai, _ch2_kai.visible)
+	if is_instance_valid(_ch2_jessica):
+		_ch2_jessica.visible = show_quest1_npcs
+		_ch1_set_branch_physics_enabled(_ch2_jessica, _ch2_jessica.visible)
+	if is_instance_valid(_ch2_fishing_villagers):
+		_ch2_fishing_villagers.visible = show_quest2_fishing
+		_ch1_set_branch_physics_enabled(_ch2_fishing_villagers, show_quest2_fishing)
+	if is_instance_valid(_ch2_matt_kai_villagers):
+		_ch2_matt_kai_villagers.visible = show_matt_kai_villagers
+		_ch1_set_branch_physics_enabled(_ch2_matt_kai_villagers, show_matt_kai_villagers)
+
+
+func _ch2_poll_quest_flags_for_cast_visibility() -> void:
+	if not _is_on_chapter2_map():
+		return
+	if not is_instance_valid(_ch2_matt):
+		return
+	var quest1_done := QuestState.is_chapter2_quest1_complete()
+	var quest2_done := QuestState.chapter2_quest2_residents_done
+	var quest3_done := QuestState.chapter2_quest3_warehouse_done
+	var quest4_done := QuestState.chapter2_quest4_meeting_done
+	var quest5_done := QuestState.chapter2_quest5_cleanup_done
+	if (
+		quest1_done == _ch2_snap_quest1_done
+		and quest2_done == _ch2_snap_quest2_done
+		and quest3_done == _ch2_snap_quest3_done
+		and quest4_done == _ch2_snap_quest4_done
+		and quest5_done == _ch2_snap_quest5_done
+	):
+		return
+	if quest1_done and not _ch2_snap_quest1_done:
+		_arm_quest_completion_prompt(0)
+		if current_chapter_quest_index < 1:
+			current_chapter_quest_index = 0
+	if quest2_done and not _ch2_snap_quest2_done:
+		_arm_quest_completion_prompt(1)
+		if current_chapter_quest_index < 2:
+			current_chapter_quest_index = 1
+	if quest3_done and not _ch2_snap_quest3_done:
+		_arm_quest_completion_prompt(2)
+		if current_chapter_quest_index < 3:
+			current_chapter_quest_index = 2
+	if QuestState.chapter2_quest4_meeting_done and not _ch2_snap_quest4_done:
+		_arm_quest_completion_prompt(3)
+	if quest5_done and not _ch2_snap_quest5_done:
+		_arm_quest_completion_prompt(4)
+	_resolve_chapter2_cast_nodes()
+	_ch2_snap_quest1_done = quest1_done
+	_ch2_snap_quest2_done = quest2_done
+	_ch2_snap_quest3_done = quest3_done
+	_ch2_snap_quest4_done = quest4_done
+	_ch2_snap_quest5_done = quest5_done
+	_refresh_chapter2_cast_visibility()
+
+
+func _open_chapter1_entry_flow() -> void:
+	if not QuestState.chapter1_description_shown:
+		_open_chapter_context(1)
+		return
+	if _should_defer_chapter1_auto_panel():
+		return
+
+
+func _should_defer_chapter1_auto_panel() -> bool:
+	if QuestState.chapter1_summary_shown:
+		return true
+	if _should_show_chapter1_castle_gate():
+		return true
+	if QuestState.is_chapter1_complete() and _is_chapter1_castle_puzzle_complete():
+		return true
+	return false
+
+
+# --- Quest completion vs dialogue (keep this block once; do not duplicate below) ---
+
+func _on_story_dialogue_started(_resource: DialogueResource) -> void:
+	_story_dialogue_sessions += 1
+
+
+func _on_story_dialogue_ended(_resource: DialogueResource) -> void:
+	_story_dialogue_sessions = maxi(0, _story_dialogue_sessions - 1)
+	if _story_dialogue_sessions == 0:
+		call_deferred("_flush_pending_story_flow_checks")
+
+
+func _is_story_dialogue_active() -> bool:
+	return _story_dialogue_sessions > 0
+
+
+func _try_show_pending_quest_completion() -> bool:
+	if is_guide_open or _is_story_dialogue_active():
+		return false
+	if pending_completion_prompt_index < 0:
+		_recover_stuck_pause_without_guide()
+		return false
+
+	_sync_active_chapter_from_scene()
+	var quest_index := pending_completion_prompt_index
+	if not _is_chapter_quest_complete(active_chapter_id, quest_index):
+		pending_completion_prompt_index = -1
+		_recover_stuck_pause_without_guide()
+		return false
+	if quest_index <= suppressed_completion_prompt_index:
+		pending_completion_prompt_index = -1
+		return false
+
+	pending_completion_prompt_index = -1
+	_open_quest_completion_confirmation(quest_index)
+	return true
+
+
+func _flush_pending_story_flow_checks() -> void:
+	if _story_dialogue_sessions > 0:
+		return
+	if _try_show_pending_quest_completion():
+		return
+	if _handle_quest_completion_flow():
+		return
+	_handle_final_summary_flow()
+
+
+func _recover_stuck_pause_without_guide() -> void:
+	if not get_tree().paused:
+		return
+	if is_guide_open or _is_story_dialogue_active():
+		return
+	get_tree().paused = false
+
+
+func _reconcile_stray_pause() -> void:
+	if is_guide_open or story_guide_layer.visible:
+		return
+	if _story_dialogue_sessions > 0:
+		return
+	if get_tree().paused:
+		get_tree().paused = false
+
+
 func _handle_quest_completion_flow() -> bool:
 	if active_chapter_id == 1 and not QuestState.chapter1_description_shown:
 		return false
@@ -561,18 +1079,59 @@ func _handle_quest_completion_flow() -> bool:
 		return false
 	if active_chapter_id == 3 and not QuestState.chapter3_description_shown:
 		return false
+	if active_chapter_id == 1 and QuestState.is_chapter1_complete():
+		if QuestState.chapter1_castle_gate_shown and not _is_chapter1_castle_puzzle_complete():
+			return false
+		if _should_show_chapter1_castle_gate() and not QuestState.chapter1_castle_gate_shown:
+			return false
 	if is_guide_open:
 		return false
-	if current_chapter_quest_index < 0:
+
+	var quest_index := _resolve_quest_index_for_completion_prompt()
+	if quest_index < 0:
 		return false
-	if not _is_chapter_quest_complete(active_chapter_id, current_chapter_quest_index):
+	if not _is_chapter_quest_complete(active_chapter_id, quest_index):
 		return false
-	if suppressed_completion_prompt_index == current_chapter_quest_index:
+	if quest_index <= suppressed_completion_prompt_index:
 		return false
 
-	pending_completion_prompt_index = current_chapter_quest_index
-	_open_quest_completion_confirmation(current_chapter_quest_index)
+	pending_completion_prompt_index = quest_index
+	current_chapter_quest_index = quest_index
+	if _is_story_dialogue_active():
+		return false
+	_open_quest_completion_confirmation(quest_index)
 	return true
+
+
+func _acknowledge_quest_guide_started(quest_index: int) -> void:
+	if quest_index < 0:
+		return
+	suppressed_completion_prompt_index = maxi(suppressed_completion_prompt_index, quest_index)
+
+
+func _arm_quest_completion_prompt(quest_index: int) -> void:
+	if quest_index < 0:
+		return
+	if suppressed_completion_prompt_index >= quest_index:
+		suppressed_completion_prompt_index = quest_index - 1
+
+
+func _resolve_quest_index_for_completion_prompt() -> int:
+	if (
+		current_chapter_quest_index >= 0
+		and _is_chapter_quest_complete(active_chapter_id, current_chapter_quest_index)
+	):
+		return current_chapter_quest_index
+	return _latest_completed_quest_index(active_chapter_id)
+
+
+func _latest_completed_quest_index(chapter_id: int) -> int:
+	var last_complete := -1
+	var quest_total := _quest_count(chapter_id)
+	for i in quest_total:
+		if _is_chapter_quest_complete(chapter_id, i):
+			last_complete = i
+	return last_complete
 
 
 func _handle_final_summary_flow() -> bool:
@@ -582,28 +1141,38 @@ func _handle_final_summary_flow() -> bool:
 		return false
 	if not _is_chapter_quest_complete(active_chapter_id, 4):
 		return false
-	var chapter_entries: Array = CHAPTER_QUEST_ENTRIES.get(active_chapter_id, [])
-	if next_chapter_quest_to_describe < chapter_entries.size():
+	if (
+		next_chapter_quest_to_describe < _quest_count(active_chapter_id)
+		and not _is_entire_chapter_complete(active_chapter_id)
+	):
 		return false
+
+	if _should_show_chapter1_castle_gate():
+		if QuestState.chapter1_castle_gate_shown:
+			return false
+		if not is_guide_open:
+			_open_chapter1_castle_gate()
+		return true
 
 	_open_chapter_final_summary(active_chapter_id)
 	return true
 
 
 func _open_quest_completion_confirmation(quest_index: int) -> void:
+	_sync_active_chapter_from_scene()
+	_completion_prompt_quest_index = quest_index
 	panel_mode = PanelMode.QUEST_COMPLETION_CONFIRMATION
 	active_entries.clear()
 	story_guide_layer.visible = true
 	is_guide_open = true
 	chapter_label.text = "Chapter %d - Quest Complete" % active_chapter_id
 	title_label.text = "Quest %d finished!" % [quest_index + 1]
-	var chapter_entries: Array = CHAPTER_QUEST_ENTRIES.get(active_chapter_id, [])
-	if quest_index == chapter_entries.size() - 1:
+	if quest_index == _quest_count(active_chapter_id) - 1:
 		description_label.text = "You completed the final quest in this chapter."
 	else:
 		description_label.text = "You completed Quest %d in this chapter.\n\nDo you want to move to the next quest?" % [quest_index + 1]
 	page_label.text = ""
-	if quest_index == chapter_entries.size() - 1:
+	if quest_index == _quest_count(active_chapter_id) - 1:
 		next_button.text = "OK"
 		alt_button.visible = false
 	else:
@@ -613,21 +1182,95 @@ func _open_quest_completion_confirmation(quest_index: int) -> void:
 	get_tree().paused = true
 
 
-func _handle_continue_to_next_quest() -> void:
-	suppressed_completion_prompt_index = -1
-	pending_completion_prompt_index = -1
-	_close_guide_panel()
-
-	var chapter_entries: Array = CHAPTER_QUEST_ENTRIES.get(active_chapter_id, [])
-	if next_chapter_quest_to_describe >= chapter_entries.size():
+func _advance_after_quest_completion(completed_quest_index: int) -> void:
+	if completed_quest_index < 0:
 		return
 
-	_open_next_chapter_quest_description()
+	_sync_active_chapter_from_scene()
+	suppressed_completion_prompt_index = completed_quest_index
+	pending_completion_prompt_index = -1
+	_completion_prompt_quest_index = -1
+
+	var next_quest_index := completed_quest_index + 1
+	if next_quest_index >= _quest_count(active_chapter_id):
+		_close_guide_panel()
+		return
+
+	next_chapter_quest_to_describe = next_quest_index
+	current_chapter_quest_index = next_quest_index
+
+	if active_chapter_id == 2:
+		_resolve_chapter2_cast_nodes()
+		_refresh_chapter2_cast_visibility()
+
+	_close_guide_panel()
+	call_deferred("_open_guide_for_quest", active_chapter_id, next_quest_index)
+
+
+func _open_chapter1_castle_gate() -> void:
+	panel_mode = PanelMode.CHAPTER1_CASTLE_GATE
+	active_guide_kind = ""
+	final_summary_chapter_id = 1
+	active_entries.clear()
+	suppressed_completion_prompt_index = _quest_count(1) - 1
+	pending_completion_prompt_index = -1
+	story_guide_layer.visible = true
+	is_guide_open = true
+	chapter_label.text = CHAPTER1_CASTLE_GATE_SUMMARY["chapter"]
+	title_label.text = CHAPTER1_CASTLE_GATE_SUMMARY["title"]
+	description_label.text = CHAPTER1_CASTLE_GATE_SUMMARY["description"]
+	page_label.text = ""
+	next_button.text = "Go to the Castle"
+	alt_button.visible = false
+	get_tree().paused = true
+
+
+func _dismiss_chapter1_castle_gate_panel() -> void:
+	QuestState.chapter1_castle_gate_shown = true
+	suppressed_completion_prompt_index = _quest_count(1) - 1
+	pending_completion_prompt_index = -1
+	story_guide_layer.visible = false
+	is_guide_open = false
+	panel_mode = PanelMode.GUIDE
+	active_guide_kind = ""
+	get_tree().paused = false
+	if _is_chapter1_castle_puzzle_complete():
+		call_deferred("_open_chapter_final_summary", 1)
+
+
+func _is_on_chapter1_map() -> bool:
+	var scene := get_tree().current_scene
+	if scene != null and scene.scene_file_path == CHAPTER_1_SCENE:
+		return true
+	return begins_on_chapter1_map
+
+
+func _should_show_chapter1_castle_gate() -> bool:
+	return (
+		active_chapter_id == 1
+		and _is_on_chapter1_map()
+		and REQUIRE_CHAPTER_1_CASTLE_PUZZLE
+		and QuestState.is_chapter1_complete()
+		and not _is_chapter1_castle_puzzle_complete()
+	)
+
+
+func _is_chapter1_castle_puzzle_complete() -> bool:
+	return AchievementManager.has_badge("puzzle_solver")
 
 
 func _open_chapter_final_summary(chapter_id: int) -> void:
+	if chapter_id == 1 and _should_show_chapter1_castle_gate():
+		_open_chapter1_castle_gate()
+		return
+
 	panel_mode = PanelMode.CHAPTER_FINAL_SUMMARY
 	final_summary_chapter_id = chapter_id
+	var educational_entries: Array = CHAPTER_EDUCATIONAL_ENTRIES.get(chapter_id, [])
+	if not educational_entries.is_empty():
+		_open_guide(educational_entries, "chapter_educational")
+		return
+
 	active_entries.clear()
 	story_guide_layer.visible = true
 	is_guide_open = true
@@ -638,7 +1281,7 @@ func _open_chapter_final_summary(chapter_id: int) -> void:
 	elif chapter_id == 2:
 		chapter_label.text = "Chapter 2 Complete!"
 		title_label.text = "Seabreeze Village completed"
-		description_label.text = "You completed all Chapter 2 quests and helped villagers set up signs, take oaths, and consolidate ocean protection results.\n\nFinal result: improved environment and coexistence of tradition and innovation.\n\nEducational value: humans and nature must live in harmony; people should actively protect what they use from nature; generations learn from each other; and small actions can create global environmental change."
+		description_label.text = "You completed all Chapter 2 quests and helped villagers set up signs, take oaths, and consolidate ocean protection results.\n\nFinal result: improved environment and coexistence of tradition and innovation."
 	else:
 		chapter_label.text = "Chapter 3 Complete!"
 		title_label.text = "Star & Moon Town completed"
@@ -647,6 +1290,18 @@ func _open_chapter_final_summary(chapter_id: int) -> void:
 	next_button.text = "Continue Journey"
 	alt_button.visible = false
 	get_tree().paused = true
+
+
+func _is_entire_chapter_complete(chapter_id: int) -> bool:
+	match chapter_id:
+		1:
+			return QuestState.is_chapter1_complete()
+		2:
+			return QuestState.is_chapter2_complete()
+		3:
+			return QuestState.is_chapter3_complete()
+		_:
+			return false
 
 
 func _is_chapter_quest_complete(chapter_id: int, quest_index: int) -> bool:
@@ -728,19 +1383,96 @@ func _is_chapter_summary_shown(chapter_id: int) -> bool:
 	return QuestState.chapter3_summary_shown
 
 
+func _resolve_chapter_flow_target(chapter_id: int) -> int:
+	var target := chapter_id
+	if target == 1 and SKIP_CHAPTER_1_FROM_CHAPTER_0:
+		_mark_chapter_1_complete_for_skip()
+		target = 2
+	if target == 2 and SKIP_CHAPTER_2_FROM_CHAPTER_1:
+		_mark_chapter_2_complete_for_skip()
+		target = 3
+	return target
+
+
+## Test nhanh: bỏ qua 5 quest Ch1, chỉ giữ luồng bảng castle → puzzle (xem SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST).
+func _apply_skip_chapter1_quests_to_castle_test() -> void:
+	QuestState.quest1_maggie_done = true
+	QuestState.quest1_kai_done = true
+	QuestState.quest1_jessica_done = true
+	QuestState.quest2_arden_done = true
+	QuestState.quest2_steven_done = true
+	QuestState.quest2_aurora_done = true
+	QuestState.quest3_complete = true
+	QuestState.quest4_complete = true
+	QuestState.quest5_complete = true
+	QuestState.chapter1_description_shown = true
+	QuestState.chapter1_castle_gate_shown = false
+	QuestState.chapter1_summary_shown = false
+	chapter0_guide_closed = true
+	chapter1_confirmation_shown = true
+	active_chapter_id = 1
+	next_chapter_quest_to_describe = _quest_count(1)
+	suppressed_completion_prompt_index = _quest_count(1) - 1
+	current_chapter_quest_index = -1
+	pending_completion_prompt_index = -1
+	_refresh_chapter1_square_assembly_visibility()
+	_ch1_square_snap_quest1 = QuestState.is_quest1_complete()
+	_ch1_square_snap_quest2 = QuestState.is_quest2_complete()
+	_ch1_square_snap_quest3 = QuestState.quest3_complete
+	_ch1_square_snap_quest4 = QuestState.quest4_complete
+
+
+func _mark_chapter_1_complete_for_skip() -> void:
+	QuestState.quest1_maggie_done = true
+	QuestState.quest1_kai_done = true
+	QuestState.quest1_jessica_done = true
+	QuestState.quest2_arden_done = true
+	QuestState.quest2_steven_done = true
+	QuestState.quest2_aurora_done = true
+	QuestState.quest3_complete = true
+	QuestState.quest4_complete = true
+	QuestState.quest5_complete = true
+	QuestState.chapter1_description_shown = true
+	QuestState.chapter1_castle_gate_shown = true
+	QuestState.chapter1_summary_shown = true
+	AchievementManager.unlock_badge("puzzle_solver")
+	chapter1_confirmation_shown = true
+
+
+func _mark_chapter_2_complete_for_skip() -> void:
+	QuestState.chapter2_quest1_matt_done = true
+	QuestState.chapter2_quest1_kai_done = true
+	QuestState.chapter2_quest1_jessica_done = true
+	QuestState.chapter2_quest2_residents_done = true
+	QuestState.chapter2_quest3_warehouse_done = true
+	QuestState.chapter2_quest4_meeting_done = true
+	QuestState.chapter2_quest5_cleanup_done = true
+	QuestState.chapter2_description_shown = true
+	QuestState.chapter2_summary_shown = true
+	chapter2_confirmation_shown = true
+
+
+func _return_to_main_menu() -> void:
+	story_guide_layer.visible = false
+	is_guide_open = false
+	panel_mode = PanelMode.GUIDE
+	active_guide_kind = ""
+	get_tree().paused = false
+	get_tree().change_scene_to_file(MENU_SCENE)
+
+
 func _start_chapter_flow(chapter_id: int) -> void:
 	_set_chapter_confirmation_shown(chapter_id)
-	_set_chapter_description_shown(chapter_id)
 	active_chapter_id = chapter_id
 	next_chapter_quest_to_describe = 0
+	get_tree().paused = false
 	if chapter_id == 1:
-		get_tree().change_scene_to_file("res://Chapter 1/Clear Stream Valley.tscn")
+		get_tree().change_scene_to_file(CHAPTER_1_SCENE)
+		return
+	if chapter_id == 2:
+		get_tree().change_scene_to_file(CHAPTER_2_SCENE)
+		return
+	if chapter_id == 3:
+		get_tree().change_scene_to_file(CHAPTER_3_SCENE)
 		return
 	_open_chapter_context(chapter_id)
-
-#Ayden
-func repair_bridge() -> void:
-	if bridge_tilemap == null:
-		return
-	for pos in bridge_tiles:
-		bridge_tilemap.set_cell(0, pos, repaired_source_id, repaired_atlas_coords)

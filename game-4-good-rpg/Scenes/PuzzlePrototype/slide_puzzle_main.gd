@@ -1,5 +1,23 @@
 extends Area2D
 
+# =============================================================================
+# TEST — Giả hoàn thành puzzle castle (Achievement Badges)
+# -----------------------------------------------------------------------------
+# Scene: res://Scenes/PuzzlePrototype/slide_puzzle_main.tscn
+#
+# | Mục tiêu                              | Cách bật |
+# |---------------------------------------|----------|
+# | Coi như đã thắng ngay khi vào puzzle  | simulate_puzzle_completed = true (Inspector hoặc default dưới) |
+# | Trong lúc chơi, bấm Space = thắng     | simulate_puzzle_completed = true rồi bấm Space |
+# | Giải puzzle thật                      | simulate_puzzle_completed = false, xếp đủ 16 ô |
+#
+# Khi simulate_puzzle_completed = true: unlock badge puzzle_solver + popup ~3s + quay map Ch1 (nếu từ castle).
+# Nhớ đặt lại false trước khi commit / build release.
+# =============================================================================
+## Bật = coi như đã hoàn thành puzzle (test). Chỉnh trên node gốc trong Inspector hoặc đổi default ở đây.
+@export var simulate_puzzle_completed: bool = true
+const CASTLE_RETURN_SCENE_META := "castle_puzzle_return_scene"
+
 @onready var achievement_popup = $AchievementPopup
 
 const TILE_SIZE := 150
@@ -8,11 +26,14 @@ const BOARD_OFFSET := Vector2(150, 0)
 var tiles = []
 var solved = []
 var mouse = false
+var _puzzle_finished := false
 
 func _ready():
 	position = BOARD_OFFSET
 	scale = Vector2(0.6, 0.6)
 	start_game()
+	if simulate_puzzle_completed:
+		call_deferred("_complete_puzzle_as_test")
 
 func start_game():
 	tiles = [$Tile1, $Tile2, $Tile3, $Tile4, $Tile5, $Tile6, $Tile7, $Tile8, $Tile9, $Tile10, $Tile11, $Tile12, $Tile13, $Tile14, $Tile15, $Tile16]
@@ -31,16 +52,11 @@ func shuffle_tiles():
 			previous_1 = previous
 			previous = tile
 
-func _process(delta):
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		AchievementManager.unlock_badge("puzzle_solver")
-		print("Test badge unlocked!")
-		emit_signal("puzzle_completed")
-		AchievementManager.unlock_badge("puzzle_solver")
-		show_achievement()
-		
-	
+func _process(_delta: float) -> void:
+	if simulate_puzzle_completed and Input.is_action_just_pressed("ui_accept"):
+		_complete_puzzle_as_test()
+		return
+
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and mouse:
 		var mouse_copy = mouse
 		mouse = false
@@ -50,13 +66,7 @@ func _process(delta):
 		check_neighbours(rows, cols)
 
 		if tiles == solved:
-			print("You win!")
-			
-			if AchievementManager.has_badge("puzzle_solver") == false:
-				AchievementManager.unlock_badge("puzzle_solver")
-				
-			emit_signal("puzzle_completed")
-			queue_free()
+			_complete_puzzle_win(false)
 	
 func check_neighbours(rows, cols):
 	var empty = false
@@ -112,13 +122,37 @@ func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		mouse = event
 
-func show_achievement():
-	achievement_popup.visible = true
+func _complete_puzzle_as_test() -> void:
+	print("[test] Puzzle completed (simulate_puzzle_completed).")
+	_complete_puzzle_win(true)
 
-	await get_tree().create_timer(3.0).timeout
 
-	achievement_popup.visible = false
-
+func _complete_puzzle_win(show_popup: bool) -> void:
+	if _puzzle_finished:
+		return
+	_puzzle_finished = true
+	if not AchievementManager.has_badge("puzzle_solver"):
+		AchievementManager.unlock_badge("puzzle_solver")
 	emit_signal("puzzle_completed")
+	if show_popup:
+		show_achievement()
+	else:
+		print("You win!")
+		_return_from_castle_puzzle()
 
-	get_parent().queue_free()
+
+func show_achievement() -> void:
+	achievement_popup.visible = true
+	await get_tree().create_timer(3.0).timeout
+	achievement_popup.visible = false
+	_return_from_castle_puzzle()
+
+
+func _return_from_castle_puzzle() -> void:
+	if get_tree().has_meta(CASTLE_RETURN_SCENE_META):
+		var return_scene: String = get_tree().get_meta(CASTLE_RETURN_SCENE_META)
+		get_tree().remove_meta(CASTLE_RETURN_SCENE_META)
+		get_tree().change_scene_to_file(return_scene)
+		return
+	if get_parent():
+		get_parent().queue_free()

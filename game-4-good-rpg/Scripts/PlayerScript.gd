@@ -45,6 +45,7 @@ var current_skin_index := 0
 var last_direction := Vector2.RIGHT
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	target_position = global_position
 	add_to_group("player")
 	actionable_finder.add_to_group("player_interaction_area")
@@ -68,8 +69,12 @@ func cycle_skin():
 	current_skin_index = (current_skin_index + 1) % SKIN_ORDER.size()
 	set_skin(SKIN_ORDER[current_skin_index])
 
+func _is_input_blocked() -> bool:
+	return is_in_dialogue or QuestState.is_story_guide_blocking_input()
+
+
 func _unhandled_input(_event: InputEvent) -> void:
-	if is_in_dialogue:
+	if _is_input_blocked():
 		return
 	if Input.is_action_just_pressed("ui_accept"):
 		var actionables := actionable_finder.get_overlapping_areas()
@@ -78,7 +83,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 
 func _input(event):
-	if is_in_dialogue:
+	if _is_input_blocked():
 		return
 	if event is InputEventMouseButton and event.pressed:
 		target_position = get_global_mouse_position()
@@ -86,7 +91,8 @@ func _input(event):
 
 
 func _physics_process(delta):
-	if is_in_dialogue:
+	if _is_input_blocked():
+		using_mouse = false
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return

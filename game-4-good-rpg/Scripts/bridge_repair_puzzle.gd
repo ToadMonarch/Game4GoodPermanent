@@ -1,5 +1,8 @@
 extends Node2D
 
+const BRIDGE_RETURN_SCENE_META := "bridge_puzzle_return_scene"
+const CHAPTER_1_SCENE := "res://Chapter 1/Clear Stream Valley.tscn"
+
 @onready var complete_label: Label = $CanvasLayer/CompleteLabel
 @onready var broken_bridge: Sprite2D = $BrokenBridgeReference
 @onready var complete_bridge: Sprite2D = $CompletedBridgeReference
@@ -29,7 +32,16 @@ func _show_completed_bridge() -> void:
 	drop_zones.visible = false
 	complete_bridge.visible = true
 
-	global.bridge_repaired = true
+	QuestState.bridge_repaired = true
 
 	await get_tree().create_timer(1.5).timeout
-	get_tree().change_scene_to_file("res://Scenes/start.tscn")
+	_return_to_map()
+
+
+func _return_to_map() -> void:
+	if get_tree().has_meta(BRIDGE_RETURN_SCENE_META):
+		var return_scene: String = get_tree().get_meta(BRIDGE_RETURN_SCENE_META)
+		get_tree().remove_meta(BRIDGE_RETURN_SCENE_META)
+		get_tree().change_scene_to_file(return_scene)
+		return
+	get_tree().change_scene_to_file(CHAPTER_1_SCENE)

@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://pjnilg7ynax4"]
+[gd_scene format=4 uid="uid://bm8e8bq1pys3t"]
 
 [ext_resource type="Texture2D" uid="uid://3yd3i02a5hjk" path="res://Sprites/TileMaps/Haifeng Village Tile Image.png" id="1_cdqkm"]
 [ext_resource type="Texture2D" uid="uid://bx7qscpccbq1c" path="res://Sprites/TileMaps/2.png" id="2_xwdnv"]
@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://dnhtxa2dqmuha" path="res://Sprites/TileMaps/rev tiles (2).png" id="4_ak6ek"]
 [ext_resource type="Texture2D" uid="uid://k0piu1w6qggl" path="res://Sprites/TileMaps/revtile2.png" id="6_3hp6n"]
 [ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="6_xwdnv"]
+[ext_resource type="Script" uid="uid://dbwy243yfc0pn" path="res://Steven/main/story_guide_panel.gd" id="10_storyguide"]
+[ext_resource type="PackedScene" uid="uid://b7ka1npc01npc" path="res://character/Kai/kai.tscn" id="11_kai"]
+[ext_resource type="PackedScene" uid="uid://d5nm8ubav8ew" path="res://character/Jessica/jessica.tscn" id="12_jessica"]
+[ext_resource type="PackedScene" uid="uid://drv1u21aujsnn" path="res://character/Matt/matt.tscn" id="13_matt"]
+[ext_resource type="PackedScene" uid="uid://bwq1d2sogmt04" path="res://character/FishingVillageResidents/fishing_village_residents.tscn" id="14_fvr"]
+[ext_resource type="PackedScene" uid="uid://00ek6snrodnk" path="res://character/Matt_Kai_Villagers/matt_kai_villagers.tscn" id="15_mkv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_445iu"]
 texture = ExtResource("1_cdqkm")
@@ -185,6 +191,8 @@ func _ready() -> void:
 "
 
 [node name="Chapter 2" type="Node2D" unique_id=1851929028]
+script = ExtResource("10_storyguide")
+begins_on_chapter2_map = true
 
 [node name="Water" type="TileMapLayer" parent="." unique_id=401339355]
 y_sort_enabled = true
@@ -217,3 +225,84 @@ position = Vector2(1956, -967)
 scale = Vector2(1.8, 1.8)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1255284566]
+
+[node name="Matt" parent="." unique_id=277546319 instance=ExtResource("13_matt")]
+z_index = 2
+position = Vector2(520, 160)
+
+[node name="Kai" parent="." unique_id=1417196607 instance=ExtResource("11_kai")]
+z_index = 2
+position = Vector2(2100, -750)
+
+[node name="Jessica" parent="." unique_id=989292783 instance=ExtResource("12_jessica")]
+z_index = 2
+position = Vector2(256, -2089)
+
+[node name="FishingVillageResidents" parent="." unique_id=448381792 instance=ExtResource("14_fvr")]
+z_index = 2
+position = Vector2(1573, -629)
+
+[node name="MattKaiVillagers" parent="." unique_id=1766484008 instance=ExtResource("15_mkv")]
+z_index = 2
+position = Vector2(1978, -4210)
+
+[node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
+layer = 100
+
+[node name="GuidePanel" type="PanelContainer" parent="StoryGuideLayer" unique_id=906313394]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -145.0
+offset_right = 270.0
+offset_bottom = 145.0
+
+[node name="ContentMargin" type="MarginContainer" parent="StoryGuideLayer/GuidePanel" unique_id=1851657183]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ContentVBox" type="VBoxContainer" parent="StoryGuideLayer/GuidePanel/ContentMargin" unique_id=171650617]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ChapterLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=243774275]
+layout_mode = 2
+text = "Chapter"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=538838741]
+layout_mode = 2
+text = "Title"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=1790015144]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description"
+autowrap_mode = 3
+
+[node name="FooterRow" type="HBoxContainer" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox" unique_id=1365845943]
+layout_mode = 2
+alignment = 2
+
+[node name="PageLabel" type="Label" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=380495178]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1/1"
+
+[node name="NextButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=1781923389]
+layout_mode = 2
+text = "Next"
+
+[node name="AltButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=146728390]
+visible = false
+layout_mode = 2
+text = "Alt"

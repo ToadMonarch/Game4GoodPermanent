@@ -28,7 +28,7 @@ script = ExtResource("1_friend_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=512681378]
 y_sort_enabled = true
-position = Vector2(1041.5238, 300.66666)
+position = Vector2(825, 125)
 scale = Vector2(2.2619042, 2.0833333)
 texture = ExtResource("2_ly7if")
 
@@ -51,7 +51,7 @@ dialogue_resource = ExtResource("4_dialogue")
 dialogue_start = "friend_start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2" unique_id=976817691]
-position = Vector2(1040.5238, 298.16666)
+position = Vector2(824, 125)
 shape = SubResource("CircleShape2D_friend_interaction")
 
 [node name="TalkHintLayer" type="CanvasLayer" parent="." unique_id=1856045488]

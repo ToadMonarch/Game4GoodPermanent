@@ -1,9 +1,9 @@
-[gd_scene format=4 uid="uid://b52aysa4i75el"]
+[gd_scene format=4 uid="uid://dfiknme6dntjv"]
 
 [ext_resource type="PackedScene" uid="uid://d1skljlv2mige" path="res://Scenes/PlayerMovement/character_body_2d.tscn" id="1_3bxa3"]
 [ext_resource type="PackedScene" uid="uid://cnrxqsji5wjmh" path="res://Scenes/chapter0.tscn" id="2_r48yj"]
 [ext_resource type="Script" uid="uid://dbwy243yfc0pn" path="res://Steven/main/story_guide_panel.gd" id="10_storyguide"]
-[ext_resource type="Script" uid="uid://bac2hu1d1ruef" path="res://Scenes/bridge_repair_trigger.gd" id="12_knwj7"]
+[ext_resource type="PackedScene" uid="uid://dq8m2bridge7k1" path="res://Scenes/bridge_repair_trigger.tscn" id="12_bridge_trigger"]
 [ext_resource type="PackedScene" uid="uid://chfx2i51458r7" path="res://character/Traveller/human.tscn" id="13_traveller"]
 [ext_resource type="PackedScene" uid="uid://dmxdx3fwc1nfh" path="res://character/Family/famil.tscn" id="14_family"]
 [ext_resource type="PackedScene" uid="uid://drxfovylj05ic" path="res://character/Friend/friend.tscn" id="15_adele"]
@@ -36,9 +36,6 @@ font = SubResource("FontFile_acg6e")
 font_size = 30
 shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.90588236)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_knwj7"]
-radius = 85.0
 
 [node name="Start" type="Node2D" unique_id=1268696800]
 position = Vector2(-1, 0)
@@ -199,23 +196,8 @@ visible = false
 layout_mode = 2
 text = "Alt"
 
-[node name="RepairPromptLabel" type="Label" parent="StoryGuideLayer" unique_id=1881278857]
-visible = false
-modulate = Color(0, 0, 0, 1)
-offset_left = 2373.0
-offset_top = -317.0
-offset_right = 2588.0
-offset_bottom = -294.0
-text = "Press space to repair bridge"
-
-[node name="BridgeRepairTrigger" type="Area2D" parent="." unique_id=1933422119 node_paths=PackedStringArray("repair_prompt")]
+[node name="BridgeRepairTrigger" parent="." instance=ExtResource("12_bridge_trigger")]
 position = Vector2(2555, -366)
-script = ExtResource("12_knwj7")
-repair_prompt = NodePath("../StoryGuideLayer/RepairPromptLabel")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BridgeRepairTrigger" unique_id=902528200]
-position = Vector2(-64, 58)
-shape = SubResource("CircleShape2D_knwj7")
 
 [connection signal="pressed" from="CanvasLayer/SettingsButton" to="CanvasLayer" method="_on_settings_button_pressed"]
 [connection signal="value_changed" from="CanvasLayer/SettingsMenu/VolumeSlider" to="CanvasLayer" method="_on_volume_slider_value_changed"]
