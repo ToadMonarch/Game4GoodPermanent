@@ -50,26 +50,32 @@ const CHAPTER_QUEST_ENTRIES := {
 	{
 		"quest_index": 0,
 		"chapter": "Chapter 2 - Seabreeze Village",
-		"title": "Quest 1 — Goal",
-		"description": "Observe marine problems and learn marine knowledge.\n\nFollow Jessica to observe the beach, shallow sea, and fishing gear warehouse.",
+		"title": "Quest 1 — Beach Clean-up",
+		"description": "Clean garbage on the beach and sort it into the correct bags.\n\nTalk to Jessica near the beach to begin.",
 	},
 	{
 		"quest_index": 0,
 		"chapter": "Chapter 2 - Seabreeze Village",
 		"title": "Quest 1 — What to Do",
-		"description": "Go to the seaside rocky area and learn tides and marine knowledge from Elder Matt.",
+		"description": "Collect 6 trash items on the beach, then drag each item into the correct sorting bag:\n\nPlastic, Recyclable, Organic, and Fishing Waste.",
 	},
 	{
 		"quest_index": 0,
 		"chapter": "Chapter 2 - Seabreeze Village",
 		"title": "Quest 1 — Complete When",
-		"description": "You complete the quest when you have talked to both Jessica and Matt.",
+		"description": "You complete the quest when all beach trash is collected and sorted correctly.",
 	},
 	{
 		"quest_index": 1,
 		"chapter": "Chapter 2 - Seabreeze Village",
 		"title": "Quest 2 — Goal",
-		"description": "Clean up garbage, sort waste, and protect the environment.\n\nGet gloves, garbage clamps, and sorting bags, then clean in groups on the public beach from Fishing Villagers",
+		"description": "Learn traditional marine knowledge from Elder Matt at the fishing wharf.",
+	},
+	{
+		"quest_index": 1,
+		"chapter": "Chapter 2 - Seabreeze Village",
+		"title": "Quest 2 — Complete When",
+		"description": "You complete the quest when you have talked to Matt at the fishing wharf.",
 	},
 	{
 		"quest_index": 2,
@@ -111,7 +117,7 @@ const CHAPTER_QUEST_ENTRIES := {
 		"quest_index": 4,
 		"chapter": "Chapter 2 - Seabreeze Village",
 		"title": "Quest 5 — Goal",
-		"description": "Set up signs, take oaths, and consolidate results.\n\nPrepare the beach viewing platform and erect the sign: \"Protect the Blue Coast.\"",
+		"description": "Assemble the Protect the Blue Coast sign.",
 	},
 	{
 		"quest_index": 4,
@@ -343,7 +349,7 @@ var _ch1_square_snap_quest5: bool = false
 var _ch1_square_snap_bridge_repaired: bool = false
 
 ## Chapter 2 — cast theo quest (chapter_2.tscn).
-## Q1: Matt + Jessica. Q2: FishingVillageResidents. Q3: Matt + Kai. Q4–5: MattKaiVillagers.
+## Jessica: Q1–Q5. Matt / Kai / FishingVillageResidents: Q1–Q3. MattKaiVillagers: Q4–Q5.
 var _ch2_matt: Node2D
 var _ch2_kai: Node2D
 var _ch2_jessica: Node2D
@@ -394,10 +400,10 @@ func _ready() -> void:
 		QuestState.chapter1_castle_gate_shown = true
 		QuestState.chapter1_summary_shown = true
 		AchievementManager.unlock_badge("puzzle_solver")
+		QuestState.chapter2_beach_cleanup_started = true
+		QuestState.chapter2_beach_cleanup_done = true
 		QuestState.chapter2_quest1_matt_done = true
 		QuestState.chapter2_quest1_kai_done = true
-		QuestState.chapter2_quest1_jessica_done = true
-		QuestState.chapter2_quest2_residents_done = true
 		QuestState.chapter2_quest3_warehouse_done = true
 		QuestState.chapter2_quest4_meeting_done = true
 		QuestState.chapter2_quest5_cleanup_done = true
@@ -431,6 +437,9 @@ func _ready() -> void:
 
 	add_to_group("story_guide_panel")
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	if story_guide_layer == null:
+		push_error("StoryGuideLayer node is missing on %s" % scene_file_path)
+		return
 	story_guide_layer.layer = maxi(story_guide_layer.layer, 101)
 	story_guide_layer.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	guide_panel.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -451,7 +460,7 @@ func _ready() -> void:
 	if _is_on_chapter2_map():
 		_refresh_chapter2_cast_visibility()
 		_ch2_snap_quest1_done = QuestState.is_chapter2_quest1_complete()
-		_ch2_snap_quest2_done = QuestState.chapter2_quest2_residents_done
+		_ch2_snap_quest2_done = QuestState.is_chapter2_quest2_complete()
 		_ch2_snap_quest3_done = QuestState.chapter2_quest3_warehouse_done
 		_ch2_snap_quest4_done = QuestState.chapter2_quest4_meeting_done
 		_ch2_snap_quest5_done = QuestState.chapter2_quest5_cleanup_done
@@ -919,31 +928,28 @@ func _refresh_chapter2_cast_visibility() -> void:
 	if not is_instance_valid(_ch2_matt) and not is_instance_valid(_ch2_matt_kai_villagers):
 		return
 
-	var quest1_done := QuestState.is_chapter2_quest1_complete()
-	var quest2_done := QuestState.chapter2_quest2_residents_done
 	var quest3_done := QuestState.chapter2_quest3_warehouse_done
 	var quest5_done := QuestState.chapter2_quest5_cleanup_done
 
-	var show_matt_kai_villagers := quest3_done and not quest5_done
-	var show_quest1_npcs := not quest1_done
-	var show_quest2_fishing := quest1_done and not quest2_done
-	var show_quest3_npcs := quest2_done and not quest3_done
+	var show_quests_1_to_3_cast := not quest3_done
+	var show_quests_4_to_5_cast := quest3_done and not quest5_done
+	var show_jessica := not quest5_done
 
 	if is_instance_valid(_ch2_matt):
-		_ch2_matt.visible = show_quest1_npcs or show_quest3_npcs
+		_ch2_matt.visible = show_quests_1_to_3_cast
 		_ch1_set_branch_physics_enabled(_ch2_matt, _ch2_matt.visible)
 	if is_instance_valid(_ch2_kai):
-		_ch2_kai.visible = show_quest3_npcs
+		_ch2_kai.visible = show_quests_1_to_3_cast
 		_ch1_set_branch_physics_enabled(_ch2_kai, _ch2_kai.visible)
 	if is_instance_valid(_ch2_jessica):
-		_ch2_jessica.visible = show_quest1_npcs
+		_ch2_jessica.visible = show_jessica
 		_ch1_set_branch_physics_enabled(_ch2_jessica, _ch2_jessica.visible)
 	if is_instance_valid(_ch2_fishing_villagers):
-		_ch2_fishing_villagers.visible = show_quest2_fishing
-		_ch1_set_branch_physics_enabled(_ch2_fishing_villagers, show_quest2_fishing)
+		_ch2_fishing_villagers.visible = show_quests_1_to_3_cast
+		_ch1_set_branch_physics_enabled(_ch2_fishing_villagers, show_quests_1_to_3_cast)
 	if is_instance_valid(_ch2_matt_kai_villagers):
-		_ch2_matt_kai_villagers.visible = show_matt_kai_villagers
-		_ch1_set_branch_physics_enabled(_ch2_matt_kai_villagers, show_matt_kai_villagers)
+		_ch2_matt_kai_villagers.visible = show_quests_4_to_5_cast
+		_ch1_set_branch_physics_enabled(_ch2_matt_kai_villagers, show_quests_4_to_5_cast)
 
 
 func _ch2_poll_quest_flags_for_cast_visibility() -> void:
@@ -952,7 +958,7 @@ func _ch2_poll_quest_flags_for_cast_visibility() -> void:
 	if not is_instance_valid(_ch2_matt):
 		return
 	var quest1_done := QuestState.is_chapter2_quest1_complete()
-	var quest2_done := QuestState.chapter2_quest2_residents_done
+	var quest2_done := QuestState.is_chapter2_quest2_complete()
 	var quest3_done := QuestState.chapter2_quest3_warehouse_done
 	var quest4_done := QuestState.chapter2_quest4_meeting_done
 	var quest5_done := QuestState.chapter2_quest5_cleanup_done
@@ -1055,10 +1061,20 @@ func _flush_pending_story_flow_checks() -> void:
 	_handle_final_summary_flow()
 
 
+func _is_ingame_settings_menu_open() -> bool:
+	for path in ["CanvasLayer/SettingsMenu", "IngameSettings/SettingsMenu"]:
+		var menu := get_node_or_null(path) as Control
+		if menu != null and menu.visible:
+			return true
+	return false
+
+
 func _recover_stuck_pause_without_guide() -> void:
 	if not get_tree().paused:
 		return
 	if is_guide_open or _is_story_dialogue_active():
+		return
+	if _is_ingame_settings_menu_open():
 		return
 	get_tree().paused = false
 
@@ -1067,6 +1083,8 @@ func _reconcile_stray_pause() -> void:
 	if is_guide_open or story_guide_layer.visible:
 		return
 	if _story_dialogue_sessions > 0:
+		return
+	if _is_ingame_settings_menu_open():
 		return
 	if get_tree().paused:
 		get_tree().paused = false
@@ -1324,7 +1342,7 @@ func _is_chapter_quest_complete(chapter_id: int, quest_index: int) -> bool:
 			0:
 				return QuestState.is_chapter2_quest1_complete()
 			1:
-				return QuestState.chapter2_quest2_residents_done
+				return QuestState.is_chapter2_quest2_complete()
 			2:
 				return QuestState.chapter2_quest3_warehouse_done
 			3:
@@ -1440,12 +1458,13 @@ func _mark_chapter_1_complete_for_skip() -> void:
 
 
 func _mark_chapter_2_complete_for_skip() -> void:
+	QuestState.chapter2_beach_cleanup_started = true
+	QuestState.chapter2_beach_cleanup_done = true
 	QuestState.chapter2_quest1_matt_done = true
 	QuestState.chapter2_quest1_kai_done = true
-	QuestState.chapter2_quest1_jessica_done = true
-	QuestState.chapter2_quest2_residents_done = true
 	QuestState.chapter2_quest3_warehouse_done = true
 	QuestState.chapter2_quest4_meeting_done = true
+	QuestState.chapter2_sign_assembled = true
 	QuestState.chapter2_quest5_cleanup_done = true
 	QuestState.chapter2_description_shown = true
 	QuestState.chapter2_summary_shown = true

@@ -52,7 +52,7 @@ func _resolve_dialogue_start() -> String:
 					return "chapter2_locked_finish_chapter1"
 				if not QuestState.is_chapter2_quest1_complete():
 					return "chapter2_locked_finish_quest1"
-				if QuestState.chapter2_quest2_residents_done:
+				if QuestState.is_chapter2_quest2_complete():
 					if not QuestState.chapter2_quest3_warehouse_done:
 						return "chapter2_locked_finish_quest3"
 					return "fishing_village_residents_ch2_repeat"
@@ -92,7 +92,7 @@ func _resolve_dialogue_start() -> String:
 			if QuestState.chapter1_summary_shown:
 				if not QuestState.is_chapter2_quest1_complete():
 					return "chapter2_locked_finish_quest1"
-				if not QuestState.chapter2_quest2_residents_done:
+				if not QuestState.is_chapter2_quest2_complete():
 					return "chapter2_locked_finish_quest2"
 				if not QuestState.chapter2_quest3_warehouse_done:
 					return "villagers_ch2_warehouse_start"
@@ -143,7 +143,7 @@ func _resolve_dialogue_start() -> String:
 				return "chapter2_locked_finish_chapter1"
 			if not QuestState.is_chapter2_quest1_complete():
 				return "chapter2_locked_finish_quest1"
-			if QuestState.chapter2_quest2_residents_done:
+			if QuestState.is_chapter2_quest2_complete():
 				if not QuestState.chapter2_quest3_warehouse_done:
 					return "chapter2_locked_finish_quest3"
 				return "fishing_village_residents_ch2_repeat"
@@ -176,7 +176,7 @@ func _resolve_dialogue_start() -> String:
 				return "chapter2_locked_finish_chapter1"
 			if not QuestState.is_chapter2_quest1_complete():
 				return "chapter2_locked_finish_quest1"
-			if not QuestState.chapter2_quest2_residents_done:
+			if not QuestState.is_chapter2_quest2_complete():
 				return "chapter2_locked_finish_quest2"
 			if not QuestState.chapter2_quest3_warehouse_done:
 				return "chapter2_locked_finish_quest3"
@@ -197,7 +197,17 @@ func _resolve_chapter2_quest1_npc_dialogue() -> String:
 		if quest1_title.is_empty():
 			return "chapter2_locked_finish_quest1"
 		return _resolve_chapter2_quest1_dialogue(quest1_title)
-	if not QuestState.chapter2_quest2_residents_done:
+	var active_ch2_title := dialogue_chapter2_start if not dialogue_chapter2_start.is_empty() else dialogue_start
+	if not QuestState.is_chapter2_quest2_complete():
+		match active_ch2_title:
+			"jessica_ch2_start":
+				return "jessica_ch2_cleanup_done"
+			"matt_ch2_start":
+				if QuestState.chapter2_quest1_matt_done:
+					return "matt_ch2_repeat"
+				return "matt_ch2_start"
+			"kai_ch2_start":
+				return "chapter2_locked_finish_quest2"
 		return "chapter2_locked_finish_quest2"
 	if not QuestState.chapter2_quest3_warehouse_done:
 		if dialogue_chapter2_after_quest2.is_empty():
@@ -215,11 +225,15 @@ func _resolve_chapter2_quest1_dialogue(quest1_title: String) -> String:
 		return "chapter2_locked_finish_quest1"
 	match quest1_title:
 		"matt_ch2_start":
+			if not QuestState.chapter2_beach_cleanup_done:
+				return "chapter2_locked_finish_beach_cleanup"
 			if QuestState.chapter2_quest1_matt_done:
 				return "matt_ch2_repeat"
 			return "matt_ch2_start"
 		"jessica_ch2_start":
-			if QuestState.chapter2_quest1_jessica_done:
+			if QuestState.chapter2_beach_cleanup_done:
+				return "jessica_ch2_cleanup_done"
+			if QuestState.chapter2_beach_cleanup_started:
 				return "jessica_ch2_repeat"
 			return "jessica_ch2_start"
 	return quest1_title

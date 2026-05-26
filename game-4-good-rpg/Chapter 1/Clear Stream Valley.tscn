@@ -73,8 +73,10 @@ layer = 110
 script = ExtResource("13_menu")
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer" unique_id=1755924974]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 112.0
+offset_bottom = 48.0
 text = "Settings"
 
 [node name="SettingsMenu" type="Panel" parent="CanvasLayer" unique_id=1457820727]
@@ -180,7 +182,7 @@ position = Vector2(2746, 678)
 
 [node name="CastlePuzzleTrigger" parent="." unique_id=1782826142 instance=ExtResource("12_castle_trigger")]
 z_index = 2
-position = Vector2(2986, -588)
+position = Vector2(3216, -511)
 
 [node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
 layer = 100

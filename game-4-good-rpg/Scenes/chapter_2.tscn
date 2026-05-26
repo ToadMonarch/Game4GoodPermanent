@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://drv1u21aujsnn" path="res://character/Matt/matt.tscn" id="13_matt"]
 [ext_resource type="PackedScene" uid="uid://bwq1d2sogmt04" path="res://character/FishingVillageResidents/fishing_village_residents.tscn" id="14_fvr"]
 [ext_resource type="PackedScene" uid="uid://00ek6snrodnk" path="res://character/Matt_Kai_Villagers/matt_kai_villagers.tscn" id="15_mkv"]
+[ext_resource type="PackedScene" uid="uid://c2beachpuzzle001" path="res://Scenes/chapter2/BeachCleanupPuzzle.tscn" id="16_beach"]
+[ext_resource type="PackedScene" uid="uid://c8ingame7settings" path="res://Scenes/Settings/IngameSettings.tscn" id="17_settings"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_445iu"]
 texture = ExtResource("1_cdqkm")
@@ -236,7 +238,9 @@ position = Vector2(2100, -750)
 
 [node name="Jessica" parent="." unique_id=989292783 instance=ExtResource("12_jessica")]
 z_index = 2
-position = Vector2(256, -2089)
+position = Vector2(120, -2250)
+
+[node name="BeachCleanupPuzzle" parent="." instance=ExtResource("16_beach")]
 
 [node name="FishingVillageResidents" parent="." unique_id=448381792 instance=ExtResource("14_fvr")]
 z_index = 2
@@ -245,6 +249,8 @@ position = Vector2(1573, -629)
 [node name="MattKaiVillagers" parent="." unique_id=1766484008 instance=ExtResource("15_mkv")]
 z_index = 2
 position = Vector2(1978, -4210)
+
+[node name="IngameSettings" parent="." instance=ExtResource("17_settings")]
 
 [node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
 layer = 100

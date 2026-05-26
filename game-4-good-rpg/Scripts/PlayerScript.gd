@@ -41,6 +41,9 @@ const SKIN_ORDER: Array[String] = [
 	"WhiteGirl"
 ]
 
+const SETTINGS_PATH := "user://settings.cfg"
+const DEFAULT_SKIN_NAME := "LGBT2"
+
 var current_skin_index := 0
 var last_direction := Vector2.RIGHT
 
@@ -52,11 +55,29 @@ func _ready():
 	DialogueManager.dialogue_started.connect(_on_dialogue_started)
 	DialogueManager.dialogue_ended.connect(_on_dialogue_ended)
 
-	current_skin_index = SKIN_ORDER.find("LGBT2")
-	if current_skin_index == -1:
-		current_skin_index = 0
+	apply_skin_from_settings()
 
+func apply_skin_from_settings() -> void:
+	current_skin_index = _load_saved_skin_index()
 	set_skin(SKIN_ORDER[current_skin_index])
+
+func save_current_skin() -> void:
+	var config := ConfigFile.new()
+	config.load(SETTINGS_PATH)
+	config.set_value("player", "skin", current_skin_index)
+	config.save(SETTINGS_PATH)
+
+func _load_saved_skin_index() -> int:
+	var default_index := SKIN_ORDER.find(DEFAULT_SKIN_NAME)
+	if default_index == -1:
+		default_index = 0
+	var config := ConfigFile.new()
+	if config.load(SETTINGS_PATH) != OK:
+		return default_index
+	var skin: int = int(config.get_value("player", "skin", default_index))
+	if skin < 0 or skin >= SKIN_ORDER.size():
+		return default_index
+	return skin
 
 func set_skin(name: String):
 	if SPRITES.has(name):

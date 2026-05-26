@@ -16,11 +16,15 @@ var quest5_complete: bool = false
 var chapter2_quest1_matt_done: bool = false
 var chapter2_quest1_kai_done: bool = false
 var chapter2_quest1_jessica_done: bool = false
+var chapter2_beach_cleanup_started: bool = false
+var chapter2_beach_cleanup_done: bool = false
+var chapter2_beach_collected_ids: Array[String] = []
 var chapter2_quest2_residents_done: bool = false
 var chapter2_quest3_matt_done: bool = false
 var chapter2_quest3_kai_done: bool = false
 var chapter2_quest3_warehouse_done: bool = false
 var chapter2_quest4_meeting_done: bool = false
+var chapter2_sign_assembled: bool = false
 var chapter2_quest5_cleanup_done: bool = false
 var chapter2_description_shown: bool = false
 var chapter2_summary_shown: bool = false
@@ -44,6 +48,7 @@ var chapter0_friend_done: bool = false
 var chapter1_description_shown: bool = false
 var chapter1_castle_gate_shown: bool = false
 var chapter1_summary_shown: bool = false
+var interaction_lock_count: int = 0
 
 #bridge repair - Ayden Tran
 var bridge_repaired := false
@@ -73,7 +78,11 @@ func is_chapter1_complete() -> bool:
 
 
 func is_chapter2_quest1_complete() -> bool:
-	return chapter2_quest1_matt_done and chapter2_quest1_jessica_done
+	return chapter2_beach_cleanup_done
+
+
+func is_chapter2_quest2_complete() -> bool:
+	return chapter2_quest1_matt_done
 
 
 func is_chapter2_quest3_complete() -> bool:
@@ -81,7 +90,7 @@ func is_chapter2_quest3_complete() -> bool:
 
 
 func is_chapter2_complete() -> bool:
-	return is_chapter2_quest1_complete() and chapter2_quest2_residents_done and chapter2_quest3_warehouse_done and chapter2_quest4_meeting_done and chapter2_quest5_cleanup_done
+	return is_chapter2_quest1_complete() and is_chapter2_quest2_complete() and chapter2_quest3_warehouse_done and chapter2_quest4_meeting_done and chapter2_quest5_cleanup_done
 
 
 func is_chapter3_quest1_complete() -> bool:
@@ -134,7 +143,7 @@ func mark_quest5_complete() -> void:
 
 func mark_chapter2_quest1_matt_done() -> void:
 	chapter2_quest1_matt_done = true
-	_update_chapter2_quest1_completion()
+	_notify_chapter2_cast_refresh()
 
 
 func mark_chapter2_quest1_kai_done() -> void:
@@ -145,6 +154,39 @@ func mark_chapter2_quest1_kai_done() -> void:
 func mark_chapter2_quest1_jessica_done() -> void:
 	chapter2_quest1_jessica_done = true
 	_update_chapter2_quest1_completion()
+
+
+func mark_chapter2_beach_cleanup_started() -> void:
+	chapter2_beach_cleanup_started = true
+	_notify_beach_cleanup_refresh()
+	_notify_chapter2_cast_refresh()
+
+
+func mark_chapter2_beach_cleanup_done() -> void:
+	chapter2_beach_cleanup_done = true
+	_notify_chapter2_cast_refresh()
+
+
+func collect_beach_trash_item(item_id: String) -> void:
+	if item_id.is_empty() or item_id in chapter2_beach_collected_ids:
+		return
+	chapter2_beach_collected_ids.append(item_id)
+
+
+func is_beach_trash_collected(item_id: String) -> bool:
+	return item_id in chapter2_beach_collected_ids
+
+
+func get_beach_trash_collected_count() -> int:
+	return chapter2_beach_collected_ids.size()
+
+
+func get_beach_trash_collected_items() -> Array[Dictionary]:
+	return BeachCleanupConfig.get_collected_items(chapter2_beach_collected_ids)
+
+
+func has_collected_all_beach_trash() -> bool:
+	return get_beach_trash_collected_count() >= BeachCleanupConfig.TRASH_ITEMS.size()
 
 
 func mark_chapter2_quest2_residents_done() -> void:
@@ -189,14 +231,29 @@ func _notify_chapter2_cast_refresh() -> void:
 			return
 
 
+func _notify_beach_cleanup_refresh() -> void:
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return
+	for node in tree.get_nodes_in_group("beach_cleanup_manager"):
+		if node.has_method("refresh_trash_visibility"):
+			node.call_deferred("refresh_trash_visibility")
+
+
 func mark_chapter2_quest4_meeting_done() -> void:
 	chapter2_quest4_meeting_done = true
 	_notify_chapter2_cast_refresh()
 
 
 func mark_chapter2_quest5_cleanup_done() -> void:
+	if not chapter2_sign_assembled:
+		return
 	chapter2_quest5_cleanup_done = true
 	_notify_chapter2_cast_refresh()
+
+
+func mark_chapter2_sign_assembled() -> void:
+	chapter2_sign_assembled = true
 
 
 func mark_chapter3_quest1_advaita_done() -> void:
@@ -260,6 +317,8 @@ func is_chapter0_complete() -> bool:
 
 ## True while story guide / quest description panel is open (blocks player movement).
 func is_story_guide_blocking_input() -> bool:
+	if is_interaction_input_locked():
+		return true
 	var tree := Engine.get_main_loop() as SceneTree
 	if tree == null:
 		return false
@@ -267,6 +326,18 @@ func is_story_guide_blocking_input() -> bool:
 		if "is_guide_open" in node and node.is_guide_open:
 			return true
 	return false
+
+
+func push_interaction_input_lock() -> void:
+	interaction_lock_count += 1
+
+
+func pop_interaction_input_lock() -> void:
+	interaction_lock_count = maxi(0, interaction_lock_count - 1)
+
+
+func is_interaction_input_locked() -> bool:
+	return interaction_lock_count > 0
 
 
 func _update_chapter3_quest2_completion() -> void:

@@ -9,10 +9,10 @@
 font_size = 24
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwko1"]
-size = Vector2(91, 27)
+size = Vector2(93.5, 137.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1b7t"]
-radius = 93.13431
+radius = 82.02438
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_talk_hint"]
 bg_color = Color(0, 0, 0, 0.65)
@@ -23,7 +23,7 @@ corner_radius_bottom_left = 8
 
 [node name="Family" type="StaticBody2D" unique_id=1685936794]
 y_sort_enabled = true
-position = Vector2(10, -24)
+position = Vector2(8, 1)
 script = ExtResource("1_su16w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=39302581]
@@ -43,7 +43,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1846613981]
 y_sort_enabled = true
-position = Vector2(-9, 54)
+position = Vector2(-7.75, -1.25)
 shape = SubResource("RectangleShape2D_rwko1")
 
 [node name="Actionable2" parent="." unique_id=767184416 instance=ExtResource("3_qjxix")]

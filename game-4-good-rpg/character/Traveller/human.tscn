@@ -9,7 +9,7 @@
 font_size = 24
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_866mf"]
-size = Vector2(32, 28)
+size = Vector2(63, 130)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vhmko"]
 radius = 86.05231
@@ -39,6 +39,7 @@ offset_bottom = -77.0
 text = "TRAVELER"
 label_settings = SubResource("LabelSettings_placeholder")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=404378259]
 
@@ -46,7 +47,7 @@ horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1567367511]
 y_sort_enabled = true
-position = Vector2(0, 28)
+position = Vector2(-0.5, -23)
 shape = SubResource("RectangleShape2D_866mf")
 
 [node name="Actionable2" parent="." unique_id=687985467 instance=ExtResource("2_35bq3")]
@@ -55,7 +56,7 @@ dialogue_resource = ExtResource("3_uak4t")
 dialogue_start = "traveller_start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2" unique_id=1709042896]
-position = Vector2(1035, 118)
+position = Vector2(1036, 123)
 shape = SubResource("CircleShape2D_vhmko")
 
 [node name="TalkHintLayer" type="CanvasLayer" parent="." unique_id=185997651]
