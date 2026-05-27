@@ -347,6 +347,7 @@ var _ch1_square_snap_quest3: bool = false
 var _ch1_square_snap_quest4: bool = false
 var _ch1_square_snap_quest5: bool = false
 var _ch1_square_snap_bridge_repaired: bool = false
+var _ch1_last_quest2_done: bool = false
 
 ## Chapter 2 — cast theo quest (chapter_2.tscn).
 ## Jessica: Q1–Q5. Matt / Kai / FishingVillageResidents: Q1–Q3. MattKaiVillagers: Q4–Q5.
@@ -393,6 +394,7 @@ func _ready() -> void:
 		QuestState.quest2_arden_done = true
 		QuestState.quest2_steven_done = true
 		QuestState.quest2_aurora_done = true
+		QuestState.acknowledge_chapter1_quest2_completion()
 		QuestState.quest3_complete = true
 		QuestState.quest4_complete = true
 		QuestState.quest5_complete = true
@@ -453,7 +455,8 @@ func _ready() -> void:
 		DialogueManager.dialogue_ended.connect(_on_story_dialogue_ended)
 	_refresh_chapter1_square_assembly_visibility()
 	_ch1_square_snap_quest1 = QuestState.is_quest1_complete()
-	_ch1_square_snap_quest2 = QuestState.is_quest2_complete()
+	_ch1_last_quest2_done = QuestState.is_quest2_complete()
+	_ch1_square_snap_quest2 = _chapter1_quest2_completion_snap_value()
 	_ch1_square_snap_quest3 = QuestState.quest3_complete
 	_ch1_square_snap_quest4 = QuestState.quest4_complete
 	_ch1_square_snap_bridge_repaired = QuestState.bridge_repaired
@@ -490,6 +493,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	_ch1_poll_quest2_completion_panel()
 	_ch1_poll_quest_flags_for_square_visibility()
 	_ch2_poll_quest_flags_for_cast_visibility()
 	if _story_dialogue_sessions == 0:
@@ -866,18 +870,49 @@ func _ch1_set_one_collision_object(co: CollisionObject2D, enabled: bool) -> void
 			area_off.monitorable = false
 
 
+func _chapter1_quest2_completion_snap_value() -> bool:
+	return (
+		QuestState.is_quest2_complete()
+		and QuestState.chapter1_quest2_completion_acknowledged
+	)
+
+
+func _ch1_poll_quest2_completion_panel() -> void:
+	if not _is_on_chapter1_map() or not QuestState.chapter1_description_shown:
+		return
+	var quest2_done := QuestState.is_quest2_complete()
+	if quest2_done and not _ch1_last_quest2_done:
+		_queue_chapter1_quest2_completion_panel()
+	elif not quest2_done:
+		_ch1_last_quest2_done = false
+
+
+func _queue_chapter1_quest2_completion_panel() -> void:
+	if QuestState.chapter1_quest2_completion_acknowledged or not QuestState.is_quest2_complete():
+		return
+	_sync_active_chapter_from_scene()
+	if active_chapter_id != 1:
+		return
+	_arm_quest_completion_prompt(1)
+	pending_completion_prompt_index = 1
+	current_chapter_quest_index = 1
+	_ch1_last_quest2_done = true
+	call_deferred("_flush_pending_story_flow_checks")
+
+
 func _ch1_poll_quest_flags_for_square_visibility() -> void:
 	if not is_instance_valid(_ch1_arden_square):
 		return
 	var quest1_done := QuestState.is_quest1_complete()
 	var quest2_done := QuestState.is_quest2_complete()
+	var quest2_snap := _chapter1_quest2_completion_snap_value()
 	var quest3_done := QuestState.quest3_complete
 	var quest4_done := QuestState.quest4_complete
 	var quest5_done := QuestState.quest5_complete
 	var bridge_repaired := QuestState.bridge_repaired
 	if (
 		quest1_done == _ch1_square_snap_quest1
-		and quest2_done == _ch1_square_snap_quest2
+		and quest2_snap == _ch1_square_snap_quest2
 		and quest3_done == _ch1_square_snap_quest3
 		and quest4_done == _ch1_square_snap_quest4
 		and quest5_done == _ch1_square_snap_quest5
@@ -886,8 +921,6 @@ func _ch1_poll_quest_flags_for_square_visibility() -> void:
 		return
 	if quest1_done and not _ch1_square_snap_quest1:
 		_arm_quest_completion_prompt(0)
-	if quest2_done and not _ch1_square_snap_quest2:
-		_arm_quest_completion_prompt(1)
 	if quest3_done and not _ch1_square_snap_quest3:
 		_arm_quest_completion_prompt(2)
 	if quest4_done and not _ch1_square_snap_quest4:
@@ -895,7 +928,7 @@ func _ch1_poll_quest_flags_for_square_visibility() -> void:
 	if QuestState.quest5_complete and not _ch1_square_snap_quest5:
 		_arm_quest_completion_prompt(4)
 	_ch1_square_snap_quest1 = quest1_done
-	_ch1_square_snap_quest2 = quest2_done
+	_ch1_square_snap_quest2 = quest2_snap
 	_ch1_square_snap_quest3 = quest3_done
 	_ch1_square_snap_quest4 = quest4_done
 	_ch1_square_snap_quest5 = quest5_done
@@ -1038,12 +1071,14 @@ func _try_show_pending_quest_completion() -> bool:
 
 	_sync_active_chapter_from_scene()
 	var quest_index := pending_completion_prompt_index
+	if active_chapter_id < 1:
+		return false
 	if not _is_chapter_quest_complete(active_chapter_id, quest_index):
 		pending_completion_prompt_index = -1
 		_recover_stuck_pause_without_guide()
 		return false
+	_arm_quest_completion_prompt(quest_index)
 	if quest_index <= suppressed_completion_prompt_index:
-		pending_completion_prompt_index = -1
 		return false
 
 	pending_completion_prompt_index = -1
@@ -1109,6 +1144,14 @@ func _handle_quest_completion_flow() -> bool:
 	if quest_index < 0:
 		return false
 	if not _is_chapter_quest_complete(active_chapter_id, quest_index):
+		return false
+	if (
+		active_chapter_id == 1
+		and quest_index == 1
+		and QuestState.chapter1_quest2_completion_acknowledged
+	):
+		return false
+	if active_chapter_id == 1 and quest_index == 1 and pending_completion_prompt_index != 1:
 		return false
 	if quest_index <= suppressed_completion_prompt_index:
 		return false
@@ -1205,6 +1248,9 @@ func _advance_after_quest_completion(completed_quest_index: int) -> void:
 		return
 
 	_sync_active_chapter_from_scene()
+	if active_chapter_id == 1 and completed_quest_index == 1:
+		QuestState.acknowledge_chapter1_quest2_completion()
+		_ch1_square_snap_quest2 = _chapter1_quest2_completion_snap_value()
 	suppressed_completion_prompt_index = completed_quest_index
 	pending_completion_prompt_index = -1
 	_completion_prompt_quest_index = -1
@@ -1420,6 +1466,7 @@ func _apply_skip_chapter1_quests_to_castle_test() -> void:
 	QuestState.quest2_arden_done = true
 	QuestState.quest2_steven_done = true
 	QuestState.quest2_aurora_done = true
+	QuestState.acknowledge_chapter1_quest2_completion()
 	QuestState.quest3_complete = true
 	QuestState.quest4_complete = true
 	QuestState.quest5_complete = true
@@ -1435,7 +1482,8 @@ func _apply_skip_chapter1_quests_to_castle_test() -> void:
 	pending_completion_prompt_index = -1
 	_refresh_chapter1_square_assembly_visibility()
 	_ch1_square_snap_quest1 = QuestState.is_quest1_complete()
-	_ch1_square_snap_quest2 = QuestState.is_quest2_complete()
+	_ch1_last_quest2_done = QuestState.is_quest2_complete()
+	_ch1_square_snap_quest2 = _chapter1_quest2_completion_snap_value()
 	_ch1_square_snap_quest3 = QuestState.quest3_complete
 	_ch1_square_snap_quest4 = QuestState.quest4_complete
 
@@ -1447,6 +1495,7 @@ func _mark_chapter_1_complete_for_skip() -> void:
 	QuestState.quest2_arden_done = true
 	QuestState.quest2_steven_done = true
 	QuestState.quest2_aurora_done = true
+	QuestState.acknowledge_chapter1_quest2_completion()
 	QuestState.quest3_complete = true
 	QuestState.quest4_complete = true
 	QuestState.quest5_complete = true

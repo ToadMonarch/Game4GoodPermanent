@@ -8,6 +8,8 @@ var quest1_jessica_done: bool = false
 var quest2_arden_done: bool = false
 var quest2_steven_done: bool = false
 var quest2_aurora_done: bool = false
+## Set when the player confirms the Quest 2 completion panel (Chapter 1).
+var chapter1_quest2_completion_acknowledged: bool = false
 
 var quest3_complete: bool = false
 var quest4_complete: bool = false
@@ -119,14 +121,33 @@ func mark_quest1_jessica_done() -> void:
 
 func mark_quest2_arden_done() -> void:
 	quest2_arden_done = true
+	_notify_chapter1_quest2_complete()
 
 
 func mark_quest2_steven_done() -> void:
 	quest2_steven_done = true
+	_notify_chapter1_quest2_complete()
 
 
 func mark_quest2_aurora_done() -> void:
 	quest2_aurora_done = true
+	_notify_chapter1_quest2_complete()
+
+
+func _notify_chapter1_quest2_complete() -> void:
+	if not is_quest2_complete() or chapter1_quest2_completion_acknowledged:
+		return
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return
+	for node in tree.get_nodes_in_group("story_guide_panel"):
+		if node.has_method("_queue_chapter1_quest2_completion_panel"):
+			node.call_deferred("_queue_chapter1_quest2_completion_panel")
+			return
+
+
+func acknowledge_chapter1_quest2_completion() -> void:
+	chapter1_quest2_completion_acknowledged = true
 
 
 func mark_quest3_complete() -> void:
