@@ -239,82 +239,82 @@ const CHAPTER0_COMPLETION_SUMMARY := {
 const CHAPTER1_CASTLE_GATE_SUMMARY := {
 	"chapter": "Chapter 1 - Clear Stream Valley",
 	"title": "One More Step Before the Road Opens",
-	"description": "The village meeting ends in quiet applause. Fields are tended, canals run clear again, and neighbors shake hands over a plan everyone helped shape.\n\nJust as you turn toward the path to Seabreeze Village, the Traveler's bell rings without warning. Overnight, the seal on the old castle watchtower cracked, and the spirit gate will not open for the next leg of the journey.\n\nThe elders whisper that only someone who can restore order within the castle stones may pass. Follow the stream to the valley castle, press Space at the gate, and solve the tile puzzle inside. Claim the Pathfinder Badge — the valley's pledge that you are ready to continue.",
+	"description": "Oops, some problems arise in the castle, the king wants your help to solve his problem. Then, he will use his power to move you to the Sea Village directly.",
 }
 
 # =============================================================================
-# STORY / CHAPTER TESTING — QUICK REFERENCE (đọc trước khi chỉnh cờ)
+# STORY / CHAPTER TESTING — QUICK REFERENCE (read before toggling flags)
 # -----------------------------------------------------------------------------
-# Chỉ cần đổi true/false các hằng số bên dưới (không cần comment/uncomment logic).
-# Sau khi đổi cờ, restart scene hoặc xóa save nếu QuestState còn cờ cũ.
+# Just toggle the true/false constants below (no need to comment/uncomment logic).
+# After changing flags, restart the scene or delete save data if QuestState still has old flags.
 #
-# --- Chạy / bỏ qua từng chapter (từ menu → start.tscn) ---
+# --- Run / skip each chapter (from menu -> start.tscn) ---
 #
-# | Mục tiêu                         | Cờ cần chỉnh |
+# | Goal                             | Flags to set |
 # |----------------------------------|--------------|
-# | Chơi đủ luồng 0→1→2→3           | Tất cả REQUIRE_* = true, SKIP_* = false, SKIP_TO_CH3 = false |
-# | Chỉ đọc text Ch0 → vào Ch1       | REQUIRE_CH0 = false, SKIP_CH1 = false |
-# | Ch0 → thẳng Ch2 (bỏ Ch1)         | REQUIRE_CH0 = false, SKIP_CH1 = true |
-# | Ch0 → thẳng Ch3 (bỏ Ch1+Ch2)     | SKIP_TO_CHAPTER_3_TEST = true (trong _ready) |
-# | Đang ở Ch1, chỉ đọc Context → Ch2| REQUIRE_CH1 = false (bấm Start Chapter trên map Ch1) |
-# | Ch1 xong → thẳng Ch3 (bỏ Ch2)    | SKIP_CHAPTER_2_FROM_CHAPTER_1 = true |
-# | Ch1: bỏ puzzle castle            | REQUIRE_CHAPTER_1_CASTLE_PUZZLE = false |
-# | Ch1: bỏ 5 quest → thẳng castle   | SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST = true (F6 map Ch1) |
-# | Puzzle castle: giả đã thắng      | slide_puzzle_main.gd → simulate_puzzle_completed = true |
-# | Ch1: NPC square không trùng      | tự động qua _refresh_chapter1_square_assembly_visibility (map Ch1) |
-# | Ch1: cầu gỗ                    | sau Quest 2, trên đường Quest 3 (không thuộc Quest 2); QuestState.needs_chapter1_bridge_repair() |
-# | Đang ở Ch2, chỉ đọc Context → Ch3| REQUIRE_CH2 = false (bấm Start Chapter trên map Ch2) |
+# | Play full flow 0->1->2->3        | All REQUIRE_* = true, SKIP_* = false, SKIP_TO_CH3 = false |
+# | Read Ch0 text only -> go to Ch1  | REQUIRE_CH0 = false, SKIP_CH1 = false |
+# | Ch0 -> straight to Ch2 (skip Ch1)| REQUIRE_CH0 = false, SKIP_CH1 = true |
+# | Ch0 -> straight to Ch3 (skip Ch1+Ch2) | SKIP_TO_CHAPTER_3_TEST = true (in _ready) |
+# | Currently in Ch1, read Context only -> Ch2 | REQUIRE_CH1 = false (press Start Chapter on Ch1 map) |
+# | Ch1 done -> straight to Ch3 (skip Ch2) | SKIP_CHAPTER_2_FROM_CHAPTER_1 = true |
+# | Ch1: skip castle puzzle          | REQUIRE_CHAPTER_1_CASTLE_PUZZLE = false |
+# | Ch1: skip 5 quests -> straight to castle | SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST = true (F6 Ch1 map) |
+# | Castle puzzle: simulate completion | slide_puzzle_main.gd -> simulate_puzzle_completed = true |
+# | Ch1: prevent NPC square overlap  | handled automatically by _refresh_chapter1_square_assembly_visibility (Ch1 map) |
+# | Ch1: wooden bridge               | after Quest 2, on the way to Quest 3 (not part of Quest 2); QuestState.needs_chapter1_bridge_repair() |
+# | Currently in Ch2, read Context only -> Ch3 | REQUIRE_CH2 = false (press Start Chapter on Ch2 map) |
 #
-# --- Mở thẳng một map (F6 / Run Current Scene) ---
+# --- Open a specific map directly (F6 / Run Current Scene) ---
 #
-# | Chapter | Scene | Inspector trên root |
+# | Chapter | Scene | Root inspector flag |
 # |---------|-------|---------------------|
 # | 1       | res://Chapter 1/Clear Stream Valley.tscn | begins_on_chapter1_map = true |
 # | 2       | res://Scenes/chapter_2.tscn              | begins_on_chapter2_map = true |
-# | 3       | res://Steven/main/Main.tscn (tạm)        | begins_on_chapter3_map = true |
+# | 3       | res://Steven/main/Main.tscn (temporary)  | begins_on_chapter3_map = true |
 #
-# Autoplay (tự bấm Space + panel): uncomment block trong _ready() (~dòng 280).
+# Autoplay (auto presses Space + panel): uncomment the block in _ready() (~line 280).
 # =============================================================================
 
 # --- Chapter 0 (Origin Town — start.tscn) ---
-# REQUIRE = true  → phải nói Traveler, Family, Friend xong mới sang Chapter 1.
-# REQUIRE = false → đóng xong guide text Chapter 0 là auto sang chapter tiếp theo.
-const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := true
+# REQUIRE = true  -> must talk to Traveler, Family, and Friend before Chapter 1.
+# REQUIRE = false -> once Chapter 0 guide text is closed, auto-advance to next chapter.
+const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := false
 
 # --- Chapter 1 (Clear Stream Valley) ---
-# SKIP = true → sau Chapter 0 không vào map Ch1; đánh dấu Ch1 xong → Chapter 2.
+# SKIP = true -> after Chapter 0, do not enter Ch1 map; mark Ch1 complete -> Chapter 2.
 const SKIP_CHAPTER_1_FROM_CHAPTER_0 := false
-# REQUIRE = true  → phải làm hết quest Ch1 mới sang Ch2.
-# REQUIRE = false → đọc xong "Chapter Context" trên map Ch1 → sang Ch2 (bỏ NPC Ch1).
+# REQUIRE = true  -> must finish all Ch1 quests before Ch2.
+# REQUIRE = false -> after reading "Chapter Context" on Ch1 map -> move to Ch2 (skip Ch1 NPC flow).
 const REQUIRE_CHAPTER_1_COMPLETE_FOR_CHAPTER_2 := true
-# REQUIRE = true  → sau hết quest Ch1 phải thắng puzzle castle (badge puzzle_solver) mới coi Ch1 xong.
+# REQUIRE = true  -> after finishing Ch1 quests, must clear castle puzzle (badge puzzle_solver) to mark Ch1 complete.
 const REQUIRE_CHAPTER_1_CASTLE_PUZZLE := true
-# SKIP = true → đánh dấu xong cả 5 quest Ch1, bỏ NPC quest, mở bảng castle ngay (test puzzle).
-# Cách dùng: đặt true → F6 chạy "Chapter 1/Clear Stream Valley.tscn" (begins_on_chapter1_map = true).
-# Bấm "Go to the Castle" → đi tới CastlePuzzleTrigger → Space. Nhớ đặt lại false trước khi commit.
+# SKIP = true -> mark all 5 Ch1 quests complete, skip NPC quests, show castle panel immediately (puzzle test).
+# Usage: set true -> F6 run "Chapter 1/Clear Stream Valley.tscn" (begins_on_chapter1_map = true).
+# Press "Go to the Castle" -> go to CastlePuzzleTrigger -> Space. Remember to reset to false before commit.
 const SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST := false
 
 # --- Chapter 2 (Seabreeze Village — chapter_2.tscn) ---
-# SKIP = true → khi game muốn mở Chapter 2, nhảy thẳng Chapter 3 (bỏ map/tương tác Ch2).
+# SKIP = true -> when the game tries to open Chapter 2, jump straight to Chapter 3 (skip Ch2 map/interactions).
 const SKIP_CHAPTER_2_FROM_CHAPTER_1 := false
-# REQUIRE = true  → phải làm hết quest Ch2 mới sang Ch3.
-# REQUIRE = false → đọc xong "Chapter Context" trên map Ch2 → sang Ch3 (bỏ NPC Ch2).
+# REQUIRE = true  -> must finish all Ch2 quests before Ch3.
+# REQUIRE = false -> after reading "Chapter Context" on Ch2 map -> move to Ch3 (skip Ch2 NPC flow).
 const REQUIRE_CHAPTER_2_COMPLETE_FOR_CHAPTER_3 := true
 
 # --- Chapter 3 (Star & Moon Town) ---
-# SKIP = true trong _ready → nhảy thẳng Ch3, bỏ qua 0/1/2 (test nhanh).
+# SKIP = true in _ready -> jump straight to Ch3, skipping 0/1/2 (quick test).
 const SKIP_TO_CHAPTER_3_TEST := false
 
 const CHAPTER_1_SCENE := "res://Chapter 1/Clear Stream Valley.tscn"
 const CHAPTER_2_SCENE := "res://Scenes/chapter_2.tscn"
-const CHAPTER_3_SCENE := "res://Steven/main/Main.tscn" # TODO: đổi khi có scene Ch3 riêng
+const CHAPTER_3_SCENE := "res://Steven/main/Main.tscn" # TODO: replace when a dedicated Ch3 scene is available
 const MENU_SCENE := "res://Scenes/Menu/menu.tscn"
 
-## F6 map Ch1: bỏ intro Ch0, mở Chapter Context Ch1.
+## F6 Ch1 map: skip Ch0 intro and open Ch1 Chapter Context.
 @export var begins_on_chapter1_map: bool = false
-## F6 map Ch2: bỏ Ch0–Ch1, mở Chapter Context Ch2.
+## F6 Ch2 map: skip Ch0-Ch1 and open Ch2 Chapter Context.
 @export var begins_on_chapter2_map: bool = false
-## F6 map Ch3 (Main.tscn tạm): bỏ Ch0–Ch2, mở Chapter Context Ch3.
+## F6 Ch3 map (temporary Main.tscn): skip Ch0-Ch2 and open Ch3 Chapter Context.
 @export var begins_on_chapter3_map: bool = false
 
 enum PanelMode {
@@ -334,8 +334,8 @@ enum PanelMode {
 @onready var next_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/NextButton
 @onready var alt_button: Button = $StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow/AltButton
 
-## Chapter 1 square — Arden / Steven / Villagers / Council Group (chỉ có trên map Clear Stream Valley).
-## Quest 1: ẩn cả nhóm. Quest 2: Arden + Steven. Cầu gỗ (puzzle): sau Q2, trên đường tới Q3 — không thuộc Q2. Quest 3: + Villagers (sau sửa cầu). Quest 4: Council Group. Quest 5+: lại cá nhân.
+## Chapter 1 square - Arden / Steven / Villagers / Council Group (only on Clear Stream Valley map).
+## Quest 1: hide all groups. Quest 2: Arden + Steven. Wooden bridge (puzzle): after Q2, on the way to Q3 - not part of Q2. Quest 3: + Villagers (after bridge repair). Quest 4: Council Group. Quest 5+: back to individual NPCs.
 var _ch1_council_group: Node2D
 var _ch1_arden_square: Node2D
 var _ch1_steven_square: Node2D
@@ -425,9 +425,9 @@ func _ready() -> void:
 	if _is_on_chapter1_map():
 		call_deferred("_restore_player_after_bridge_puzzle")
 
-	# ===================== AUTOPLAY (tự chạy hội thoại + panel) =====================
-	# Bật khi muốn bot chạy thử Ch0→Ch1→Ch2 (không thay cho SKIP_* ở trên).
-	# Uncomment block dưới:
+	# ===================== AUTOPLAY (auto-runs dialogue + panels) =====================
+	# Enable when you want the bot to test-run Ch0->Ch1->Ch2 (does not replace SKIP_* above).
+	# Uncomment the block below:
 	#var autoplay_script := preload("res://Scripts/story_flow_autoplay.gd")
 	#var autoplay = autoplay_script.new()
 	#autoplay.run_on_ready = true
@@ -467,7 +467,7 @@ func _ready() -> void:
 		_ch2_snap_quest3_done = QuestState.chapter2_quest3_warehouse_done
 		_ch2_snap_quest4_done = QuestState.chapter2_quest4_meeting_done
 		_ch2_snap_quest5_done = QuestState.chapter2_quest5_cleanup_done
-	# Scene .tscn dùng placeholder "Chapter"/"Title" — ẩn tới khi script gán nội dung thật.
+	# Scene .tscn uses placeholder "Chapter"/"Title" - hide until script assigns real content.
 	story_guide_layer.visible = false
 	is_guide_open = false
 	if begins_on_chapter3_map:
@@ -809,7 +809,7 @@ func _resolve_chapter1_square_nodes() -> void:
 	_ch1_villagers_square = get_node_or_null("Arden_Steven_Villagers/Villagers") as Node2D
 
 
-## Không cho Arden / Steven / Villagers / Council Group trùng nhau theo quest (khôi phục từ commit 80fc0ce).
+## Prevent Arden / Steven / Villagers / Council Group overlap per quest (restored from commit 80fc0ce).
 func _refresh_chapter1_square_assembly_visibility() -> void:
 	if not is_instance_valid(_ch1_arden_square):
 		return
@@ -1476,7 +1476,7 @@ func _resolve_chapter_flow_target(chapter_id: int) -> int:
 	return target
 
 
-## Test nhanh: bỏ qua 5 quest Ch1, chỉ giữ luồng bảng castle → puzzle (xem SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST).
+## Quick test: skip 5 Ch1 quests and keep only the castle-panel -> puzzle flow (see SKIP_CHAPTER_1_QUESTS_TO_CASTLE_TEST).
 func _apply_skip_chapter1_quests_to_castle_test() -> void:
 	QuestState.quest1_maggie_done = true
 	QuestState.quest1_kai_done = true

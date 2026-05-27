@@ -17,11 +17,11 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="IconLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="IconTexture" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 48)
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "?"
-horizontal_alignment = 1
+expand_mode = 1
+stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

@@ -7,11 +7,9 @@ const PLAYER_INTERACTION_LAYER := 16
 @export var item_id: String = ""
 @export var display_name: String = "Trash"
 @export var trash_type: String = "plastic"
-@export var placeholder_icon: String = "?"
-
 @onready var talk_hint: Control = $TalkHintLayer/TalkHintPanel
 @onready var talk_hint_label: Label = $TalkHintLayer/TalkHintPanel/TalkHintLabel
-@onready var icon_label: Label = $Visual/IconLabel
+@onready var icon_texture: TextureRect = $Visual/IconTexture
 @onready var name_label: Label = $Visual/NameLabel
 @onready var visual_panel: Panel = $Visual
 
@@ -23,7 +21,7 @@ func _ready() -> void:
 	collision_mask = 1
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
-	icon_label.text = placeholder_icon
+	icon_texture.texture = BeachTrashAtlas.get_texture(item_id)
 	name_label.text = display_name
 	_apply_neutral_visual_style()
 	refresh_state()

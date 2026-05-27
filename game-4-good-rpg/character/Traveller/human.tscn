@@ -9,10 +9,10 @@
 font_size = 24
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_866mf"]
-size = Vector2(28, 23)
+size = Vector2(63, 126)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vhmko"]
-radius = 86.05231
+radius = 70.00714
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_talk_hint"]
 bg_color = Color(0, 0, 0, 0.65)
@@ -23,6 +23,7 @@ corner_radius_bottom_left = 8
 
 [node name="Human" type="StaticBody2D" unique_id=2008200534]
 y_sort_enabled = true
+position = Vector2(-1, 21)
 script = ExtResource("1_uyjct")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926833598]
@@ -47,7 +48,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1567367511]
 y_sort_enabled = true
-position = Vector2(-1, 24.5)
+position = Vector2(1.5, -20)
 shape = SubResource("RectangleShape2D_866mf")
 
 [node name="Actionable2" parent="." unique_id=687985467 instance=ExtResource("2_35bq3")]
@@ -56,7 +57,7 @@ dialogue_resource = ExtResource("3_uak4t")
 dialogue_start = "traveller_start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2" unique_id=1709042896]
-position = Vector2(1036, 123)
+position = Vector2(1038, 119)
 shape = SubResource("CircleShape2D_vhmko")
 
 [node name="TalkHintLayer" type="CanvasLayer" parent="." unique_id=185997651]

@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bbd007mef74ub" path="res://character/Friend/friend.gd" id="1_friend_script"]
 [ext_resource type="PackedScene" uid="uid://t8nci0q725tp" path="res://helpers/Actionable.tscn" id="2_actionable"]
-[ext_resource type="Texture2D" uid="uid://0ic4u6yw81ji" path="res://character/Friend/friend.png" id="2_ly7if"]
+[ext_resource type="Texture2D" uid="uid://cl2u85fnl14yj" path="res://character/Friend/White girl.png" id="2_ly7if"]
 [ext_resource type="Resource" uid="uid://bn8tk18yvoarj" path="res://dialogue.dialogue" id="4_dialogue"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
 font_size = 24
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_friend_body"]
-size = Vector2(54.999996, 22)
+size = Vector2(55, 132)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_friend_interaction"]
 radius = 73.02739
@@ -28,22 +28,22 @@ script = ExtResource("1_friend_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=512681378]
 y_sort_enabled = true
-position = Vector2(807, 138)
-scale = Vector2(2.2619042, 2.0833333)
+position = Vector2(794.7381, 152.33333)
+scale = Vector2(1.9832247, 1.7575756)
 texture = ExtResource("2_ly7if")
 
 [node name="PlaceholderName" type="Label" parent="." unique_id=1328156077]
-offset_left = 752.0
-offset_top = 38.0
-offset_right = 868.0
-offset_bottom = 72.0
+offset_left = 737.0
+offset_top = 52.0
+offset_right = 853.0
+offset_bottom = 86.0
 text = "ADELE"
 label_settings = SubResource("LabelSettings_placeholder")
 horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703588319]
 y_sort_enabled = true
-position = Vector2(807.5, 189)
+position = Vector2(792.5, 155)
 shape = SubResource("RectangleShape2D_friend_body")
 
 [node name="Actionable2" parent="." unique_id=929853927 instance=ExtResource("2_actionable")]
@@ -51,7 +51,7 @@ dialogue_resource = ExtResource("4_dialogue")
 dialogue_start = "friend_start"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable2" unique_id=976817691]
-position = Vector2(808, 140)
+position = Vector2(793, 154)
 shape = SubResource("CircleShape2D_friend_interaction")
 
 [node name="TalkHintLayer" type="CanvasLayer" parent="." unique_id=1856045488]

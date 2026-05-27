@@ -8,7 +8,7 @@ var trash_type: String = ""
 var home_position: Vector2 = Vector2.ZERO
 var _placed := false
 
-@onready var icon_label: Label = $MarginContainer/VBoxContainer/IconLabel
+@onready var icon_texture: TextureRect = $MarginContainer/VBoxContainer/IconTexture
 @onready var name_label: Label = $MarginContainer/VBoxContainer/NameLabel
 
 
@@ -36,7 +36,7 @@ func setup(item: Dictionary) -> void:
 	item_id = item.get("item_id", "")
 	display_name = item.get("display_name", "Trash")
 	trash_type = item.get("trash_type", "")
-	icon_label.text = item.get("placeholder_icon", "?")
+	icon_texture.texture = BeachTrashAtlas.get_texture(item_id)
 	name_label.text = display_name
 
 

@@ -24,7 +24,6 @@ func _spawn_trash_items() -> void:
 		trash_item.item_id = item_data.get("item_id", "")
 		trash_item.display_name = item_data.get("display_name", "Trash")
 		trash_item.trash_type = item_data.get("trash_type", "")
-		trash_item.placeholder_icon = item_data.get("placeholder_icon", "?")
 		trash_item.position = item_data.get("position", Vector2.ZERO)
 		trash_item.collected.connect(_on_trash_collected)
 		trash_container.add_child(trash_item)

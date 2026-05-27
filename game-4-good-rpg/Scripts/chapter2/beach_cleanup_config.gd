@@ -7,42 +7,36 @@ const TRASH_ITEMS: Array[Dictionary] = [
 		"display_name": "Plastic Bottle",
 		"trash_type": "plastic",
 		"position": Vector2(380, -1850),
-		"placeholder_icon": "🍼",
 	},
 	{
 		"item_id": "plastic_bag",
 		"display_name": "Plastic Bag",
 		"trash_type": "plastic",
 		"position": Vector2(650, -1700),
-		"placeholder_icon": "🛍",
 	},
 	{
 		"item_id": "glass_bottle",
 		"display_name": "Glass Bottle",
 		"trash_type": "recyclable",
 		"position": Vector2(950, -1450),
-		"placeholder_icon": "🍾",
 	},
 	{
 		"item_id": "metal_can",
 		"display_name": "Metal Can",
 		"trash_type": "recyclable",
 		"position": Vector2(1250, -1150),
-		"placeholder_icon": "🥫",
 	},
 	{
 		"item_id": "shell_food_waste",
 		"display_name": "Shell / Food Waste",
 		"trash_type": "organic",
 		"position": Vector2(1450, -950),
-		"placeholder_icon": "🐚",
 	},
 	{
 		"item_id": "broken_fishing_net",
 		"display_name": "Broken Fishing Net",
 		"trash_type": "fishing_waste",
 		"position": Vector2(1800, -850),
-		"placeholder_icon": "🕸",
 	},
 ]
 
