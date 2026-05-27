@@ -1,6 +1,9 @@
 extends Node
 ## Chapter 1 progression: each quest’s main dialogue unlocks only after the previous quest’s conversations are finished.
 
+const CHAPTER_1_SCENE := "res://Chapter 1/Clear Stream Valley.tscn"
+const CHAPTER1_SPRINKLER_MINIGAME_SCENE := preload("res://Scenes/ui/SprinklerInstallationMiniGame.tscn")
+
 var quest1_maggie_done: bool = false
 var quest1_kai_done: bool = false
 var quest1_jessica_done: bool = false
@@ -14,6 +17,8 @@ var chapter1_quest2_completion_acknowledged: bool = false
 var quest3_complete: bool = false
 var quest4_complete: bool = false
 var quest5_complete: bool = false
+var chapter1_sprinkler_minigame_completed: bool = false
+var _chapter1_sprinkler_minigame_ui: CanvasLayer = null
 
 var chapter2_quest1_matt_done: bool = false
 var chapter2_quest1_kai_done: bool = false
@@ -159,7 +164,38 @@ func mark_quest4_complete() -> void:
 
 
 func mark_quest5_complete() -> void:
+	if _should_open_chapter1_sprinkler_minigame():
+		_open_chapter1_sprinkler_minigame()
+		return
 	quest5_complete = true
+
+
+func _should_open_chapter1_sprinkler_minigame() -> bool:
+	if chapter1_sprinkler_minigame_completed or quest5_complete:
+		return false
+	if not quest4_complete:
+		return false
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null or tree.current_scene == null:
+		return false
+	return tree.current_scene.scene_file_path == CHAPTER_1_SCENE
+
+
+func _open_chapter1_sprinkler_minigame() -> void:
+	if is_instance_valid(_chapter1_sprinkler_minigame_ui):
+		return
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null or tree.current_scene == null:
+		return
+	_chapter1_sprinkler_minigame_ui = CHAPTER1_SPRINKLER_MINIGAME_SCENE.instantiate()
+	tree.current_scene.add_child(_chapter1_sprinkler_minigame_ui)
+	_chapter1_sprinkler_minigame_ui.completed.connect(_on_chapter1_sprinkler_minigame_completed)
+
+
+func _on_chapter1_sprinkler_minigame_completed() -> void:
+	chapter1_sprinkler_minigame_completed = true
+	quest5_complete = true
+	_chapter1_sprinkler_minigame_ui = null
 
 
 func mark_chapter2_quest1_matt_done() -> void:

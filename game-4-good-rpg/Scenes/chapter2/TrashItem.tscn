@@ -23,15 +23,14 @@ offset_top = -36.0
 offset_right = 36.0
 offset_bottom = 36.0
 
-[node name="IconLabel" type="Label" parent="Visual"]
+[node name="IconTexture" type="TextureRect" parent="Visual"]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 8.0
-offset_right = 64.0
-offset_bottom = 40.0
-theme_override_font_sizes/font_size = 24
-text = "?"
-horizontal_alignment = 1
+offset_top = 4.0
+offset_right = 56.0
+offset_bottom = 52.0
+expand_mode = 1
+stretch_mode = 5
 
 [node name="NameLabel" type="Label" parent="Visual"]
 layout_mode = 0
