@@ -279,7 +279,7 @@ const CHAPTER1_CASTLE_GATE_SUMMARY := {
 # --- Chapter 0 (Origin Town — start.tscn) ---
 # REQUIRE = true  -> must talk to Traveler, Family, and Friend before Chapter 1.
 # REQUIRE = false -> once Chapter 0 guide text is closed, auto-advance to next chapter.
-const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := false
+const REQUIRE_CHAPTER_0_COMPLETE_FOR_CHAPTER_1 := true
 
 # --- Chapter 1 (Clear Stream Valley) ---
 # SKIP = true -> after Chapter 0, do not enter Ch1 map; mark Ch1 complete -> Chapter 2.

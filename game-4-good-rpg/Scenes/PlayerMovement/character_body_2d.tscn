@@ -4,24 +4,22 @@
 [ext_resource type="SpriteFrames" uid="uid://bccl0boobqjip" path="res://Sprites/Player Sprites/DefaultSS/LGBT2.tres" id="2_7c1s5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7c1s5"]
-size = Vector2(71, 29)
+size = Vector2(66.25, 27.75)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_action_finder"]
-radius = 42.379242
+radius = 33.01515
 
 [node name="Player" type="CharacterBody2D" unique_id=1301413091]
 y_sort_enabled = true
-position = Vector2(-7, 4)
 script = ExtResource("1_ymxaj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=82941369]
-position = Vector2(8.599999, -11.599996)
-scale = Vector2(0.89545447, 0.9636363)
+position = Vector2(3.5762787e-06, -1.9073486e-06)
+scale = Vector2(0.89090914, 0.8681819)
 sprite_frames = ExtResource("2_7c1s5")
 animation = &"16 Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=59239980]
-position = Vector2(7.5, -5.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_7c1s5")
 
@@ -31,5 +29,5 @@ shape = SubResource("RectangleShape2D_7c1s5")
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Direction/ActionableFinder" unique_id=174632430]
-position = Vector2(8, -3)
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_action_finder")
