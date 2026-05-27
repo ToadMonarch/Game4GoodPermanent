@@ -4,8 +4,8 @@
 [ext_resource type="SpriteFrames" uid="uid://bccl0boobqjip" path="res://Sprites/Player Sprites/DefaultSS/LGBT2.tres" id="2_7c1s5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ewqnc"]
-radius = 9.0
-height = 54.0
+radius = 5.0
+height = 18.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_action_finder"]
 radius = 28.071337
@@ -20,7 +20,8 @@ sprite_frames = ExtResource("2_7c1s5")
 animation = &"16 Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=59239980]
-position = Vector2(0, 3)
+position = Vector2(0, 25)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ewqnc")
 
 [node name="Direction" type="Marker2D" parent="." unique_id=1409215425]

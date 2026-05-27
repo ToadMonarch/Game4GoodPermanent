@@ -9,7 +9,7 @@
 font_size = 24
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwko1"]
-size = Vector2(93.5, 137.5)
+size = Vector2(93.5, 25.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h1b7t"]
 radius = 82.02438
@@ -43,7 +43,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1846613981]
 y_sort_enabled = true
-position = Vector2(-7.75, -1.25)
+position = Vector2(-7.75, 54.75)
 shape = SubResource("RectangleShape2D_rwko1")
 
 [node name="Actionable2" parent="." unique_id=767184416 instance=ExtResource("3_qjxix")]

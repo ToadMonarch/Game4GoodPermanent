@@ -9,7 +9,7 @@
 font_size = 24
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_friend_body"]
-size = Vector2(54.999996, 128)
+size = Vector2(54.999996, 22)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_friend_interaction"]
 radius = 73.02739
@@ -43,7 +43,7 @@ horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703588319]
 y_sort_enabled = true
-position = Vector2(807.5, 139)
+position = Vector2(807.5, 189)
 shape = SubResource("RectangleShape2D_friend_body")
 
 [node name="Actionable2" parent="." unique_id=929853927 instance=ExtResource("2_actionable")]
@@ -57,7 +57,6 @@ shape = SubResource("CircleShape2D_friend_interaction")
 [node name="TalkHintLayer" type="CanvasLayer" parent="." unique_id=1856045488]
 
 [node name="TalkHintPanel" type="PanelContainer" parent="TalkHintLayer" unique_id=483740628]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

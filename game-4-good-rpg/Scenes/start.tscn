@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://chfx2i51458r7" path="res://character/Traveller/human.tscn" id="13_traveller"]
 [ext_resource type="PackedScene" uid="uid://dmxdx3fwc1nfh" path="res://character/Family/famil.tscn" id="14_family"]
 [ext_resource type="PackedScene" uid="uid://drxfovylj05ic" path="res://character/Friend/friend.tscn" id="15_adele"]
-[ext_resource type="Script" path="res://Chapter 1/MenuScript.gd" id="16_menu"]
+[ext_resource type="Script" uid="uid://c55m2pptkuvkl" path="res://Chapter 1/MenuScript.gd" id="16_menu"]
 [ext_resource type="AudioStream" uid="uid://rppq1u5vnrqv" path="res://Music/A Lonely Cherry Tree.mp3" id="17_au278"]
 
 [sub_resource type="FontFile" id="FontFile_acg6e"]
@@ -46,15 +46,15 @@ script = ExtResource("10_storyguide")
 tile_map_data = PackedByteArray("AAABAN7/AAAAAAAAAAABANz/AAAAAAAAAAABANv/AAAAAAAAAAACABAABQAAAAAAAAD+/xYABQAAAAAAAAABAPb/BQAAAAAAAAAFAOn/BQAAAAAAAAAIAOT/BQAAAAAAAAAUAPD/DAAAAAAAAAA=")
 
 [node name="Traveller" parent="." unique_id=1997513961 instance=ExtResource("13_traveller")]
-z_index = 2
+z_index = 1
 position = Vector2(869, -110)
 
 [node name="Family" parent="." unique_id=1997513962 instance=ExtResource("14_family")]
-z_index = 2
+z_index = 1
 position = Vector2(307, -279)
 
 [node name="Friend" parent="." unique_id=1997513963 instance=ExtResource("15_adele")]
-z_index = 2
+z_index = 1
 position = Vector2(620, 75)
 
 [node name="CharacterBody2D" parent="." unique_id=1301413091 instance=ExtResource("1_3bxa3")]
@@ -67,6 +67,7 @@ position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1898344]
 layer = 110
+visible = false
 script = ExtResource("16_menu")
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer" unique_id=1755924974]
@@ -133,6 +134,7 @@ autoplay = true
 
 [node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
 layer = 100
+visible = false
 
 [node name="GuidePanel" type="PanelContainer" parent="StoryGuideLayer" unique_id=906313394]
 anchors_preset = 8
