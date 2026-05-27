@@ -67,7 +67,6 @@ position_smoothing_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1898344]
 layer = 110
-visible = false
 script = ExtResource("16_menu")
 
 [node name="SettingsButton" type="Button" parent="CanvasLayer" unique_id=1755924974]
@@ -134,7 +133,6 @@ autoplay = true
 
 [node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
 layer = 100
-visible = false
 
 [node name="GuidePanel" type="PanelContainer" parent="StoryGuideLayer" unique_id=906313394]
 anchors_preset = 8
@@ -190,7 +188,6 @@ layout_mode = 2
 text = "Next"
 
 [node name="AltButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=146728390]
-visible = false
 layout_mode = 2
 text = "Alt"
 

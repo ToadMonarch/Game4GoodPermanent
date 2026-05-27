@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cuy6xuu3igyi" path="res://character/Aurora/aurora.tscn" id="9_aurora"]
 [ext_resource type="PackedScene" uid="uid://b0qsrv6j2v4c2" path="res://character/villagers/villagers.tscn" id="10_villagers"]
 [ext_resource type="PackedScene" uid="uid://c6qlnj8u8xhw4" path="res://character/Arden_Steven_Villagers/arden_steven_villagers.tscn" id="11_asv"]
-[ext_resource type="PackedScene" path="res://Scenes/castle_puzzle_trigger.tscn" id="12_castle_trigger"]
+[ext_resource type="PackedScene" uid="uid://b3k7ixb34cr74" path="res://Scenes/castle_puzzle_trigger.tscn" id="12_castle_trigger"]
 [ext_resource type="Script" uid="uid://c55m2pptkuvkl" path="res://Chapter 1/MenuScript.gd" id="13_menu"]
 [ext_resource type="AudioStream" uid="uid://rppq1u5vnrqv" path="res://Music/A Lonely Cherry Tree.mp3" id="14_au278"]
 [ext_resource type="PackedScene" uid="uid://dbexl2wsicxt3" path="res://Scenes/bridge_repair_trigger.tscn" id="15_bridge_trigger"]
@@ -61,7 +61,7 @@ tile_map_data = PackedByteArray("AAAKAAMADAAAAAAAAAALAAQADAAAAAAAAAALAAUADAAAAAA
 tile_set = ExtResource("1_gwevy")
 
 [node name="Player" parent="." unique_id=1301413091 instance=ExtResource("2_r83mq")]
-z_index = 2
+z_index = 1
 position = Vector2(338, 33)
 scale = Vector2(1.7, 1.7)
 
@@ -157,22 +157,22 @@ position = Vector2(305, 312)
 [node name="Arden_Steven_Villagers" type="Node2D" parent="." unique_id=2099291272]
 
 [node name="Arden" parent="Arden_Steven_Villagers" unique_id=513018427 instance=ExtResource("7_arden")]
-z_index = 2
+z_index = 1
 y_sort_enabled = true
 position = Vector2(-255, 757)
 
 [node name="Steven" parent="Arden_Steven_Villagers" unique_id=484491093 instance=ExtResource("8_steven")]
-z_index = 2
+z_index = 1
 y_sort_enabled = true
 position = Vector2(-717, -151)
 
 [node name="Villagers" parent="Arden_Steven_Villagers" unique_id=2099291273 instance=ExtResource("10_villagers")]
-z_index = 2
+z_index = 1
 y_sort_enabled = true
 position = Vector2(3289, -220)
 
 [node name="ArdenStevenVillagersGroup" parent="Arden_Steven_Villagers" unique_id=1808582659 instance=ExtResource("11_asv")]
-z_index = 2
+z_index = 1
 y_sort_enabled = true
 position = Vector2(3688, -210)
 
