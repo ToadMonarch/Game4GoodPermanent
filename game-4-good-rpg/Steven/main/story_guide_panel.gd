@@ -621,6 +621,8 @@ func _on_alt_button_pressed() -> void:
 		pending_completion_prompt_index = -1
 		_completion_prompt_quest_index = -1
 		_close_guide_panel()
+		if active_chapter_id == 2:
+			_refresh_chapter2_cast_visibility()
 		return
 
 	if panel_mode == PanelMode.CHAPTER_CONFIRMATION:
@@ -961,11 +963,11 @@ func _refresh_chapter2_cast_visibility() -> void:
 	if not is_instance_valid(_ch2_matt) and not is_instance_valid(_ch2_matt_kai_villagers):
 		return
 
-	var quest3_done := QuestState.chapter2_quest3_warehouse_done
 	var quest5_done := QuestState.chapter2_quest5_cleanup_done
+	var hide_quest1_to_3_cast := _ch2_should_hide_quest1_to_3_cast()
 
-	var show_quests_1_to_3_cast := not quest3_done
-	var show_quests_4_to_5_cast := quest3_done and not quest5_done
+	var show_quests_1_to_3_cast := not hide_quest1_to_3_cast
+	var show_quests_4_to_5_cast := hide_quest1_to_3_cast and not quest5_done
 	var show_jessica := not quest5_done
 
 	if is_instance_valid(_ch2_matt):
@@ -983,6 +985,22 @@ func _refresh_chapter2_cast_visibility() -> void:
 	if is_instance_valid(_ch2_matt_kai_villagers):
 		_ch2_matt_kai_villagers.visible = show_quests_4_to_5_cast
 		_ch1_set_branch_physics_enabled(_ch2_matt_kai_villagers, show_quests_4_to_5_cast)
+
+
+func _ch2_should_hide_quest1_to_3_cast() -> bool:
+	if not QuestState.chapter2_quest3_warehouse_done:
+		return false
+	if _is_story_dialogue_active():
+		return false
+	if current_chapter_quest_index >= 3:
+		return true
+	if suppressed_completion_prompt_index >= 2:
+		return true
+	if pending_completion_prompt_index == 2:
+		return false
+	if current_chapter_quest_index == 2:
+		return false
+	return true
 
 
 func _ch2_poll_quest_flags_for_cast_visibility() -> void:

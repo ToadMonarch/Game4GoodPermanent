@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://dokql1fxr7vpw" path="res://Assets/BridgeRepair/bridge_warning_icon.png" id="2_warning"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_passage_block"]
-size = Vector2(262, 109)
+size = Vector2(325.5, 252.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bridge_interaction"]
-radius = 150.0
+radius = 193.0026
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_talk_hint"]
 bg_color = Color(0, 0, 0, 0.65)
@@ -23,7 +23,7 @@ script = ExtResource("1_script")
 [node name="PassageBlocker" type="StaticBody2D" parent="." unique_id=14429679]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PassageBlocker" unique_id=9603312]
-position = Vector2(-1, -1)
+position = Vector2(42, -71)
 shape = SubResource("RectangleShape2D_passage_block")
 
 [node name="WarningIcon" type="Sprite2D" parent="." unique_id=1000359284]
