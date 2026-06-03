@@ -401,7 +401,7 @@ func _ready() -> void:
 		QuestState.chapter1_description_shown = true
 		QuestState.chapter1_castle_gate_shown = true
 		QuestState.chapter1_summary_shown = true
-		AchievementManager.unlock_badge("puzzle_solver")
+		QuestState.mark_chapter1_castle_puzzle_complete()
 		QuestState.chapter2_beach_cleanup_started = true
 		QuestState.chapter2_beach_cleanup_done = true
 		QuestState.chapter2_quest1_matt_done = true
@@ -1338,7 +1338,7 @@ func _should_show_chapter1_castle_gate() -> bool:
 
 
 func _is_chapter1_castle_puzzle_complete() -> bool:
-	return AchievementManager.has_badge("puzzle_solver")
+	return QuestState.is_chapter1_castle_puzzle_complete()
 
 
 func _open_chapter_final_summary(chapter_id: int) -> void:
@@ -1520,7 +1520,7 @@ func _mark_chapter_1_complete_for_skip() -> void:
 	QuestState.chapter1_description_shown = true
 	QuestState.chapter1_castle_gate_shown = true
 	QuestState.chapter1_summary_shown = true
-	AchievementManager.unlock_badge("puzzle_solver")
+	QuestState.mark_chapter1_castle_puzzle_complete()
 	chapter1_confirmation_shown = true
 
 

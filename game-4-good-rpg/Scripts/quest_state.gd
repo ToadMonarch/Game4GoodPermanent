@@ -54,6 +54,7 @@ var chapter0_family_done: bool = false
 var chapter0_friend_done: bool = false
 var chapter1_description_shown: bool = false
 var chapter1_castle_gate_shown: bool = false
+var chapter1_castle_puzzle_complete: bool = false
 var chapter1_summary_shown: bool = false
 var interaction_lock_count: int = 0
 
@@ -82,6 +83,22 @@ func is_quest2_complete() -> bool:
 
 func is_chapter1_complete() -> bool:
 	return is_quest1_complete() and is_quest2_complete() and quest3_complete and quest4_complete and quest5_complete
+
+
+func is_chapter1_castle_puzzle_complete() -> bool:
+	if chapter1_castle_puzzle_complete:
+		return true
+	var achievement_manager := get_node_or_null("/root/AchievementManager")
+	if achievement_manager != null and achievement_manager.has_badge("puzzle_solver"):
+		chapter1_castle_puzzle_complete = true
+	return chapter1_castle_puzzle_complete
+
+
+func mark_chapter1_castle_puzzle_complete() -> void:
+	chapter1_castle_puzzle_complete = true
+	var achievement_manager := get_node_or_null("/root/AchievementManager")
+	if achievement_manager != null:
+		achievement_manager.unlock_badge("puzzle_solver")
 
 
 func is_chapter2_quest1_complete() -> bool:

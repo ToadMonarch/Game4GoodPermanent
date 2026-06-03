@@ -20,7 +20,7 @@ config/icon="res://Sprites/icon.svg"
 global="*uid://drpslnkubvagw"
 DialogueManager="*uid://c3rodes2l3gxb"
 QuestState="*res://Scripts/quest_state.gd"
-AchievementManager="*uid://d0wq57p1msnop"
+AchievementManager="*res://Scripts/AchievementManager.gd"
 
 [display]
 

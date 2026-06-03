@@ -16,18 +16,24 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="SignAssemblyInteractable" type="Area2D"]
+z_index = 5
+y_sort_enabled = true
 collision_layer = 16
 script = ExtResource("1_script")
 
 [node name="IncompleteSign" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="SignSprite" type="Sprite2D" parent="IncompleteSign"]
+y_sort_enabled = true
 scale = Vector2(0.38, 0.38)
 
 [node name="CompletedSign" type="Node2D" parent="."]
 visible = false
+y_sort_enabled = true
 
 [node name="SignSprite" type="Sprite2D" parent="CompletedSign"]
+y_sort_enabled = true
 scale = Vector2(0.38, 0.38)
 modulate = Color(1, 1, 1, 1)
 

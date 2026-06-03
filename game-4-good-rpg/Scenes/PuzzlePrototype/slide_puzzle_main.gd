@@ -131,8 +131,8 @@ func _complete_puzzle_win(show_popup: bool) -> void:
 	if _puzzle_finished:
 		return
 	_puzzle_finished = true
-	if not AchievementManager.has_badge("puzzle_solver"):
-		AchievementManager.unlock_badge("puzzle_solver")
+	if not QuestState.is_chapter1_castle_puzzle_complete():
+		QuestState.mark_chapter1_castle_puzzle_complete()
 	emit_signal("puzzle_completed")
 	if show_popup:
 		show_achievement()
