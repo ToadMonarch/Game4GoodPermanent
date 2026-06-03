@@ -13,8 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://drv1u21aujsnn" path="res://character/Matt/matt.tscn" id="13_matt"]
 [ext_resource type="PackedScene" uid="uid://bwq1d2sogmt04" path="res://character/FishingVillageResidents/fishing_village_residents.tscn" id="14_fvr"]
 [ext_resource type="PackedScene" uid="uid://00ek6snrodnk" path="res://character/Matt_Kai_Villagers/matt_kai_villagers.tscn" id="15_mkv"]
-[ext_resource type="PackedScene" uid="uid://c2beachpuzzle001" path="res://Scenes/chapter2/BeachCleanupPuzzle.tscn" id="16_beach"]
-[ext_resource type="PackedScene" uid="uid://c8ingame7settings" path="res://Scenes/Settings/IngameSettings.tscn" id="17_settings"]
+[ext_resource type="PackedScene" uid="uid://7rcjgfujpip1" path="res://Scenes/chapter2/BeachCleanupPuzzle.tscn" id="16_beach"]
+[ext_resource type="TileSet" uid="uid://dvjknvbpfgjsk" path="res://Assets/tileset.tres" id="16_o751r"]
+[ext_resource type="PackedScene" uid="uid://egoyuem6dq55" path="res://Scenes/Settings/IngameSettings.tscn" id="17_settings"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_445iu"]
 texture = ExtResource("1_cdqkm")
@@ -75,17 +76,26 @@ texture_region_size = Vector2i(143, 80)
 0:0/size_in_atlas = Vector2i(3, 6)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(45, 150)
+0:0/0/z_index = 1
+0:0/0/y_sort_origin = -60
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(87.6033, -108.67769, -25.619843, -150, -76.03305, -130.16528, -139.6694, -102.06612, -141.3223, -12.809914, -35.53717, 49.999992, 86.776855, -15.289253)
 3:0/size_in_atlas = Vector2i(4, 7)
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(40, 105)
+3:0/0/z_index = 1
+3:0/0/y_sort_origin = -120
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-246, 34, -241.65906, -138.0909, -61.15912, -211.27698, 90, -138, 97, -2, -103, 81)
 7:0/size_in_atlas = Vector2i(3, 7)
 7:0/0 = 0
 7:0/0/texture_origin = Vector2i(50, 130)
+7:0/0/z_index = 1
+7:0/0/y_sort_origin = -120
 7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(149, -218, -22, -300, -251, -181, -252, -140, -238, -127, -242, 5, -73, 96, 145, -19, 136, -164, 150, -172)
 10:0/size_in_atlas = Vector2i(4, 7)
 10:0/0 = 0
 10:0/0/texture_origin = Vector2i(120, 175)
+10:0/0/z_index = 1
+10:0/0/y_sort_origin = -120
 10:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-288.76447, -69.09088, -285.59705, -238.52063, -72.18387, -316.98135, 92.12117, -230.30296, 102.75055, 14.172485, -74.40556, 69.0909)
 0:6/size_in_atlas = Vector2i(3, 7)
 0:6/0 = 0
@@ -193,10 +203,12 @@ func _ready() -> void:
 "
 
 [node name="Chapter 2" type="Node2D" unique_id=1851929028]
+y_sort_enabled = true
 script = ExtResource("10_storyguide")
 begins_on_chapter2_map = true
 
 [node name="Water" type="TileMapLayer" parent="." unique_id=401339355]
+z_index = -1
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(237, -100)
@@ -218,39 +230,54 @@ y_sort_enabled = true
 texture_filter = 1
 position = Vector2(237, -100)
 scale = Vector2(0.7, 0.7)
-tile_map_data = PackedByteArray("AAD//6r/BAADAAAAAAD//6j/BgADAAAAAAD//3v/BAAKAAAAAAD//3n/BgAKAAAAAAANALn/BAAGAAcAAAANALf/BgAGAAcAAAAkAML/BAADAAAAABAkAMD/BgADAAAAABAkANP/BAAHAAAAABAUAKv/BAAHAAAAAAAgAK7/BAAHAAAAABArAJ//BAAKAAAAABArAJ3/BgAKAAAAABAKAML/BAAGAAcAAAABAM7/BAAGAAcAAAAfAMj/BAAGAAcAAAAgANf/BAAGAAcAAAAgANX/BgAGAAcAAAABAMz/BgAGAAcAAAAKAMD/BgAGAAcAAAAfAMb/BgAGAAcAAAAHAKD/BAAHAAAAABASAMD/BAAHAAAAABD3/5f/BAAAAAYAAAD4/43/BAAAAAYAAAD5/4H/BAAAAAYAAAD7/3j/BAAAAAYAAAD3/5X/BgAAAAYAAAD4/4v/BgAAAAYAAAD5/3//BgAAAAYAAAD7/3b/BgAAAAYAAAATAGL/BAAAAAAAABANAGL/BAAAAAAAAAAEAGr/BAAHAAAAAAAZAG3/BAAHAAAAABAaAH3/BAAKAAAAABAaAHv/BgAKAAAAABANAGD/BgAAAAAAAAATAGD/BgAAAAAAABAhAID/BAAHAAAAAAApAIX/BAAHAAAAABALAHn/BAAKAAAAAAASAID/BAAKAAAAABALAHf/BgAKAAAAAAASAH7/BgAKAAAAABAEANL/BAAHAAAAAAALANb/BAAKAAAAABALANT/BgAKAAAAABAEAJf/BAAGAAcAAAAEALT/BAAGAAcAAAAEALL/BgAGAAcAAAAEAJX/BgAGAAcAAAAaAKL/BAAGAAcAAAAaAKD/BgAGAAcAAAA=")
+tile_map_data = PackedByteArray("AAD//6r/BAADAAAAAAD//6j/BgADAAAAAAD//3v/BAAKAAAAAAD//3n/BgAKAAAAAAAkAML/BAADAAAAABAkAMD/BgADAAAAABAkANP/BAAHAAAAABAUAKv/BAAHAAAAAAAgAK7/BAAHAAAAABArAJ//BAAKAAAAABArAJ3/BgAKAAAAABAHAKD/BAAHAAAAABASAMD/BAAHAAAAABATAGL/BAAAAAAAABANAGL/BAAAAAAAAAAEAGr/BAAHAAAAAAAZAG3/BAAHAAAAABAaAH3/BAAKAAAAABAaAHv/BgAKAAAAABANAGD/BgAAAAAAAAATAGD/BgAAAAAAABAhAID/BAAHAAAAAAApAIX/BAAHAAAAABALAHn/BAAKAAAAAAASAID/BAAKAAAAABALAHf/BgAKAAAAAAASAH7/BgAKAAAAABAEANL/BAAHAAAAAAALANb/BAAKAAAAABALANT/BgAKAAAAABA=")
 tile_set = SubResource("TileSet_0fhag")
 
+[node name="TileMap" type="TileMap" parent="." unique_id=1922526578]
+y_sort_enabled = true
+position = Vector2(237, -100)
+scale = Vector2(0.7, 0.7)
+tile_set = ExtResource("16_o751r")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-10616832, 5, 1, -9240582, 5, 1, -9437175, 5, 1, -11206648, 5, 1, -10158065, 5, 1, -11534318, 5, 1, -10944487, 5, 1, -8912864, 5, 1, -7274460, 5, 1, -9109462, 5, 1, -7667668, 5, 1, -8454122, 5, 1, -7733233, 5, 1, -7733220, 5, 1, -5570509, 5, 1, -982994, 5, 2, -1507286, 5, 2, -1376224, 196612, 4, -5242864, 5, 1, -5701626, 5, 1, -2883567, 5, 1, -3604472, 5, 1, -3342336, 5, 1, -3080150, 196612, 4, -5701595, 196612, 4, -6815693, 196612, 4, -10551273, 65541, 0, -10878965, 65541, 0, -7667720, 65541, 0, -8781824, 65541, 268435456, -8519670, 65541, 0, -7012356, 131077, 0, -7536637, 131077, 0, -4521973, 131077, 0, -6815716, 5, 1, -6225903, 5, 1, -6553590, 5, 1, -6619106, 5, 1, -5963748, 5, 1, -6488039, 5, 1, -5111763, 5, 1, -4194269, 5, 1, -4128723, 5, 1, -3932134, 5, 1, -4521982, 5, 1, -4259842, 5, 1, -8454151, 5, 1, -10223620, 5, 1, -9633789, 5, 1, -10158047, 5, 1, -9764827, 5, 1, -8257485, 5, 1, -7077832, 5, 1, -6356948, 5, 1, -8585201, 5, 1, -8388604, 5, 1, -2818013, 5, 1, -3211217, 5, 1, -2490340, 65541, 268435456, -4587489, 131077, 0, -5767165, 131077, 268435456, -8847363, 5, 0, -9109494, 5, 0, -9764848, 5, 268435456, -9699294, 5, 268435456, -7798737, 5, 268435456, -7864288, 5, 268435456, -7864267, 65541, 0, -7536623, 65541, 0, -786426, 5, 268435458, -327678, 5, 268435458)
+
 [node name="Player" parent="." unique_id=1301413091 instance=ExtResource("6_xwdnv")]
-z_index = 3
+z_index = 1
 position = Vector2(1956, -967)
 scale = Vector2(1.8, 1.8)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1255284566]
+position_smoothing_enabled = true
 
 [node name="Matt" parent="." unique_id=277546319 instance=ExtResource("13_matt")]
-z_index = 2
+z_index = 1
+y_sort_enabled = true
 position = Vector2(520, 160)
 
 [node name="Kai" parent="." unique_id=1417196607 instance=ExtResource("11_kai")]
-z_index = 2
+z_index = 1
+y_sort_enabled = true
 position = Vector2(2100, -750)
 
 [node name="Jessica" parent="." unique_id=989292783 instance=ExtResource("12_jessica")]
-z_index = 2
+z_index = 1
+y_sort_enabled = true
 position = Vector2(120, -2250)
 
-[node name="BeachCleanupPuzzle" parent="." instance=ExtResource("16_beach")]
+[node name="BeachCleanupPuzzle" parent="." unique_id=1959705630 instance=ExtResource("16_beach")]
 
 [node name="FishingVillageResidents" parent="." unique_id=448381792 instance=ExtResource("14_fvr")]
-z_index = 2
+z_index = 1
+y_sort_enabled = true
 position = Vector2(1573, -629)
 
 [node name="MattKaiVillagers" parent="." unique_id=1766484008 instance=ExtResource("15_mkv")]
-z_index = 2
+z_index = 1
+y_sort_enabled = true
 position = Vector2(1978, -4210)
 
-[node name="IngameSettings" parent="." instance=ExtResource("17_settings")]
+[node name="IngameSettings" parent="." unique_id=1175000479 instance=ExtResource("17_settings")]
 
 [node name="StoryGuideLayer" type="CanvasLayer" parent="." unique_id=836113592]
 layer = 100
@@ -309,6 +336,5 @@ layout_mode = 2
 text = "Next"
 
 [node name="AltButton" type="Button" parent="StoryGuideLayer/GuidePanel/ContentMargin/ContentVBox/FooterRow" unique_id=146728390]
-visible = false
 layout_mode = 2
 text = "Alt"

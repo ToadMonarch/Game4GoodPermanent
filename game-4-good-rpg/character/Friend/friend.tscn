@@ -9,7 +9,7 @@
 font_size = 24
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_friend_body"]
-size = Vector2(55, 132)
+size = Vector2(36, 24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_friend_interaction"]
 radius = 73.02739
@@ -43,7 +43,7 @@ horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1703588319]
 y_sort_enabled = true
-position = Vector2(792.5, 155)
+position = Vector2(794, 209)
 shape = SubResource("RectangleShape2D_friend_body")
 
 [node name="Actionable2" parent="." unique_id=929853927 instance=ExtResource("2_actionable")]

@@ -5,8 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://cv2yww6n6fma8" path="res://character/Jessica/south.png" id="3_tex"]
 [ext_resource type="Resource" uid="uid://bn8tk18yvoarj" path="res://dialogue.dialogue" id="4_dlg"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
+font_size = 24
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(51, 99)
+size = Vector2(22, 14)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_talk"]
 radius = 63.007935
@@ -18,10 +21,6 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="LabelSettings" id="LabelSettings_placeholder"]
-font_size = 24
-font_color = Color(1, 1, 1, 1)
-
 [node name="Jessica" type="StaticBody2D" unique_id=796007970]
 script = ExtResource("1_npc")
 
@@ -30,7 +29,7 @@ position = Vector2(-1, 1)
 scale = Vector2(1.7673159, 1.5871211)
 texture = ExtResource("3_tex")
 
-[node name="PlaceholderName" type="Label" parent="."]
+[node name="PlaceholderName" type="Label" parent="." unique_id=1751802665]
 offset_left = -52.0
 offset_top = -94.0
 offset_right = 52.0
@@ -40,6 +39,7 @@ label_settings = SubResource("LabelSettings_placeholder")
 horizontal_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=749059361]
+position = Vector2(-1, 33)
 shape = SubResource("RectangleShape2D_body")
 
 [node name="Actionable2" parent="." unique_id=189587112 instance=ExtResource("2_act")]
